@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "esbuild --bundle src/main.jsx --outfile=main.js --servedir=./ --watch",
-    "build": "esbuild --bundle src/main.jsx --outfile=main.js"
+    "build": "mkdir -p public && cp index.html public/ && cp main.js public/ && cp -r src public/"
   },
   "keywords": [],
   "author": "",
