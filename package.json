@@ -1,0 +1,23 @@
+{
+  "name": "mock",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "esbuild --bundle src/main.jsx --outfile=main.js --servedir=./ --watch",
+    "build": "esbuild --bundle src/main.jsx --outfile=main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.11",
+    "esbuild": "^0.25.8",
+    "lucide-react": "^0.525.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "tailwindcss": "^4.1.11",
+    "vercel": "^44.5.0"
+  }
+}
