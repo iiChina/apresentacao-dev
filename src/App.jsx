@@ -316,9 +316,14 @@ const OcorrenciasModal = ({ isOpen, onClose, vendedorId }) => {
   );
 };
 
-const AddOccurrenceModal = ({ isOpen, onClose, onSave }) => {
+const AddOccurrenceModal = ({
+  isOpen,
+  onClose,
+  onSave,
+  sellerName = "PROCAPET SHOP",
+}) => {
   const [formData, setFormData] = useState({
-    date: "07/23/2025",
+    date: "",
     type: "",
     platform: "",
     link: "",
@@ -330,14 +335,52 @@ const AddOccurrenceModal = ({ isOpen, onClose, onSave }) => {
 
   const handleSave = () => {
     onSave(formData);
+    // Opcional: Limpar o formulário após salvar, se desejar
     setFormData({
-      date: "07/23/2025",
+      date: "",
       type: "",
       platform: "",
       link: "",
       product: "",
       observation: "",
     });
+    onClose(); // Fechar o modal após o salvamento
+  };
+
+  // Função para lidar com a mudança nos campos do formulário
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  // Nova função para lidar com o evento de colar no campo 'Data'
+  const handlePasteDate = (e) => {
+    e.preventDefault(); // Impede a ação padrão de colar para que possamos processar o texto
+    const pastedText = e.clipboardData.getData("text");
+    const parts = pastedText.split(";").map((part) => part.trim()); // Divide por ponto e vírgula e remove espaços em branco
+
+    // Verifica se há partes suficientes para preencher os campos
+    if (parts.length >= 5) {
+      // data;tipo;plataforma;link;produto;observacao (mínimo 5 para os primeiros campos)
+      setFormData((prevData) => ({
+        ...prevData,
+        date: parts[0] || "",
+        type: parts[1] || "",
+        platform: parts[2] || "",
+        link: parts[3] || "",
+        product: parts[4] || "",
+        observation: parts[5] || "", // Observação é opcional e pode não estar presente
+      }));
+    } else {
+      // Se não houver partes suficientes, apenas cola no campo de data (comportamento padrão)
+      setFormData((prevData) => ({
+        ...prevData,
+        date: pastedText,
+      }));
+    }
   };
 
   return (
@@ -357,10 +400,11 @@ const AddOccurrenceModal = ({ isOpen, onClose, onSave }) => {
       }}
     >
       <div
-        className="bg-white rounded-lg shadow-2xl overflow-hidden"
+        className="bg-white rounded-lg shadow-2xl"
         style={{
           width: "400px",
           maxHeight: "90vh",
+          overflowY: "auto", // Adicionado para permitir scroll se o conteúdo for maior
         }}
       >
         {/* Header */}
@@ -379,7 +423,7 @@ const AddOccurrenceModal = ({ isOpen, onClose, onSave }) => {
         {/* Content */}
         <div className="p-4 space-y-4">
           <p className="text-sm text-gray-600">
-            Preencha os detalhes da ocorrência para o vendedor PROCAPET SHOP
+            Preencha os detalhes da ocorrência para o vendedor {sellerName}
           </p>
 
           {/* Data */}
@@ -389,12 +433,13 @@ const AddOccurrenceModal = ({ isOpen, onClose, onSave }) => {
               Data
             </label>
             <input
-              type="text"
+              type="text" // Alterado para text para permitir colar qualquer formato de data
+              name="date"
               value={formData.date}
-              onChange={(e) =>
-                setFormData({ ...formData, date: e.target.value })
-              }
+              onChange={handleChange}
+              onPaste={handlePasteDate} // Adiciona o evento onPaste aqui
               className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              placeholder="DD/MM/AAAA" // Exemplo de placeholder
             />
           </div>
 
@@ -405,20 +450,34 @@ const AddOccurrenceModal = ({ isOpen, onClose, onSave }) => {
               Tipo
             </label>
             <select
+              name="type"
               value={formData.type}
-              onChange={(e) =>
-                setFormData({ ...formData, type: e.target.value })
-              }
+              onChange={handleChange}
               className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
               <option value="">Selecione...</option>
+              <option value="Advertência">Advertência</option>
+              <option value="Alerta">Alerta</option>
+              <option value="Alerta 1">Alerta 1</option>
+              <option value="Alerta 2">Alerta 2</option>
+              <option value="Atenção">Atenção</option>
+              <option value="Caso pontual">Caso pontual</option>
               <option value="Confirmação da denúncia">
                 Confirmação da denúncia
               </option>
-              <option value="Caso perdido">Caso perdido</option>
+              <option value="Cumprido">Cumprido</option>
               <option value="Denúncia na plataforma">
                 Denúncia na plataforma
               </option>
+              <option value="Monitoramento">Monitoramento</option>
+              <option value="Reativação de anúncio">
+                Reativação de anúncio
+              </option>
+              <option value="Reforço">Reforço</option>
+              <option value="Retificação comunicado anterior">
+                Retificação comunicado anterior
+              </option>
+              <option value="Retorno">Retorno</option>
             </select>
           </div>
 
@@ -428,16 +487,21 @@ const AddOccurrenceModal = ({ isOpen, onClose, onSave }) => {
               Plataformas
             </label>
             <select
+              name="platform"
               value={formData.platform}
-              onChange={(e) =>
-                setFormData({ ...formData, platform: e.target.value })
-              }
+              onChange={handleChange}
               className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             >
               <option value="">Selecione uma plataforma</option>
+              <option value="Americanas">Americanas</option>
+              <option value="Magalu">Magalu</option>
               <option value="Mercado Livre">Mercado Livre</option>
               <option value="Shopee">Shopee</option>
               <option value="Amazon">Amazon</option>
+              <option value="Site Próprio">Site Próprio</option>
+              <option value="Outras (descrever em observações)">
+                Outras (descrever em observações)
+              </option>
             </select>
           </div>
 
@@ -448,16 +512,19 @@ const AddOccurrenceModal = ({ isOpen, onClose, onSave }) => {
                 <Link className="w-4 h-4 inline mr-1" />
                 Links
               </label>
-              <button className="bg-blue-600 text-white p-1 rounded-md hover:bg-blue-700 transition-colors">
+              {/* O botão Plus deve ter uma funcionalidade para adicionar múltiplos links, se necessário */}
+              <button
+                type="button"
+                className="bg-blue-600 text-white p-1 rounded-md hover:bg-blue-700 transition-colors"
+              >
                 <Plus className="w-4 h-4" />
               </button>
             </div>
             <input
               type="text"
+              name="link"
               value={formData.link}
-              onChange={(e) =>
-                setFormData({ ...formData, link: e.target.value })
-              }
+              onChange={handleChange}
               placeholder="Adicionar link"
               className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
@@ -470,16 +537,19 @@ const AddOccurrenceModal = ({ isOpen, onClose, onSave }) => {
                 <Package className="w-4 h-4 inline mr-1" />
                 Produtos
               </label>
-              <button className="bg-blue-600 text-white p-1 rounded-md hover:bg-blue-700 transition-colors">
+              {/* O botão Plus deve ter uma funcionalidade para adicionar múltiplos produtos, se necessário */}
+              <button
+                type="button"
+                className="bg-blue-600 text-white p-1 rounded-md hover:bg-blue-700 transition-colors"
+              >
                 <Plus className="w-4 h-4" />
               </button>
             </div>
             <input
               type="text"
+              name="product"
               value={formData.product}
-              onChange={(e) =>
-                setFormData({ ...formData, product: e.target.value })
-              }
+              onChange={handleChange}
               placeholder="Adicionar produto"
               className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
             />
@@ -492,10 +562,9 @@ const AddOccurrenceModal = ({ isOpen, onClose, onSave }) => {
               Observação
             </label>
             <textarea
+              name="observation"
               value={formData.observation}
-              onChange={(e) =>
-                setFormData({ ...formData, observation: e.target.value })
-              }
+              onChange={handleChange}
               placeholder="Detalhes adicionais da ocorrência"
               rows="3"
               className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
