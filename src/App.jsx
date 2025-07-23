@@ -1,30 +1,255 @@
-const toggleRow = (index) => {
-    const newExpandedRows = new Set(expandedRows);
-    if (newExpandedRows.has(index)) {
-      newExpandedRows.delete(index);
-    } else {
-      newExpandedRows.add(index);
-    }
-    setExpandedRows(newExpandedRows);
-  };
+import React, { useState } from 'react';
+import { Activity, MessageSquare, FileText, Search, MoreHorizontal, ExternalLink, ChevronDown, ChevronRight, MapPin, Calendar, DollarSign, Package, X, Plus } from 'lucide-react';
 
-  const getStatusColor = (status) => {
-    switch (status) {
-      case 'Ativo':
+const getStatusColor = (status) => {
+  switch (status) {
+    case 'Ativo':
+      return 'text-green-800 border-green-200';
+    case 'Pendente':
+      return 'text-yellow-800 border-yellow-200';
+    case 'Inativo':
+      return 'text-red-800 border-red-200';
+    default:
+      return 'text-gray-800 border-gray-200';
+  }
+};
+
+const OcorrenciasModal = ({ isOpen, onClose, vendedorId }) => {
+  if (!isOpen) return null;
+
+  // Previne scroll do body quando o modal está aberto
+  React.useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    // Cleanup quando o componente for desmontado
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
+
+  // Dados mock das ocorrências
+  const ocorrencias = [
+    {
+      id: 1,
+      data: '18/07/2025',
+      tipo: 'Confirmação da denúncia',
+      plataforma: 'Mercado Livre',
+      produtos: 1,
+      links: '-',
+      observacao: '-',
+      anexos: '-'
+    },
+    {
+      id: 2,
+      data: '18/07/2025',
+      tipo: 'Caso perdido',
+      plataforma: 'Mercado Livre',
+      produtos: 1,
+      links: '-',
+      observacao: '-',
+      anexos: 1
+    },
+    {
+      id: 3,
+      data: '11/07/2025',
+      tipo: 'Denúncia na plataforma',
+      plataforma: '',
+      produtos: 2,
+      links: 2,
+      observacao: '-',
+      anexos: '-'
+    }
+  ];
+
+  const getTipoColor = (tipo) => {
+    switch (tipo) {
+      case 'Confirmação da denúncia':
         return 'bg-green-100 text-green-800 border-green-200';
-      case 'Pendente':
-        return 'bg-yellow-100 text-yellow-800 border-yellow-200';
-      case 'Inativo':
+      case 'Caso perdido':
+        return 'bg-orange-100 text-orange-800 border-orange-200';
+      case 'Denúncia na plataforma':
         return 'bg-red-100 text-red-800 border-red-200';
       default:
         return 'bg-gray-100 text-gray-800 border-gray-200';
     }
-  };import React, { useState } from 'react';
-import { Search, MoreHorizontal, ExternalLink, ChevronDown, ChevronRight, MapPin, Calendar, DollarSign, Package } from 'lucide-react';
+  };
+
+  const getPlatformColor = (platform) => {
+    switch (platform) {
+      case 'Mercado Livre':
+        return 'bg-yellow-100 text-yellow-800 border-yellow-200';
+      case 'Shopee':
+        return 'bg-orange-100 text-orange-800 border-orange-200';
+      default:
+        return 'bg-gray-100 text-gray-800 border-gray-200';
+    }
+  };
+
+  return (
+    <div 
+      className="fixed inset-0 flex items-center justify-center p-4"
+      style={{ 
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        zIndex: 9999
+      }}
+    >
+      <div 
+        className="bg-white rounded-lg w-full max-h-[90vh] overflow-hidden shadow-2xl"
+        style={{ maxWidth: '1200px' }}
+      >
+        {/* Header do Modal */}
+        <div className="flex items-center justify-between p-6 border-b border-gray-200">
+          <div>
+            <h2 className="text-xl font-semibold text-gray-900">
+              Ocorrências de {vendedorId}
+            </h2>
+            <p className="text-sm text-gray-600 mt-1">
+              Gerenciamento de ocorrências para o vendedor não mapeado
+            </p>
+          </div>
+          <button
+            onClick={onClose}
+            className="text-gray-400 hover:text-gray-600 transition-colors"
+          >
+            <X className="w-6 h-6" />
+          </button>
+        </div>
+
+        {/* Conteúdo do Modal */}
+        <div className="p-6" style={{ maxHeight: 'calc(90vh - 140px)', overflowY: 'auto' }}>
+          {/* Contador de ocorrências */}
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-2">
+              <span className="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">
+                {ocorrencias.length} ocorrência(s)
+              </span>
+            </div>
+            <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center gap-2">
+              <Plus className="w-4 h-4" />
+              Adicionar Ocorrência
+            </button>
+          </div>
+
+          {/* Tabela de Ocorrências */}
+          <div className="bg-white border border-gray-200 rounded-lg overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead className="bg-gray-50 border-b border-gray-200">
+                  <tr>
+                    <th className="text-left py-3 px-4 font-medium text-gray-700">Data</th>
+                    <th className="text-left py-3 px-4 font-medium text-gray-700">Tipo</th>
+                    <th className="text-left py-3 px-4 font-medium text-gray-700">Plataformas</th>
+                    <th className="text-left py-3 px-4 font-medium text-gray-700">Produtos</th>
+                    <th className="text-left py-3 px-4 font-medium text-gray-700">Links</th>
+                    <th className="text-left py-3 px-4 font-medium text-gray-700">Observação</th>
+                    <th className="text-left py-3 px-4 font-medium text-gray-700">Anexos</th>
+                    <th className="w-12 py-3 px-4"></th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200">
+                  {ocorrencias.map((ocorrencia) => (
+                    <tr key={ocorrencia.id} className="hover:bg-gray-50 transition-colors">
+                      <td className="py-3 px-4 text-gray-900">
+                        <div className="flex items-center gap-2">
+                          <Calendar className="w-4 h-4 text-gray-400" />
+                          {ocorrencia.data}
+                        </div>
+                      </td>
+                      <td className="py-3 px-4">
+                        <span className={`px-2 py-1 rounded-md text-xs font-medium border ${getTipoColor(ocorrencia.tipo)}`}>
+                          {ocorrencia.tipo}
+                        </span>
+                      </td>
+                      <td className="py-3 px-4">
+                        {ocorrencia.plataforma ? (
+                          <span className={`px-2 py-1 rounded-md text-xs font-medium border ${getPlatformColor(ocorrencia.plataforma)}`}>
+                            {ocorrencia.plataforma}
+                          </span>
+                        ) : (
+                          <span className="text-gray-400 text-sm">-</span>
+                        )}
+                      </td>
+                      <td className="py-3 px-4">
+                        <div className="flex items-center gap-2">
+                          <Package className="w-4 h-4 text-purple-600" />
+                          <span className="text-gray-900">{ocorrencia.produtos}</span>
+                        </div>
+                      </td>
+                      <td className="py-3 px-4">
+                        {ocorrencia.links !== '-' ? (
+                          <div className="flex items-center gap-2">
+                            <ExternalLink className="w-4 h-4 text-blue-600" />
+                            <span className="text-blue-600 cursor-pointer hover:underline">
+                              {ocorrencia.links}
+                            </span>
+                          </div>
+                        ) : (
+                          <span className="text-gray-400 text-sm">-</span>
+                        )}
+                      </td>
+                      <td className="py-3 px-4">
+                        {ocorrencia.observacao !== '-' ? (
+                          <div className="flex items-center gap-2">
+                            <MessageSquare className="w-4 h-4 text-green-600" />
+                            <span className="text-gray-900">{ocorrencia.observacao}</span>
+                          </div>
+                        ) : (
+                          <span className="text-gray-400 text-sm">-</span>
+                        )}
+                      </td>
+                      <td className="py-3 px-4">
+                        {ocorrencia.anexos !== '-' ? (
+                          <div className="flex items-center gap-2">
+                            <FileText className="w-4 h-4 text-green-600" />
+                            <span className="bg-green-100 text-green-800 text-sm font-medium px-2 py-1 rounded-full">
+                              {ocorrencia.anexos}
+                            </span>
+                          </div>
+                        ) : (
+                          <span className="text-gray-400 text-sm">-</span>
+                        )}
+                      </td>
+                      <td className="py-3 px-4">
+                        <button className="text-gray-400 hover:text-gray-600 transition-colors">
+                          <MoreHorizontal className="w-4 h-4" />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer do Modal */}
+        <div className="flex items-center justify-end gap-3 p-6 border-t border-gray-200 bg-gray-50">
+          <button
+            onClick={onClose}
+            className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+          >
+            Fechar
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const VendedoresNaoMapeados = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [expandedRows, setExpandedRows] = useState(new Set());
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedVendedor, setSelectedVendedor] = useState('');
   
   const vendedores = [
     {
@@ -176,7 +401,9 @@ const VendedoresNaoMapeados = () => {
           dataUltimaVenda: '2024-07-20',
           totalVendas: 'R$ 31.280',
           produtos: 267,
-          status: 'Ativo'
+          status: 'Ativo',
+          link: 'https://www.mercadolivre.com.br',
+          cnpj: '51.445.409/0001-52'
         },
         {
           id: 'PROM002',
@@ -186,7 +413,9 @@ const VendedoresNaoMapeados = () => {
           dataUltimaVenda: '2024-07-19',
           totalVendas: 'R$ 14.560',
           produtos: 189,
-          status: 'Ativo'
+          status: 'Ativo',
+          link: 'https://shopee.com.br',
+          cnpj: '62.236.163/0001-25'
         }
       ]
     },
@@ -235,6 +464,16 @@ const VendedoresNaoMapeados = () => {
       default:
         return 'bg-gray-100 text-gray-800 border-gray-200';
     }
+  };
+
+  const openModal = (vendedorId) => {
+    setSelectedVendedor(vendedorId);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedVendedor('');
   };
 
   return (
@@ -327,7 +566,9 @@ const VendedoresNaoMapeados = () => {
                     </td>
                     <td className="py-3 px-4">
                       <div className="flex items-center gap-2">
-                        <ExternalLink className="w-4 h-4 text-blue-600" />
+                        <button onClick={() => openModal(vendedor.id)}>
+                          <ExternalLink className="w-4 h-4 text-blue-600 hover:text-blue-700 transition-colors cursor-pointer" />
+                        </button>
                         <span className="bg-blue-100 text-blue-800 text-sm font-medium px-2 py-1 rounded-full">
                           {vendedor.ocorrencias}
                         </span>
@@ -339,7 +580,7 @@ const VendedoresNaoMapeados = () => {
                       </button>
                     </td>
                   </tr>
-                  
+
                   {/* Linha Expandida */}
                   {expandedRows.has(index) && (
                     <tr>
@@ -355,17 +596,18 @@ const VendedoresNaoMapeados = () => {
                                 <div key={sellerIndex} className="bg-white rounded-lg border border-gray-200 p-4">
                                   <div className="flex items-center justify-between mb-3">
                                     <div className="flex items-center gap-3">
-                                      <h5 className="font-semibold text-gray-900">{seller.nome}</h5>
-                                      <span className={`px-2 py-1 rounded-md text-xs font-medium border ${getStatusColor(seller.status)}`}>
-                                        {seller.status}
-                                      </span>
+                                        <h5 className="font-semibold text-gray-900">
+                                          {seller.nome}
+                                        </h5>
                                     </div>
                                     <span className="text-sm text-gray-500">ID: {seller.id}</span>
                                   </div>
                                   
                                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                                     <div className="flex items-center gap-2">
-                                      <ExternalLink className="w-4 h-4 text-blue-600" />
+                                        <a href={seller.link} className="text-blue-600 flex items-center gap-1">
+                                          <ExternalLink className="w-4 h-4 text-blue-600" />
+                                        </a>
                                       <div>
                                         <p className="text-xs text-gray-500">Plataforma</p>
                                         <p className="text-sm font-medium text-gray-900">{seller.plataforma}</p>
@@ -373,17 +615,17 @@ const VendedoresNaoMapeados = () => {
                                     </div>
                                     
                                     <div className="flex items-center gap-2">
-                                      <MapPin className="w-4 h-4 text-green-600" />
+                                      <FileText className="w-4 h-4 text-green-600" />
                                       <div>
-                                        <p className="text-xs text-gray-500">Localização</p>
-                                        <p className="text-sm font-medium text-gray-900">{seller.endereco}</p>
+                                        <p className="text-xs text-gray-500">CNPJ</p>
+                                        <p className="text-sm font-medium text-gray-900">{seller.cnpj}</p>
                                       </div>
                                     </div>
                                     
                                     <div className="flex items-center gap-2">
-                                      <Calendar className="w-4 h-4 text-purple-600" />
+                                      <MessageSquare className="w-4 h-4 text-purple-600" />
                                       <div>
-                                        <p className="text-xs text-gray-500">Última Venda</p>
+                                        <p className="text-xs text-gray-500">Observação</p>
                                         <p className="text-sm font-medium text-gray-900">
                                           {new Date(seller.dataUltimaVenda).toLocaleDateString('pt-BR')}
                                         </p>
@@ -391,20 +633,10 @@ const VendedoresNaoMapeados = () => {
                                     </div>
                                     
                                     <div className="flex items-center gap-2">
-                                      <Package className="w-4 h-4 text-orange-600" />
+                                      <Activity className="w-4 h-4 text-orange-600" />
                                       <div>
-                                        <p className="text-xs text-gray-500">Produtos</p>
-                                        <p className="text-sm font-medium text-gray-900">{seller.produtos}</p>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  
-                                  <div className="mt-3 pt-3 border-t border-gray-200">
-                                    <div className="flex items-center gap-2">
-                                      <DollarSign className="w-4 h-4 text-green-600" />
-                                      <div>
-                                        <p className="text-xs text-gray-500">Total de Vendas</p>
-                                        <p className="text-lg font-bold text-green-600">{seller.totalVendas}</p>
+                                        <p className="text-xs text-gray-500">Status</p>
+                                        <p className={`text-sm font-medium ${getStatusColor(seller.status)}`}>{seller.status}</p>
                                       </div>
                                     </div>
                                   </div>
@@ -427,6 +659,13 @@ const VendedoresNaoMapeados = () => {
       <div className="mt-4 text-sm text-gray-600">
         Mostrando {filteredVendedores.length} de {vendedores.length} vendedores
       </div>
+
+      {/* Modal de Ocorrências */}
+      <OcorrenciasModal 
+        isOpen={isModalOpen} 
+        onClose={closeModal} 
+        vendedorId={selectedVendedor}
+      />
     </div>
   );
 };
