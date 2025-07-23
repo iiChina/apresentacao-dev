@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Activity, MessageSquare, FileText, Search, MoreHorizontal, ExternalLink, ChevronDown, ChevronRight, MapPin, Calendar, DollarSign, Package, X, Plus } from 'lucide-react';
+import { Activity, MessageSquare, FileText, Search, MoreHorizontal, ExternalLink, ChevronDown, ChevronRight, MapPin, Calendar, DollarSign, Package, X, Plus, AlertTriangle, Link } from 'lucide-react';
 
 const getStatusColor = (status) => {
   switch (status) {
@@ -31,40 +31,6 @@ const OcorrenciasModal = ({ isOpen, onClose, vendedorId }) => {
     };
   }, [isOpen]);
 
-  // Dados mock das ocorrências
-  const ocorrencias = [
-    {
-      id: 1,
-      data: '18/07/2025',
-      tipo: 'Confirmação da denúncia',
-      plataforma: 'Mercado Livre',
-      produtos: 1,
-      links: '-',
-      observacao: '-',
-      anexos: '-'
-    },
-    {
-      id: 2,
-      data: '18/07/2025',
-      tipo: 'Caso perdido',
-      plataforma: 'Mercado Livre',
-      produtos: 1,
-      links: '-',
-      observacao: '-',
-      anexos: 1
-    },
-    {
-      id: 3,
-      data: '11/07/2025',
-      tipo: 'Denúncia na plataforma',
-      plataforma: '',
-      produtos: 2,
-      links: 2,
-      observacao: '-',
-      anexos: '-'
-    }
-  ];
-
   const getTipoColor = (tipo) => {
     switch (tipo) {
       case 'Confirmação da denúncia':
@@ -88,6 +54,16 @@ const OcorrenciasModal = ({ isOpen, onClose, vendedorId }) => {
         return 'bg-gray-100 text-gray-800 border-gray-200';
     }
   };
+
+  const [isAddOccurrenceModalOpen, setIsAddOccurrenceModalOpen] = useState(false);
+
+  const [ocorrencias, setOccurrences] = useState([
+    { id: 1,data: '18/07/2025',tipo: 'Confirmação da denúncia',plataforma: 'Mercado Livre',produtos: 1,links: '-',observacao: '-',anexos: '-' },
+    {id: 2,data: '18/07/2025',tipo: 'Caso perdido',plataforma: 'Mercado Livre',produtos: 1,links: '-',observacao: '-',anexos: 1},
+    {id: 3,data: '11/07/2025',tipo: 'Denúncia na plataforma',plataforma: '',produtos: 2,links: 2,observacao: '-',anexos: '-'}
+  ]);
+
+   
 
   return (
     <div 
@@ -133,7 +109,7 @@ const OcorrenciasModal = ({ isOpen, onClose, vendedorId }) => {
                 {ocorrencias.length} ocorrência(s)
               </span>
             </div>
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center gap-2">
+            <button onClick={() => setIsAddOccurrenceModalOpen(true)} className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center gap-2">
               <Plus className="w-4 h-4" />
               Adicionar Ocorrência
             </button>
@@ -238,6 +214,195 @@ const OcorrenciasModal = ({ isOpen, onClose, vendedorId }) => {
             className="px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
           >
             Fechar
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const AddOccurrenceModal = ({ isOpen, onClose, onSave }) => {
+  const [formData, setFormData] = useState({
+    date: '07/23/2025',
+    type: '',
+    platform: '',
+    link: '',
+    product: '',
+    observation: ''
+  });
+
+  if (!isOpen) return null;
+
+  const handleSave = () => {
+    onSave(formData);
+    setFormData({
+      date: '07/23/2025',
+      type: '',
+      platform: '',
+      link: '',
+      product: '',
+      observation: ''
+    });
+  };
+
+  return (
+    <div 
+      className="fixed inset-0 flex items-center justify-center p-4"
+      style={{ 
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.3)',
+        zIndex: 10000,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}
+    >
+      <div 
+        className="bg-white rounded-lg shadow-2xl overflow-hidden"
+        style={{ 
+          width: '400px',
+          maxHeight: '90vh'
+        }}
+      >
+        {/* Header */}
+        <div className="flex items-center justify-between p-4 border-b border-gray-200">
+          <h2 className="text-lg font-semibold text-gray-900">Adicionar Ocorrência</h2>
+          <button
+            onClick={onClose}
+            className="p-1 hover:bg-gray-100 rounded-md transition-colors"
+          >
+            <X className="w-5 h-5 text-gray-500" />
+          </button>
+        </div>
+
+        {/* Content */}
+        <div className="p-4 space-y-4">
+          <p className="text-sm text-gray-600">
+            Preencha os detalhes da ocorrência para o vendedor PROCAPET SHOP
+          </p>
+
+          {/* Data */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              <Calendar className="w-4 h-4 inline mr-1" />
+              Data
+            </label>
+            <input
+              type="text"
+              value={formData.date}
+              onChange={(e) => setFormData({...formData, date: e.target.value})}
+              className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+
+          {/* Tipo */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              <AlertTriangle className="w-4 h-4 inline mr-1" />
+              Tipo
+            </label>
+            <select
+              value={formData.type}
+              onChange={(e) => setFormData({...formData, type: e.target.value})}
+              className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            >
+              <option value="">Selecione...</option>
+              <option value="Confirmação da denúncia">Confirmação da denúncia</option>
+              <option value="Caso perdido">Caso perdido</option>
+              <option value="Denúncia na plataforma">Denúncia na plataforma</option>
+            </select>
+          </div>
+
+          {/* Plataforma */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Plataformas
+            </label>
+            <select
+              value={formData.platform}
+              onChange={(e) => setFormData({...formData, platform: e.target.value})}
+              className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            >
+              <option value="">Selecione uma plataforma</option>
+              <option value="Mercado Livre">Mercado Livre</option>
+              <option value="Shopee">Shopee</option>
+              <option value="Amazon">Amazon</option>
+            </select>
+          </div>
+
+          {/* Links */}
+          <div>
+            <div className="flex items-center justify-between mb-1">
+              <label className="block text-sm font-medium text-gray-700">
+                <Link className="w-4 h-4 inline mr-1" />
+                Links
+              </label>
+              <button className="bg-blue-600 text-white p-1 rounded-md hover:bg-blue-700 transition-colors">
+                <Plus className="w-4 h-4" />
+              </button>
+            </div>
+            <input
+              type="text"
+              value={formData.link}
+              onChange={(e) => setFormData({...formData, link: e.target.value})}
+              placeholder="Adicionar link"
+              className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+
+          {/* Produtos */}
+          <div>
+            <div className="flex items-center justify-between mb-1">
+              <label className="block text-sm font-medium text-gray-700">
+                <Package className="w-4 h-4 inline mr-1" />
+                Produtos
+              </label>
+              <button className="bg-blue-600 text-white p-1 rounded-md hover:bg-blue-700 transition-colors">
+                <Plus className="w-4 h-4" />
+              </button>
+            </div>
+            <input
+              type="text"
+              value={formData.product}
+              onChange={(e) => setFormData({...formData, product: e.target.value})}
+              placeholder="Adicionar produto"
+              className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+
+          {/* Observação */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              <FileText className="w-4 h-4 inline mr-1" />
+              Observação
+            </label>
+            <textarea
+              value={formData.observation}
+              onChange={(e) => setFormData({...formData, observation: e.target.value})}
+              placeholder="Detalhes adicionais da ocorrência"
+              rows="3"
+              className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+            />
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="flex gap-2 p-4 border-t border-gray-200">
+          <button
+            onClick={onClose}
+            className="flex-1 px-4 py-2 text-gray-700 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
+          >
+            Cancelar
+          </button>
+          <button
+            onClick={handleSave}
+            className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+          >
+            Salvar
           </button>
         </div>
       </div>
