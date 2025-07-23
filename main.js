@@ -1300,7 +1300,7 @@
           return dispatcher;
         }
         "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-        var React3 = require_react(), Internals = {
+        var React2 = require_react(), Internals = {
           d: {
             f: noop,
             r: function() {
@@ -1318,7 +1318,7 @@
           },
           p: 0,
           findDOMNode: null
-        }, REACT_PORTAL_TYPE = Symbol.for("react.portal"), ReactSharedInternals = React3.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
+        }, REACT_PORTAL_TYPE = Symbol.for("react.portal"), ReactSharedInternals = React2.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE;
         "function" === typeof Map && null != Map.prototype && "function" === typeof Map.prototype.forEach && "function" === typeof Set && null != Set.prototype && "function" === typeof Set.prototype.clear && "function" === typeof Set.prototype.forEach || console.error(
           "React depends on Map and Set built-in types. Make sure that you load a polyfill in older browsers. https://reactjs.org/link/react-polyfills"
         );
@@ -2860,7 +2860,7 @@
           "number" === type && getActiveElement(node.ownerDocument) === node || node.defaultValue === "" + value || (node.defaultValue = "" + value);
         }
         function validateOptionProps(element, props) {
-          null == props.value && ("object" === typeof props.children && null !== props.children ? React3.Children.forEach(props.children, function(child) {
+          null == props.value && ("object" === typeof props.children && null !== props.children ? React2.Children.forEach(props.children, function(child) {
             null == child || "string" === typeof child || "number" === typeof child || "bigint" === typeof child || didWarnInvalidChild || (didWarnInvalidChild = true, console.error(
               "Cannot infer the option value of complex children. Pass a `value` prop or use a plain string as children to <option>."
             ));
@@ -16442,14 +16442,14 @@
           ));
         }
         "undefined" !== typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ && "function" === typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart && __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(Error());
-        var Scheduler = require_scheduler(), React3 = require_react(), ReactDOM = require_react_dom(), assign = Object.assign, REACT_LEGACY_ELEMENT_TYPE = Symbol.for("react.element"), REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler"), REACT_PROVIDER_TYPE = Symbol.for("react.provider"), REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy");
+        var Scheduler = require_scheduler(), React2 = require_react(), ReactDOM = require_react_dom(), assign = Object.assign, REACT_LEGACY_ELEMENT_TYPE = Symbol.for("react.element"), REACT_ELEMENT_TYPE = Symbol.for("react.transitional.element"), REACT_PORTAL_TYPE = Symbol.for("react.portal"), REACT_FRAGMENT_TYPE = Symbol.for("react.fragment"), REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode"), REACT_PROFILER_TYPE = Symbol.for("react.profiler"), REACT_PROVIDER_TYPE = Symbol.for("react.provider"), REACT_CONSUMER_TYPE = Symbol.for("react.consumer"), REACT_CONTEXT_TYPE = Symbol.for("react.context"), REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref"), REACT_SUSPENSE_TYPE = Symbol.for("react.suspense"), REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list"), REACT_MEMO_TYPE = Symbol.for("react.memo"), REACT_LAZY_TYPE = Symbol.for("react.lazy");
         Symbol.for("react.scope");
         var REACT_ACTIVITY_TYPE = Symbol.for("react.activity");
         Symbol.for("react.legacy_hidden");
         Symbol.for("react.tracing_marker");
         var REACT_MEMO_CACHE_SENTINEL = Symbol.for("react.memo_cache_sentinel");
         Symbol.for("react.view_transition");
-        var MAYBE_ITERATOR_SYMBOL = Symbol.iterator, REACT_CLIENT_REFERENCE = Symbol.for("react.client.reference"), isArrayImpl = Array.isArray, ReactSharedInternals = React3.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, ReactDOMSharedInternals = ReactDOM.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, NotPending = Object.freeze({
+        var MAYBE_ITERATOR_SYMBOL = Symbol.iterator, REACT_CLIENT_REFERENCE = Symbol.for("react.client.reference"), isArrayImpl = Array.isArray, ReactSharedInternals = React2.__CLIENT_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, ReactDOMSharedInternals = ReactDOM.__DOM_INTERNALS_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE, NotPending = Object.freeze({
           pending: false,
           data: null,
           method: null,
@@ -19163,7 +19163,7 @@
           }
         };
         (function() {
-          var isomorphicReactPackageVersion = React3.version;
+          var isomorphicReactPackageVersion = React2.version;
           if ("19.1.0" !== isomorphicReactPackageVersion)
             throw Error(
               'Incompatible React versions: The "react" and "react-dom" packages must have the exact same version. Instead got:\n  - react:      ' + (isomorphicReactPackageVersion + "\n  - react-dom:  19.1.0\nLearn more: https://react.dev/warnings/version-mismatch")
@@ -19509,51 +19509,37 @@
     }
   });
 
-  // node_modules/lucide-react/dist/esm/icons/globe.js
-  var __iconNode8, Globe;
-  var init_globe = __esm({
-    "node_modules/lucide-react/dist/esm/icons/globe.js"() {
-      init_createLucideIcon();
-      __iconNode8 = [
-        ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-        ["path", { d: "M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20", key: "13o1zl" }],
-        ["path", { d: "M2 12h20", key: "9i4pu4" }]
-      ];
-      Globe = createLucideIcon("globe", __iconNode8);
-    }
-  });
-
   // node_modules/lucide-react/dist/esm/icons/link.js
-  var __iconNode9, Link;
+  var __iconNode8, Link;
   var init_link = __esm({
     "node_modules/lucide-react/dist/esm/icons/link.js"() {
       init_createLucideIcon();
-      __iconNode9 = [
+      __iconNode8 = [
         ["path", { d: "M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71", key: "1cjeqo" }],
         ["path", { d: "M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71", key: "19qd67" }]
       ];
-      Link = createLucideIcon("link", __iconNode9);
+      Link = createLucideIcon("link", __iconNode8);
     }
   });
 
   // node_modules/lucide-react/dist/esm/icons/message-square.js
-  var __iconNode10, MessageSquare;
+  var __iconNode9, MessageSquare;
   var init_message_square = __esm({
     "node_modules/lucide-react/dist/esm/icons/message-square.js"() {
       init_createLucideIcon();
-      __iconNode10 = [
+      __iconNode9 = [
         ["path", { d: "M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z", key: "1lielz" }]
       ];
-      MessageSquare = createLucideIcon("message-square", __iconNode10);
+      MessageSquare = createLucideIcon("message-square", __iconNode9);
     }
   });
 
   // node_modules/lucide-react/dist/esm/icons/package.js
-  var __iconNode11, Package;
+  var __iconNode10, Package;
   var init_package = __esm({
     "node_modules/lucide-react/dist/esm/icons/package.js"() {
       init_createLucideIcon();
-      __iconNode11 = [
+      __iconNode10 = [
         [
           "path",
           {
@@ -19565,64 +19551,66 @@
         ["polyline", { points: "3.29 7 12 12 20.71 7", key: "ousv84" }],
         ["path", { d: "m7.5 4.27 9 5.15", key: "1c824w" }]
       ];
-      Package = createLucideIcon("package", __iconNode11);
-    }
-  });
-
-  // node_modules/lucide-react/dist/esm/icons/paperclip.js
-  var __iconNode12, Paperclip;
-  var init_paperclip = __esm({
-    "node_modules/lucide-react/dist/esm/icons/paperclip.js"() {
-      init_createLucideIcon();
-      __iconNode12 = [
-        [
-          "path",
-          {
-            d: "m16 6-8.414 8.586a2 2 0 0 0 2.829 2.829l8.414-8.586a4 4 0 1 0-5.657-5.657l-8.379 8.551a6 6 0 1 0 8.485 8.485l8.379-8.551",
-            key: "1miecu"
-          }
-        ]
-      ];
-      Paperclip = createLucideIcon("paperclip", __iconNode12);
+      Package = createLucideIcon("package", __iconNode10);
     }
   });
 
   // node_modules/lucide-react/dist/esm/icons/plus.js
-  var __iconNode13, Plus;
+  var __iconNode11, Plus;
   var init_plus = __esm({
     "node_modules/lucide-react/dist/esm/icons/plus.js"() {
       init_createLucideIcon();
-      __iconNode13 = [
+      __iconNode11 = [
         ["path", { d: "M5 12h14", key: "1ays0h" }],
         ["path", { d: "M12 5v14", key: "s699le" }]
       ];
-      Plus = createLucideIcon("plus", __iconNode13);
+      Plus = createLucideIcon("plus", __iconNode11);
     }
   });
 
   // node_modules/lucide-react/dist/esm/icons/search.js
-  var __iconNode14, Search;
+  var __iconNode12, Search;
   var init_search = __esm({
     "node_modules/lucide-react/dist/esm/icons/search.js"() {
       init_createLucideIcon();
-      __iconNode14 = [
+      __iconNode12 = [
         ["path", { d: "m21 21-4.34-4.34", key: "14j7rj" }],
         ["circle", { cx: "11", cy: "11", r: "8", key: "4ej97u" }]
       ];
-      Search = createLucideIcon("search", __iconNode14);
+      Search = createLucideIcon("search", __iconNode12);
+    }
+  });
+
+  // node_modules/lucide-react/dist/esm/icons/triangle-alert.js
+  var __iconNode13, TriangleAlert;
+  var init_triangle_alert = __esm({
+    "node_modules/lucide-react/dist/esm/icons/triangle-alert.js"() {
+      init_createLucideIcon();
+      __iconNode13 = [
+        [
+          "path",
+          {
+            d: "m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3",
+            key: "wmoenq"
+          }
+        ],
+        ["path", { d: "M12 9v4", key: "juzpu7" }],
+        ["path", { d: "M12 17h.01", key: "p32p05" }]
+      ];
+      TriangleAlert = createLucideIcon("triangle-alert", __iconNode13);
     }
   });
 
   // node_modules/lucide-react/dist/esm/icons/x.js
-  var __iconNode15, X;
+  var __iconNode14, X;
   var init_x = __esm({
     "node_modules/lucide-react/dist/esm/icons/x.js"() {
       init_createLucideIcon();
-      __iconNode15 = [
+      __iconNode14 = [
         ["path", { d: "M18 6 6 18", key: "1bl5f8" }],
         ["path", { d: "m6 6 12 12", key: "d8bk6v" }]
       ];
-      X = createLucideIcon("x", __iconNode15);
+      X = createLucideIcon("x", __iconNode14);
     }
   });
 
@@ -19630,82 +19618,27 @@
   var init_lucide_react = __esm({
     "node_modules/lucide-react/dist/esm/lucide-react.js"() {
       init_ellipsis();
+      init_triangle_alert();
       init_activity();
       init_calendar();
       init_chevron_down();
       init_chevron_right();
       init_external_link();
       init_file_text();
-      init_globe();
       init_link();
       init_message_square();
       init_package();
-      init_paperclip();
       init_plus();
       init_search();
       init_x();
     }
   });
 
-  // src/OcorrenciaModal.jsx
-  var import_react3, OcorrenciaModal, OcorrenciaModal_default;
-  var init_OcorrenciaModal = __esm({
-    "src/OcorrenciaModal.jsx"() {
-      import_react3 = __toESM(require_react());
-      init_lucide_react();
-      OcorrenciaModal = ({ isOpen, onClose, vendedor }) => {
-        if (!isOpen || !vendedor) return null;
-        const ocorrencias = [
-          {
-            data: "19/07/2025",
-            tipo: "Confirma\xE7\xE3o da den\xFAncia",
-            tipoColor: "bg-green-100 text-green-800",
-            plataformas: "Mercado Livre",
-            produtos: 1,
-            links: "-",
-            observacao: "-",
-            anexos: "-"
-          },
-          {
-            data: "18/07/2025",
-            tipo: "Caso omisso",
-            tipoColor: "bg-yellow-100 text-yellow-800",
-            plataformas: "Mercado Livre",
-            produtos: 1,
-            links: "-",
-            observacao: "-",
-            anexos: 1
-          },
-          {
-            data: "11/07/2025",
-            tipo: "Den\xFAncia na plataforma",
-            tipoColor: "bg-pink-100 text-pink-800",
-            plataformas: "-",
-            produtos: 2,
-            links: 2,
-            observacao: "-",
-            anexos: "-"
-          }
-        ];
-        return /* @__PURE__ */ import_react3.default.createElement("div", { className: "fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-hidden" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center justify-between p-4 border-b" }, /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("h2", { className: "text-lg font-semibold text-gray-900" }, "Ocorr\xEAncias de ", vendedor.id), /* @__PURE__ */ import_react3.default.createElement("p", { className: "text-sm text-gray-500" }, "Gerenciamento de ocorr\xEAncias para o vendedor n\xE3o mapeado")), /* @__PURE__ */ import_react3.default.createElement(
-          "button",
-          {
-            onClick: onClose,
-            className: "text-gray-400 hover:text-gray-600 transition-colors"
-          },
-          /* @__PURE__ */ import_react3.default.createElement(X, { className: "w-5 h-5" })
-        )), /* @__PURE__ */ import_react3.default.createElement("div", { className: "p-4" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center justify-between mb-6" }, /* @__PURE__ */ import_react3.default.createElement("span", { className: "text-sm text-blue-600 bg-blue-50 px-2 py-1 rounded" }, "3 ocorr\xEAncia(s)"), /* @__PURE__ */ import_react3.default.createElement("button", { className: "bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-blue-700 transition-colors" }, /* @__PURE__ */ import_react3.default.createElement(Plus, { className: "w-4 h-4" }), "Adicionar Ocorr\xEAncia")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "grid grid-cols-8 gap-4 text-xs font-medium text-gray-500 uppercase tracking-wider mb-3 px-4" }, /* @__PURE__ */ import_react3.default.createElement("div", null, "Data"), /* @__PURE__ */ import_react3.default.createElement("div", null, "Tipo"), /* @__PURE__ */ import_react3.default.createElement("div", null, "Plataformas"), /* @__PURE__ */ import_react3.default.createElement("div", null, "Produtos"), /* @__PURE__ */ import_react3.default.createElement("div", null, "Links"), /* @__PURE__ */ import_react3.default.createElement("div", null, "Observa\xE7\xE3o"), /* @__PURE__ */ import_react3.default.createElement("div", null, "Anexos"), /* @__PURE__ */ import_react3.default.createElement("div", null)), /* @__PURE__ */ import_react3.default.createElement("div", { className: "space-y-2 max-h-96 overflow-y-auto" }, ocorrencias.map((ocorrencia, index) => /* @__PURE__ */ import_react3.default.createElement("div", { key: index, className: "grid grid-cols-8 gap-4 items-center py-3 px-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react3.default.createElement(Calendar, { className: "w-4 h-4 text-gray-400" }), /* @__PURE__ */ import_react3.default.createElement("span", { className: "text-sm text-gray-700" }, ocorrencia.data)), /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("span", { className: `text-xs px-2 py-1 rounded-full ${ocorrencia.tipoColor}` }, ocorrencia.tipo)), /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, ocorrencia.plataformas !== "-" ? /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, /* @__PURE__ */ import_react3.default.createElement(Globe, { className: "w-4 h-4 text-blue-600" }), /* @__PURE__ */ import_react3.default.createElement("span", { className: "text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded" }, ocorrencia.plataformas)) : /* @__PURE__ */ import_react3.default.createElement("span", { className: "text-sm text-gray-500" }, "-")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react3.default.createElement(Package, { className: "w-4 h-4 text-purple-600" }), /* @__PURE__ */ import_react3.default.createElement("span", { className: "text-sm text-gray-700" }, ocorrencia.produtos)), /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, ocorrencia.links !== "-" ? /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, /* @__PURE__ */ import_react3.default.createElement(Link, { className: "w-4 h-4 text-blue-600" }), /* @__PURE__ */ import_react3.default.createElement("span", { className: "text-sm text-blue-600" }, ocorrencia.links)) : /* @__PURE__ */ import_react3.default.createElement("span", { className: "text-sm text-gray-500" }, "-")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, ocorrencia.observacao !== "-" ? /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, /* @__PURE__ */ import_react3.default.createElement(MessageSquare, { className: "w-4 h-4 text-orange-600" }), /* @__PURE__ */ import_react3.default.createElement("span", { className: "text-sm text-gray-700 truncate" }, ocorrencia.observacao)) : /* @__PURE__ */ import_react3.default.createElement("span", { className: "text-sm text-gray-500" }, "-")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, ocorrencia.anexos !== "-" ? /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, null, /* @__PURE__ */ import_react3.default.createElement(Paperclip, { className: "w-4 h-4 text-green-600" }), /* @__PURE__ */ import_react3.default.createElement("span", { className: "text-sm text-green-600" }, ocorrencia.anexos)) : /* @__PURE__ */ import_react3.default.createElement("span", { className: "text-sm text-gray-500" }, "-")), /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("button", { className: "text-gray-400 hover:text-gray-600" }, /* @__PURE__ */ import_react3.default.createElement("svg", { className: "w-4 h-4", fill: "currentColor", viewBox: "0 0 16 16" }, /* @__PURE__ */ import_react3.default.createElement("path", { d: "M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" }))))))))));
-      };
-      OcorrenciaModal_default = OcorrenciaModal;
-    }
-  });
-
   // src/App.jsx
-  var import_react4, getStatusColor, VendedoresNaoMapeados, App_default;
+  var import_react3, getStatusColor, OcorrenciasModal, AddOccurrenceModal, VendedoresNaoMapeados, App_default;
   var init_App = __esm({
     "src/App.jsx"() {
-      import_react4 = __toESM(require_react());
-      init_OcorrenciaModal();
+      import_react3 = __toESM(require_react());
       init_lucide_react();
       getStatusColor = (status) => {
         switch (status) {
@@ -19719,9 +19652,379 @@
             return "text-gray-800 border-gray-200";
         }
       };
+      OcorrenciasModal = ({ isOpen, onClose, vendedorId }) => {
+        if (!isOpen) return null;
+        import_react3.default.useEffect(() => {
+          if (isOpen) {
+            document.body.style.overflow = "hidden";
+          } else {
+            document.body.style.overflow = "unset";
+          }
+          return () => {
+            document.body.style.overflow = "unset";
+          };
+        }, [isOpen]);
+        const getTipoColor = (tipo) => {
+          switch (tipo) {
+            case "Confirma\xE7\xE3o da den\xFAncia":
+              return "bg-green-100 text-green-800 border-green-200";
+            case "Caso perdido":
+              return "bg-orange-100 text-orange-800 border-orange-200";
+            case "Den\xFAncia na plataforma":
+              return "bg-red-100 text-red-800 border-red-200";
+            default:
+              return "bg-gray-100 text-gray-800 border-gray-200";
+          }
+        };
+        const getPlatformColor = (platform) => {
+          switch (platform) {
+            case "Mercado Livre":
+              return "bg-yellow-100 text-yellow-800 border-yellow-200";
+            case "Shopee":
+              return "bg-orange-100 text-orange-800 border-orange-200";
+            default:
+              return "bg-gray-100 text-gray-800 border-gray-200";
+          }
+        };
+        const [isAddOccurrenceModalOpen, setIsAddOccurrenceModalOpen] = (0, import_react3.useState)(false);
+        const [ocorrencias, setOccurrences] = (0, import_react3.useState)([
+          {
+            id: 1,
+            data: "18/07/2025",
+            tipo: "Confirma\xE7\xE3o da den\xFAncia",
+            plataforma: "Mercado Livre",
+            produtos: 1,
+            links: "-",
+            observacao: "-",
+            anexos: "-"
+          },
+          {
+            id: 2,
+            data: "18/07/2025",
+            tipo: "Caso perdido",
+            plataforma: "Mercado Livre",
+            produtos: 1,
+            links: "-",
+            observacao: "-",
+            anexos: 1
+          },
+          {
+            id: 3,
+            data: "11/07/2025",
+            tipo: "Den\xFAncia na plataforma",
+            plataforma: "",
+            produtos: 2,
+            links: 2,
+            observacao: "-",
+            anexos: "-"
+          }
+        ]);
+        const handleAddOccurrence = (newOccurrence) => {
+          const occurrence = {
+            id: ocorrencias.length + 1,
+            date: newOccurrence.date,
+            seller: newOccurrence.product || "Novo Vendedor",
+            amount: "R$ 0,00"
+          };
+          setOccurrences([occurrence, ...ocorrencias]);
+          setIsModalOpen(false);
+        };
+        return /* @__PURE__ */ import_react3.default.createElement(
+          "div",
+          {
+            className: "flex items-center justify-center",
+            style: {
+              padding: "80px 200px",
+              position: "fixed",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: "rgba(0, 0, 0, 0.5)",
+              zIndex: 9999
+            }
+          },
+          /* @__PURE__ */ import_react3.default.createElement("div", { className: "bg-white rounded-lg w-full overflow-hidden shadow-2xl" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center justify-between p-6 border-b border-gray-200" }, /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("h2", { className: "text-xl font-semibold text-gray-900" }, "Ocorr\xEAncias de ", vendedorId), /* @__PURE__ */ import_react3.default.createElement("p", { className: "text-sm text-gray-600 mt-1" }, "Gerenciamento de ocorr\xEAncias para o vendedor n\xE3o mapeado")), /* @__PURE__ */ import_react3.default.createElement(
+            "button",
+            {
+              onClick: onClose,
+              className: "text-gray-400 hover:text-gray-600 transition-colors"
+            },
+            /* @__PURE__ */ import_react3.default.createElement(X, { className: "w-6 h-6" })
+          )), /* @__PURE__ */ import_react3.default.createElement(
+            "div",
+            {
+              className: "p-6",
+              style: { maxHeight: "calc(90vh - 140px)", overflowY: "auto" }
+            },
+            /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center justify-between mb-6" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react3.default.createElement("span", { className: "bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full" }, ocorrencias.length, " ocorr\xEAncia(s)")), /* @__PURE__ */ import_react3.default.createElement(
+              "button",
+              {
+                onClick: () => setIsAddOccurrenceModalOpen(true),
+                className: "bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center gap-2"
+              },
+              /* @__PURE__ */ import_react3.default.createElement(Plus, { className: "w-4 h-4" }),
+              "Adicionar Ocorr\xEAncia"
+            )),
+            /* @__PURE__ */ import_react3.default.createElement("div", { className: "bg-white border border-gray-200 rounded-lg overflow-hidden" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "overflow-x-auto" }, /* @__PURE__ */ import_react3.default.createElement("table", { className: "w-full" }, /* @__PURE__ */ import_react3.default.createElement("thead", { className: "bg-gray-50 border-b border-gray-200" }, /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("th", { className: "text-left py-3 px-4 font-medium text-gray-700" }, "Data"), /* @__PURE__ */ import_react3.default.createElement("th", { className: "text-left py-3 px-4 font-medium text-gray-700" }, "Tipo"), /* @__PURE__ */ import_react3.default.createElement("th", { className: "text-left py-3 px-4 font-medium text-gray-700" }, "Plataformas"), /* @__PURE__ */ import_react3.default.createElement("th", { className: "text-left py-3 px-4 font-medium text-gray-700" }, "Produtos"), /* @__PURE__ */ import_react3.default.createElement("th", { className: "text-left py-3 px-4 font-medium text-gray-700" }, "Links"), /* @__PURE__ */ import_react3.default.createElement("th", { className: "text-left py-3 px-4 font-medium text-gray-700" }, "Observa\xE7\xE3o"), /* @__PURE__ */ import_react3.default.createElement("th", { className: "text-left py-3 px-4 font-medium text-gray-700" }, "Anexos"), /* @__PURE__ */ import_react3.default.createElement("th", { className: "w-12 py-3 px-4" }))), /* @__PURE__ */ import_react3.default.createElement("tbody", { className: "divide-y divide-gray-200" }, ocorrencias.map((ocorrencia) => /* @__PURE__ */ import_react3.default.createElement(
+              "tr",
+              {
+                key: ocorrencia.id,
+                className: "hover:bg-gray-50 transition-colors"
+              },
+              /* @__PURE__ */ import_react3.default.createElement("td", { className: "py-3 px-4 text-gray-900" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react3.default.createElement(Calendar, { className: "w-4 h-4 text-gray-400" }), ocorrencia.data)),
+              /* @__PURE__ */ import_react3.default.createElement("td", { className: "py-3 px-4" }, /* @__PURE__ */ import_react3.default.createElement(
+                "span",
+                {
+                  className: `px-2 py-1 rounded-md text-xs font-medium border ${getTipoColor(
+                    ocorrencia.tipo
+                  )}`
+                },
+                ocorrencia.tipo
+              )),
+              /* @__PURE__ */ import_react3.default.createElement("td", { className: "py-3 px-4" }, ocorrencia.plataforma ? /* @__PURE__ */ import_react3.default.createElement(
+                "span",
+                {
+                  className: `px-2 py-1 rounded-md text-xs font-medium border ${getPlatformColor(
+                    ocorrencia.plataforma
+                  )}`
+                },
+                ocorrencia.plataforma
+              ) : /* @__PURE__ */ import_react3.default.createElement("span", { className: "text-gray-400 text-sm" }, "-")),
+              /* @__PURE__ */ import_react3.default.createElement("td", { className: "py-3 px-4" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react3.default.createElement(Package, { className: "w-4 h-4 text-purple-600" }), /* @__PURE__ */ import_react3.default.createElement("span", { className: "text-gray-900" }, ocorrencia.produtos))),
+              /* @__PURE__ */ import_react3.default.createElement("td", { className: "py-3 px-4" }, ocorrencia.links !== "-" ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react3.default.createElement(ExternalLink, { className: "w-4 h-4 text-blue-600" }), /* @__PURE__ */ import_react3.default.createElement("span", { className: "text-blue-600 cursor-pointer hover:underline" }, ocorrencia.links)) : /* @__PURE__ */ import_react3.default.createElement("span", { className: "text-gray-400 text-sm" }, "-")),
+              /* @__PURE__ */ import_react3.default.createElement("td", { className: "py-3 px-4" }, ocorrencia.observacao !== "-" ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react3.default.createElement(MessageSquare, { className: "w-4 h-4 text-green-600" }), /* @__PURE__ */ import_react3.default.createElement("span", { className: "text-gray-900" }, ocorrencia.observacao)) : /* @__PURE__ */ import_react3.default.createElement("span", { className: "text-gray-400 text-sm" }, "-")),
+              /* @__PURE__ */ import_react3.default.createElement("td", { className: "py-3 px-4" }, ocorrencia.anexos !== "-" ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react3.default.createElement(FileText, { className: "w-4 h-4 text-green-600" }), /* @__PURE__ */ import_react3.default.createElement("span", { className: "bg-green-100 text-green-800 text-sm font-medium px-2 py-1 rounded-full" }, ocorrencia.anexos)) : /* @__PURE__ */ import_react3.default.createElement("span", { className: "text-gray-400 text-sm" }, "-")),
+              /* @__PURE__ */ import_react3.default.createElement("td", { className: "py-3 px-4" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "text-gray-400 hover:text-gray-600 transition-colors" }, /* @__PURE__ */ import_react3.default.createElement(Ellipsis, { className: "w-4 h-4" })))
+            ))))))
+          ), /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center justify-end gap-3 p-6 border-t border-gray-200 bg-gray-50" }, /* @__PURE__ */ import_react3.default.createElement(
+            "button",
+            {
+              onClick: onClose,
+              className: "px-4 py-2 text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+            },
+            "Fechar"
+          ))),
+          /* @__PURE__ */ import_react3.default.createElement(
+            AddOccurrenceModal,
+            {
+              isOpen: isAddOccurrenceModalOpen,
+              onClose: () => setIsAddOccurrenceModalOpen(false),
+              onSave: handleAddOccurrence
+            }
+          )
+        );
+      };
+      AddOccurrenceModal = ({
+        isOpen,
+        onClose,
+        onSave,
+        sellerName = "PROCAPET SHOP"
+      }) => {
+        const [formData, setFormData] = (0, import_react3.useState)({
+          date: "",
+          type: "",
+          platform: "",
+          link: "",
+          product: "",
+          observation: ""
+        });
+        if (!isOpen) return null;
+        const handleSave = () => {
+          onSave(formData);
+          setFormData({
+            date: "",
+            type: "",
+            platform: "",
+            link: "",
+            product: "",
+            observation: ""
+          });
+          onClose();
+        };
+        const handleChange = (e) => {
+          const { name, value } = e.target;
+          setFormData((prevData) => ({
+            ...prevData,
+            [name]: value
+          }));
+        };
+        const handlePasteDate = (e) => {
+          e.preventDefault();
+          const pastedText = e.clipboardData.getData("text");
+          const parts = pastedText.split(";").map((part) => part.trim());
+          if (parts.length >= 5) {
+            setFormData((prevData) => ({
+              ...prevData,
+              date: parts[0] || "",
+              type: parts[1] || "",
+              platform: parts[2] || "",
+              link: parts[3] || "",
+              product: parts[4] || "",
+              observation: parts[5] || ""
+              // Observação é opcional e pode não estar presente
+            }));
+          } else {
+            setFormData((prevData) => ({
+              ...prevData,
+              date: pastedText
+            }));
+          }
+        };
+        return /* @__PURE__ */ import_react3.default.createElement(
+          "div",
+          {
+            className: "fixed inset-0 flex items-center justify-center p-4",
+            style: {
+              position: "fixed",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: "rgba(0, 0, 0, 0.3)",
+              zIndex: 1e4,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center"
+            }
+          },
+          /* @__PURE__ */ import_react3.default.createElement(
+            "div",
+            {
+              className: "bg-white rounded-lg shadow-2xl",
+              style: {
+                width: "400px",
+                maxHeight: "90vh",
+                overflowY: "auto"
+                // Adicionado para permitir scroll se o conteúdo for maior
+              }
+            },
+            /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center justify-between p-4 border-b border-gray-200" }, /* @__PURE__ */ import_react3.default.createElement("h2", { className: "text-lg font-semibold text-gray-900" }, "Adicionar Ocorr\xEAncia"), /* @__PURE__ */ import_react3.default.createElement(
+              "button",
+              {
+                onClick: onClose,
+                className: "p-1 hover:bg-gray-100 rounded-md transition-colors"
+              },
+              /* @__PURE__ */ import_react3.default.createElement(X, { className: "w-5 h-5 text-gray-500" })
+            )),
+            /* @__PURE__ */ import_react3.default.createElement("div", { className: "p-4 space-y-4" }, /* @__PURE__ */ import_react3.default.createElement("p", { className: "text-sm text-gray-600" }, "Preencha os detalhes da ocorr\xEAncia para o vendedor ", sellerName), /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("label", { className: "block text-sm font-medium text-gray-700 mb-1" }, /* @__PURE__ */ import_react3.default.createElement(Calendar, { className: "w-4 h-4 inline mr-1" }), "Data"), /* @__PURE__ */ import_react3.default.createElement(
+              "input",
+              {
+                type: "text",
+                name: "date",
+                value: formData.date,
+                onChange: handleChange,
+                onPaste: handlePasteDate,
+                className: "w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent",
+                placeholder: "DD/MM/AAAA"
+              }
+            )), /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("label", { className: "block text-sm font-medium text-gray-700 mb-1" }, /* @__PURE__ */ import_react3.default.createElement(TriangleAlert, { className: "w-4 h-4 inline mr-1" }), "Tipo"), /* @__PURE__ */ import_react3.default.createElement(
+              "select",
+              {
+                name: "type",
+                value: formData.type,
+                onChange: handleChange,
+                className: "w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              },
+              /* @__PURE__ */ import_react3.default.createElement("option", { value: "" }, "Selecione..."),
+              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Advert\xEAncia" }, "Advert\xEAncia"),
+              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Alerta" }, "Alerta"),
+              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Alerta 1" }, "Alerta 1"),
+              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Alerta 2" }, "Alerta 2"),
+              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Aten\xE7\xE3o" }, "Aten\xE7\xE3o"),
+              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Caso pontual" }, "Caso pontual"),
+              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Confirma\xE7\xE3o da den\xFAncia" }, "Confirma\xE7\xE3o da den\xFAncia"),
+              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Cumprido" }, "Cumprido"),
+              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Den\xFAncia na plataforma" }, "Den\xFAncia na plataforma"),
+              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Monitoramento" }, "Monitoramento"),
+              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Reativa\xE7\xE3o de an\xFAncio" }, "Reativa\xE7\xE3o de an\xFAncio"),
+              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Refor\xE7o" }, "Refor\xE7o"),
+              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Retifica\xE7\xE3o comunicado anterior" }, "Retifica\xE7\xE3o comunicado anterior"),
+              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Retorno" }, "Retorno")
+            )), /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("label", { className: "block text-sm font-medium text-gray-700 mb-1" }, "Plataformas"), /* @__PURE__ */ import_react3.default.createElement(
+              "select",
+              {
+                name: "platform",
+                value: formData.platform,
+                onChange: handleChange,
+                className: "w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              },
+              /* @__PURE__ */ import_react3.default.createElement("option", { value: "" }, "Selecione uma plataforma"),
+              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Americanas" }, "Americanas"),
+              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Magalu" }, "Magalu"),
+              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Mercado Livre" }, "Mercado Livre"),
+              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Shopee" }, "Shopee"),
+              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Amazon" }, "Amazon"),
+              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Site Pr\xF3prio" }, "Site Pr\xF3prio"),
+              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Outras (descrever em observa\xE7\xF5es)" }, "Outras (descrever em observa\xE7\xF5es)")
+            )), /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center justify-between mb-1" }, /* @__PURE__ */ import_react3.default.createElement("label", { className: "block text-sm font-medium text-gray-700" }, /* @__PURE__ */ import_react3.default.createElement(Link, { className: "w-4 h-4 inline mr-1" }), "Links"), /* @__PURE__ */ import_react3.default.createElement(
+              "button",
+              {
+                type: "button",
+                className: "bg-blue-600 text-white p-1 rounded-md hover:bg-blue-700 transition-colors"
+              },
+              /* @__PURE__ */ import_react3.default.createElement(Plus, { className: "w-4 h-4" })
+            )), /* @__PURE__ */ import_react3.default.createElement(
+              "input",
+              {
+                type: "text",
+                name: "link",
+                value: formData.link,
+                onChange: handleChange,
+                placeholder: "Adicionar link",
+                className: "w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              }
+            )), /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center justify-between mb-1" }, /* @__PURE__ */ import_react3.default.createElement("label", { className: "block text-sm font-medium text-gray-700" }, /* @__PURE__ */ import_react3.default.createElement(Package, { className: "w-4 h-4 inline mr-1" }), "Produtos"), /* @__PURE__ */ import_react3.default.createElement(
+              "button",
+              {
+                type: "button",
+                className: "bg-blue-600 text-white p-1 rounded-md hover:bg-blue-700 transition-colors"
+              },
+              /* @__PURE__ */ import_react3.default.createElement(Plus, { className: "w-4 h-4" })
+            )), /* @__PURE__ */ import_react3.default.createElement(
+              "input",
+              {
+                type: "text",
+                name: "product",
+                value: formData.product,
+                onChange: handleChange,
+                placeholder: "Adicionar produto",
+                className: "w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              }
+            )), /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("label", { className: "block text-sm font-medium text-gray-700 mb-1" }, /* @__PURE__ */ import_react3.default.createElement(FileText, { className: "w-4 h-4 inline mr-1" }), "Observa\xE7\xE3o"), /* @__PURE__ */ import_react3.default.createElement(
+              "textarea",
+              {
+                name: "observation",
+                value: formData.observation,
+                onChange: handleChange,
+                placeholder: "Detalhes adicionais da ocorr\xEAncia",
+                rows: "3",
+                className: "w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+              }
+            ))),
+            /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex gap-2 p-4 border-t border-gray-200" }, /* @__PURE__ */ import_react3.default.createElement(
+              "button",
+              {
+                onClick: onClose,
+                className: "flex-1 px-4 py-2 text-gray-700 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
+              },
+              "Cancelar"
+            ), /* @__PURE__ */ import_react3.default.createElement(
+              "button",
+              {
+                onClick: handleSave,
+                className: "flex-1 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+              },
+              "Salvar"
+            ))
+          )
+        );
+      };
       VendedoresNaoMapeados = () => {
-        const [searchTerm, setSearchTerm] = (0, import_react4.useState)("");
-        const [expandedRows, setExpandedRows] = (0, import_react4.useState)(/* @__PURE__ */ new Set());
+        const [searchTerm, setSearchTerm] = (0, import_react3.useState)("");
+        const [expandedRows, setExpandedRows] = (0, import_react3.useState)(/* @__PURE__ */ new Set());
+        const [isModalOpen, setIsModalOpen2] = (0, import_react3.useState)(false);
+        const [selectedVendedor, setSelectedVendedor] = (0, import_react3.useState)("");
         const vendedores = [
           {
             id: "PROCAPOT SHOP",
@@ -19932,7 +20235,15 @@
               return "bg-gray-100 text-gray-800 border-gray-200";
           }
         };
-        return /* @__PURE__ */ import_react4.default.createElement("div", { className: "bg-white p-6 min-h-screen" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "mb-6" }, /* @__PURE__ */ import_react4.default.createElement("h1", { className: "text-2xl font-semibold text-gray-900 mb-2" }, "Lista de Vendedores N\xE3o Mapeados"), /* @__PURE__ */ import_react4.default.createElement("p", { className: "text-gray-600 text-sm" }, "Vendedores que ainda n\xE3o foram mapeados no sistema principal.")), /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex gap-3 mb-6" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex-1 relative" }, /* @__PURE__ */ import_react4.default.createElement(Search, { className: "absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" }), /* @__PURE__ */ import_react4.default.createElement(
+        const openModal = (vendedorId) => {
+          setSelectedVendedor(vendedorId);
+          setIsModalOpen2(true);
+        };
+        const closeModal = () => {
+          setIsModalOpen2(false);
+          setSelectedVendedor("");
+        };
+        return /* @__PURE__ */ import_react3.default.createElement("div", { className: "bg-white p-6 w-full h-screen" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "mb-6" }, /* @__PURE__ */ import_react3.default.createElement("h1", { className: "text-2xl font-semibold text-gray-900 mb-2" }, "Lista de Vendedores N\xE3o Mapeados"), /* @__PURE__ */ import_react3.default.createElement("p", { className: "text-gray-600 text-sm" }, "Vendedores que ainda n\xE3o foram mapeados no sistema principal.")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex gap-3 mb-6" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex-1 relative" }, /* @__PURE__ */ import_react3.default.createElement(Search, { className: "absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" }), /* @__PURE__ */ import_react3.default.createElement(
           "input",
           {
             type: "text",
@@ -19941,35 +20252,62 @@
             onChange: (e) => setSearchTerm(e.target.value),
             className: "w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
           }
-        )), /* @__PURE__ */ import_react4.default.createElement("button", { className: "bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors" }, "Buscar")), /* @__PURE__ */ import_react4.default.createElement("div", { className: "bg-white border border-gray-200 rounded-lg overflow-hidden" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "overflow-x-auto" }, /* @__PURE__ */ import_react4.default.createElement("table", { className: "w-full" }, /* @__PURE__ */ import_react4.default.createElement("thead", { className: "bg-gray-50 border-b border-gray-200" }, /* @__PURE__ */ import_react4.default.createElement("tr", null, /* @__PURE__ */ import_react4.default.createElement("th", { className: "text-left py-3 px-4 font-medium text-gray-700" }, "ID Vendedor"), /* @__PURE__ */ import_react4.default.createElement("th", { className: "text-left py-3 px-4 font-medium text-gray-700" }, "CNPJ"), /* @__PURE__ */ import_react4.default.createElement("th", { className: "text-left py-3 px-4 font-medium text-gray-700" }, "Plataformas"), /* @__PURE__ */ import_react4.default.createElement("th", { className: "text-left py-3 px-4 font-medium text-gray-700" }, "Observa\xE7\xE3o"), /* @__PURE__ */ import_react4.default.createElement("th", { className: "text-left py-3 px-4 font-medium text-gray-700" }, "Ocorr\xEAncias"), /* @__PURE__ */ import_react4.default.createElement("th", { className: "w-12 py-3 px-4" }))), /* @__PURE__ */ import_react4.default.createElement("tbody", { className: "divide-y divide-gray-200" }, filteredVendedores.map((vendedor, index) => /* @__PURE__ */ import_react4.default.createElement(import_react4.default.Fragment, { key: index }, /* @__PURE__ */ import_react4.default.createElement("tr", { className: "hover:bg-gray-50 transition-colors" }, /* @__PURE__ */ import_react4.default.createElement("td", { className: "py-3 px-4" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react4.default.createElement(
+        )), /* @__PURE__ */ import_react3.default.createElement("button", { className: "bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors" }, "Buscar")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "bg-white border border-gray-200 rounded-lg overflow-hidden" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "overflow-x-auto" }, /* @__PURE__ */ import_react3.default.createElement("table", { className: "w-full" }, /* @__PURE__ */ import_react3.default.createElement("thead", { className: "bg-gray-50 border-b border-gray-200" }, /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("th", { className: "text-left py-3 px-4 font-medium text-gray-700" }, "ID Vendedor"), /* @__PURE__ */ import_react3.default.createElement("th", { className: "text-left py-3 px-4 font-medium text-gray-700" }, "CNPJ"), /* @__PURE__ */ import_react3.default.createElement("th", { className: "text-left py-3 px-4 font-medium text-gray-700" }, "Plataformas"), /* @__PURE__ */ import_react3.default.createElement("th", { className: "text-left py-3 px-4 font-medium text-gray-700" }, "Observa\xE7\xE3o"), /* @__PURE__ */ import_react3.default.createElement("th", { className: "text-left py-3 px-4 font-medium text-gray-700" }, "Ocorr\xEAncias"), /* @__PURE__ */ import_react3.default.createElement("th", { className: "w-12 py-3 px-4" }))), /* @__PURE__ */ import_react3.default.createElement("tbody", { className: "divide-y divide-gray-200" }, filteredVendedores.map((vendedor, index) => /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, { key: index }, /* @__PURE__ */ import_react3.default.createElement("tr", { className: "hover:bg-gray-50 transition-colors" }, /* @__PURE__ */ import_react3.default.createElement("td", { className: "py-3 px-4" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react3.default.createElement(
           "button",
           {
             onClick: () => toggleRow(index),
             className: "text-gray-400 hover:text-gray-600 transition-colors p-1"
           },
-          expandedRows.has(index) ? /* @__PURE__ */ import_react4.default.createElement(ChevronDown, { className: "w-4 h-4" }) : /* @__PURE__ */ import_react4.default.createElement(ChevronRight, { className: "w-4 h-4" })
-        ), /* @__PURE__ */ import_react4.default.createElement(
+          expandedRows.has(index) ? /* @__PURE__ */ import_react3.default.createElement(ChevronDown, { className: "w-4 h-4" }) : /* @__PURE__ */ import_react3.default.createElement(ChevronRight, { className: "w-4 h-4" })
+        ), /* @__PURE__ */ import_react3.default.createElement(
           "button",
           {
             onClick: () => toggleRow(index),
             className: "font-medium text-gray-900 hover:text-blue-600 transition-colors"
           },
           vendedor.id
-        ))), /* @__PURE__ */ import_react4.default.createElement("td", { className: "py-3 px-4 text-gray-600" }, vendedor.cnpj), /* @__PURE__ */ import_react4.default.createElement("td", { className: "py-3 px-4" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex flex-wrap gap-1" }, vendedor.plataformas.map((plataforma, idx) => /* @__PURE__ */ import_react4.default.createElement(
+        ))), /* @__PURE__ */ import_react3.default.createElement("td", { className: "py-3 px-4 text-gray-600" }, vendedor.cnpj), /* @__PURE__ */ import_react3.default.createElement("td", { className: "py-3 px-4" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex flex-wrap gap-1" }, vendedor.plataformas.map((plataforma, idx) => /* @__PURE__ */ import_react3.default.createElement(
           "span",
           {
             key: idx,
-            className: `px-2 py-1 rounded-md text-xs font-medium border ${getPlatformBadgeColor(plataforma)}`
+            className: `px-2 py-1 rounded-md text-xs font-medium border ${getPlatformBadgeColor(
+              plataforma
+            )}`
           },
           plataforma
-        )), vendedor.plataformas.length === 0 && /* @__PURE__ */ import_react4.default.createElement("span", { className: "text-gray-400 text-sm" }, "-"))), /* @__PURE__ */ import_react4.default.createElement("td", { className: "py-3 px-4 text-gray-600" }, vendedor.observacao || "-"), /* @__PURE__ */ import_react4.default.createElement("td", { className: "py-3 px-4" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react4.default.createElement(ExternalLink, { onClick: () => setIsModalOpen(true), className: "w-4 h-4 text-blue-600" }), /* @__PURE__ */ import_react4.default.createElement("span", { className: "bg-blue-100 text-blue-800 text-sm font-medium px-2 py-1 rounded-full" }, vendedor.ocorrencias))), /* @__PURE__ */ import_react4.default.createElement("td", { className: "py-3 px-4" }, /* @__PURE__ */ import_react4.default.createElement("button", { className: "text-gray-400 hover:text-gray-600 transition-colors" }, /* @__PURE__ */ import_react4.default.createElement(Ellipsis, { className: "w-4 h-4" })))), /* @__PURE__ */ import_react4.default.createElement(
-          OcorrenciaModal_default,
+        )), vendedor.plataformas.length === 0 && /* @__PURE__ */ import_react3.default.createElement("span", { className: "text-gray-400 text-sm" }, "-"))), /* @__PURE__ */ import_react3.default.createElement("td", { className: "py-3 px-4 text-gray-600" }, vendedor.observacao || "-"), /* @__PURE__ */ import_react3.default.createElement("td", { className: "py-3 px-4" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react3.default.createElement("button", { onClick: () => openModal(vendedor.id) }, /* @__PURE__ */ import_react3.default.createElement(ExternalLink, { className: "w-4 h-4 text-blue-600 hover:text-blue-700 transition-colors cursor-pointer" })), /* @__PURE__ */ import_react3.default.createElement("span", { className: "bg-blue-100 text-blue-800 text-sm font-medium px-2 py-1 rounded-full" }, vendedor.ocorrencias))), /* @__PURE__ */ import_react3.default.createElement("td", { className: "py-3 px-4" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "text-gray-400 hover:text-gray-600 transition-colors" }, /* @__PURE__ */ import_react3.default.createElement(Ellipsis, { className: "w-4 h-4" })))), expandedRows.has(index) && /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("td", { colSpan: "6", className: "px-0 py-0" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "bg-gray-50 border-t border-gray-200" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "p-6" }, /* @__PURE__ */ import_react3.default.createElement("h4", { className: "text-lg font-semibold text-gray-900 mb-4" }, "Detalhes dos Sellers - ", vendedor.id), /* @__PURE__ */ import_react3.default.createElement("div", { className: "grid gap-4" }, vendedor.sellers.map((seller, sellerIndex) => /* @__PURE__ */ import_react3.default.createElement(
+          "div",
+          {
+            key: sellerIndex,
+            className: "bg-white rounded-lg border border-gray-200 p-4"
+          },
+          /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center justify-between mb-3" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ import_react3.default.createElement("h5", { className: "font-semibold text-gray-900" }, seller.nome)), /* @__PURE__ */ import_react3.default.createElement("span", { className: "text-sm text-gray-500" }, "ID: ", seller.id)),
+          /* @__PURE__ */ import_react3.default.createElement("div", { className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react3.default.createElement(
+            "a",
+            {
+              href: seller.link,
+              className: "text-blue-600 flex items-center gap-1"
+            },
+            /* @__PURE__ */ import_react3.default.createElement(ExternalLink, { className: "w-4 h-4 text-blue-600" })
+          ), /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("p", { className: "text-xs text-gray-500" }, "Plataforma"), /* @__PURE__ */ import_react3.default.createElement("p", { className: "text-sm font-medium text-gray-900" }, seller.plataforma))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react3.default.createElement(FileText, { className: "w-4 h-4 text-green-600" }), /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("p", { className: "text-xs text-gray-500" }, "CNPJ"), /* @__PURE__ */ import_react3.default.createElement("p", { className: "text-sm font-medium text-gray-900" }, seller.cnpj))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react3.default.createElement(MessageSquare, { className: "w-4 h-4 text-purple-600" }), /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("p", { className: "text-xs text-gray-500" }, "Observa\xE7\xE3o"), /* @__PURE__ */ import_react3.default.createElement("p", { className: "text-sm font-medium text-gray-900" }, new Date(
+            seller.dataUltimaVenda
+          ).toLocaleDateString("pt-BR")))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react3.default.createElement(Activity, { className: "w-4 h-4 text-orange-600" }), /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("p", { className: "text-xs text-gray-500" }, "Status"), /* @__PURE__ */ import_react3.default.createElement(
+            "p",
+            {
+              className: `text-sm font-medium ${getStatusColor(
+                seller.status
+              )}`
+            },
+            seller.status
+          ))))
+        ))))))))))))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "mt-4 text-sm text-gray-600" }, "Mostrando ", filteredVendedores.length, " de ", vendedores.length, " vendedores"), /* @__PURE__ */ import_react3.default.createElement(
+          OcorrenciasModal,
           {
             isOpen: isModalOpen,
-            onClose: () => setIsModalOpen(false),
-            vendedor: vendedorExemplo
+            onClose: closeModal,
+            vendedorId: selectedVendedor
           }
-        ), expandedRows.has(index) && /* @__PURE__ */ import_react4.default.createElement("tr", null, /* @__PURE__ */ import_react4.default.createElement("td", { colSpan: "6", className: "px-0 py-0" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "bg-gray-50 border-t border-gray-200" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "p-6" }, /* @__PURE__ */ import_react4.default.createElement("h4", { className: "text-lg font-semibold text-gray-900 mb-4" }, "Detalhes dos Sellers - ", vendedor.id), /* @__PURE__ */ import_react4.default.createElement("div", { className: "grid gap-4" }, vendedor.sellers.map((seller, sellerIndex) => /* @__PURE__ */ import_react4.default.createElement("div", { key: sellerIndex, className: "bg-white rounded-lg border border-gray-200 p-4" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex items-center justify-between mb-3" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ import_react4.default.createElement("h5", { className: "font-semibold text-gray-900" }, seller.nome)), /* @__PURE__ */ import_react4.default.createElement("span", { className: "text-sm text-gray-500" }, "ID: ", seller.id)), /* @__PURE__ */ import_react4.default.createElement("div", { className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react4.default.createElement("a", { href: seller.link, className: "text-blue-600 flex items-center gap-1" }, /* @__PURE__ */ import_react4.default.createElement(ExternalLink, { className: "w-4 h-4 text-blue-600" })), /* @__PURE__ */ import_react4.default.createElement("div", null, /* @__PURE__ */ import_react4.default.createElement("p", { className: "text-xs text-gray-500" }, "Plataforma"), /* @__PURE__ */ import_react4.default.createElement("p", { className: "text-sm font-medium text-gray-900" }, seller.plataforma))), /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react4.default.createElement(FileText, { className: "w-4 h-4 text-green-600" }), /* @__PURE__ */ import_react4.default.createElement("div", null, /* @__PURE__ */ import_react4.default.createElement("p", { className: "text-xs text-gray-500" }, "CNPJ"), /* @__PURE__ */ import_react4.default.createElement("p", { className: "text-sm font-medium text-gray-900" }, seller.cnpj))), /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react4.default.createElement(MessageSquare, { className: "w-4 h-4 text-purple-600" }), /* @__PURE__ */ import_react4.default.createElement("div", null, /* @__PURE__ */ import_react4.default.createElement("p", { className: "text-xs text-gray-500" }, "Observa\xE7\xE3o"), /* @__PURE__ */ import_react4.default.createElement("p", { className: "text-sm font-medium text-gray-900" }, new Date(seller.dataUltimaVenda).toLocaleDateString("pt-BR")))), /* @__PURE__ */ import_react4.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react4.default.createElement(Activity, { className: "w-4 h-4 text-orange-600" }), /* @__PURE__ */ import_react4.default.createElement("div", null, /* @__PURE__ */ import_react4.default.createElement("p", { className: "text-xs text-gray-500" }, "Status"), /* @__PURE__ */ import_react4.default.createElement("p", { className: `text-sm font-medium ${getStatusColor(seller.status)}` }, seller.status))))))))))))))))), /* @__PURE__ */ import_react4.default.createElement("div", { className: "mt-4 text-sm text-gray-600" }, "Mostrando ", filteredVendedores.length, " de ", vendedores.length, " vendedores"));
+        ));
       };
       App_default = VendedoresNaoMapeados;
     }
@@ -19979,9 +20317,9 @@
   var require_main = __commonJS({
     "src/main.jsx"() {
       var import_client = __toESM(require_client());
-      var import_react5 = __toESM(require_react());
+      var import_react4 = __toESM(require_react());
       init_App();
-      import_client.default.createRoot(document.getElementById("root")).render(/* @__PURE__ */ import_react5.default.createElement(App_default, null));
+      import_client.default.createRoot(document.getElementById("root")).render(/* @__PURE__ */ import_react4.default.createElement(App_default, null));
     }
   });
   require_main();
@@ -20043,13 +20381,12 @@ lucide-react/dist/esm/icons/chevron-right.js:
 lucide-react/dist/esm/icons/ellipsis.js:
 lucide-react/dist/esm/icons/external-link.js:
 lucide-react/dist/esm/icons/file-text.js:
-lucide-react/dist/esm/icons/globe.js:
 lucide-react/dist/esm/icons/link.js:
 lucide-react/dist/esm/icons/message-square.js:
 lucide-react/dist/esm/icons/package.js:
-lucide-react/dist/esm/icons/paperclip.js:
 lucide-react/dist/esm/icons/plus.js:
 lucide-react/dist/esm/icons/search.js:
+lucide-react/dist/esm/icons/triangle-alert.js:
 lucide-react/dist/esm/icons/x.js:
 lucide-react/dist/esm/lucide-react.js:
   (**
