@@ -80,7 +80,6 @@ const OcorrenciasModal = ({ isOpen, onClose, vendedorId }) => {
       id: 1,
       data: "18/07/2025",
       tipo: "Confirmação da denúncia",
-      plataforma: "Mercado Livre",
       produtos: 1,
       links: "-",
       observacao: "-",
@@ -122,7 +121,6 @@ const OcorrenciasModal = ({ isOpen, onClose, vendedorId }) => {
 
   return (
     <div
-      className="flex items-center justify-center"
       style={{
         padding: "80px 200px",
         position: "fixed",
@@ -161,7 +159,7 @@ const OcorrenciasModal = ({ isOpen, onClose, vendedorId }) => {
           {/* Contador de ocorrências */}
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-2">
-              <span className="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">
+              <span className="bg-blue-100 p-6 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">
                 {ocorrencias.length} ocorrência(s)
               </span>
             </div>
@@ -185,9 +183,6 @@ const OcorrenciasModal = ({ isOpen, onClose, vendedorId }) => {
                     </th>
                     <th className="text-left py-3 px-4 font-medium text-gray-700">
                       Tipo
-                    </th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-700">
-                      Plataformas
                     </th>
                     <th className="text-left py-3 px-4 font-medium text-gray-700">
                       Produtos
@@ -224,19 +219,6 @@ const OcorrenciasModal = ({ isOpen, onClose, vendedorId }) => {
                         >
                           {ocorrencia.tipo}
                         </span>
-                      </td>
-                      <td className="py-3 px-4">
-                        {ocorrencia.plataforma ? (
-                          <span
-                            className={`px-2 py-1 rounded-md text-xs font-medium border ${getPlatformColor(
-                              ocorrencia.plataforma
-                            )}`}
-                          >
-                            {ocorrencia.plataforma}
-                          </span>
-                        ) : (
-                          <span className="text-gray-400 text-sm">-</span>
-                        )}
                       </td>
                       <td className="py-3 px-4">
                         <div className="flex items-center gap-2">
@@ -825,7 +807,7 @@ const VendedoresNaoMapeados = () => {
   };
 
   return (
-    <div className="bg-white p-6 w-full h-screen">
+    <div className="bg-white p-6 w-full">
       {/* Header */}
       <div className="mb-6">
         <h1 className="text-2xl font-semibold text-gray-900 mb-2">
