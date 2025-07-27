@@ -5,6 +5,7 @@ import {
   FileText,
   Search,
   MoreHorizontal,
+  ChevronUp,
   ExternalLink,
   ChevronDown,
   ChevronRight,
@@ -67,17 +68,37 @@ const OcorrenciasModal = ({ isOpen, onClose, vendedorId }) => {
   const [ocorrencias, setOccurrences] = useState([
     {
       id: 1,
-      data: "18/07/2025",
+      data: "25/07/2025",
       status: "Confirmação da denúncia",
       observacao: "-",
-      produtos: [],
+      produtos: [
+        {
+          descricao: "Fluatac Duo 1L",
+          valor: "R$ 189,90",
+          link: "https://exemplo.com/fluatac-duo",
+          tipo: "Produto Parasitario",
+        },
+        {
+          descricao: "Maxicam Plus 2mg com 10 comprimidos",
+          valor: "R$ 45,00",
+          link: "https://exemplo.com/maxicam-plus",
+          tipo: "Outros",
+        },
+      ],
     },
     {
       id: 2,
       data: "18/07/2025",
       status: "Caso perdido",
       observacao: "-",
-      produtos: [],
+      produtos: [
+        {
+          descricao: "Marca registrada Ourofino Saúde Animal",
+          valor: "R$ 0,00",
+          link: "https://exemplo.com/marca-registrada",
+          tipo: "Propriedade Intelectual",
+        },
+      ],
     },
     {
       id: 3,
@@ -85,11 +106,24 @@ const OcorrenciasModal = ({ isOpen, onClose, vendedorId }) => {
       status: "Denúncia na plataforma",
       observacao: "-",
       produtos: [
-        // {
-        //   descricao: "",
-        //   valor: "",
-        //   link: "",
-        // },
+        {
+          descricao: "Ourovac Poli BT",
+          valor: "R$ 259,00",
+          link: "https://exemplo.com/ourovac-poli-bt",
+          tipo: "Produto Parasitario",
+        },
+        {
+          descricao: "Protegene Oral 50ml",
+          valor: "R$ 98,00",
+          link: "https://exemplo.com/protegen-oral",
+          tipo: "Outros",
+        },
+        {
+          descricao: "Nome comercial 'Ourovet'",
+          valor: "R$ 0,00",
+          link: "https://exemplo.com/ourovet-marca",
+          tipo: "Propriedade Intelectual",
+        },
       ],
     },
   ]);
@@ -97,13 +131,14 @@ const OcorrenciasModal = ({ isOpen, onClose, vendedorId }) => {
   const handleAddOccurrence = (newOccurrence) => {
     const occurrence = {
       id: ocorrencias.length + 1,
-      tipo: newOccurrence.tipo,
+      status: newOccurrence.status,
       data: newOccurrence.data,
       observacao: newOccurrence.observacao,
+      produtos: newOccurrence.produtos || [],
     };
 
     setOccurrences([occurrence, ...ocorrencias]);
-    setIsModalOpen(false);
+    setIsAddOccurrenceModalOpen(false);
   };
 
   return (
@@ -111,7 +146,7 @@ const OcorrenciasModal = ({ isOpen, onClose, vendedorId }) => {
       style={{
         padding: "80px 200px",
         position: "fixed",
-        top: -20,
+        top: -40,
         left: 0,
         right: 0,
         bottom: 0,
@@ -141,7 +176,7 @@ const OcorrenciasModal = ({ isOpen, onClose, vendedorId }) => {
         {/* Conteúdo do Modal */}
         <div
           className="p-6"
-          style={{ maxHeight: "calc(90vh - 140px)", overflowY: "auto" }}
+          style={{ maxHeight: "calc(80vh - 140px)", overflowY: "auto" }}
         >
           {/* Contador de ocorrências */}
           <div className="flex items-center justify-between mb-6">
@@ -182,51 +217,99 @@ const OcorrenciasModal = ({ isOpen, onClose, vendedorId }) => {
                 </thead>
                 <tbody className="divide-y divide-gray-200">
                   {ocorrencias.map((ocorrencia) => (
-                    <tr
-                      key={ocorrencia.id}
-                      className="hover:bg-gray-50 transition-colors"
-                    >
-                      <td className="py-3 px-4 text-gray-900">
-                        <div className="flex items-center gap-2">
-                          <Calendar className="w-4 h-4 text-gray-400" />
-                          {ocorrencia.data}
-                        </div>
-                      </td>
-                      <td className="py-3 px-4">
-                        <span
-                          className={`px-2 py-1 rounded-md text-xs font-medium border ${getTipoColor(
-                            ocorrencia.status
-                          )}`}
-                        >
-                          {ocorrencia.status}
-                        </span>
-                      </td>
-                      <td className="py-3 px-4">
-                        <div className="flex items-center gap-2">
-                          <Package className="w-4 h-4 text-purple-600" />
-                          <span className="text-gray-900">
-                            {ocorrencia.produtos.length}
+                    <React.Fragment key={ocorrencia.id}>
+                      {/* Linha principal da ocorrência */}
+                      <tr className="hover:bg-gray-50 transition-colors">
+                        <td className="py-3 px-4 text-gray-900">
+                          <div className="flex items-center gap-2">
+                            <Calendar className="w-4 h-4 text-gray-400" />
+                            {ocorrencia.data}
+                          </div>
+                        </td>
+                        <td className="py-3 px-4">
+                          <span
+                            className={`px-2 py-1 rounded-md text-xs font-medium border ${getTipoColor(
+                              ocorrencia.status
+                            )}`}
+                          >
+                            {ocorrencia.status}
                           </span>
-                        </div>
-                      </td>
-                      <td className="py-3 px-4">
-                        {ocorrencia.observacao !== "-" ? (
+                        </td>
+                        <td className="py-3 px-4">
+                          <div className="flex items-center gap-2">
+                            <Package className="w-4 h-4 text-purple-600" />
+                            <span className="text-gray-900">
+                              {ocorrencia.produtos.length}
+                            </span>
+                          </div>
+                        </td>
+                        <td className="py-3 px-4">
                           <div className="flex items-center gap-2">
                             <MessageSquare className="w-4 h-4 text-green-600" />
                             <span className="text-gray-900">
                               {ocorrencia.observacao}
                             </span>
                           </div>
-                        ) : (
-                          <span className="text-gray-400 text-sm">-</span>
-                        )}
-                      </td>
-                      <td className="py-3 px-4">
-                        <button className="text-gray-400 hover:text-gray-600 transition-colors">
-                          <MoreHorizontal className="w-4 h-4" />
-                        </button>
-                      </td>
-                    </tr>
+                        </td>
+                        <td className="py-3 px-4">
+                          <button className="text-gray-400 hover:text-gray-600 transition-colors">
+                            <MoreHorizontal className="w-4 h-4" />
+                          </button>
+                        </td>
+                      </tr>
+
+                      {/* Linha expandida dos produtos */}
+
+                      {ocorrencia.produtos.length > 0 && (
+                        <tr>
+                          <td colSpan="5" className="px-4 py-0">
+                            <div className="bg-gray-50 rounded-lg p-4 mx-2 mb-2">
+                              <h4 className="text-sm font-medium text-gray-700 mb-3 flex items-center gap-2">
+                                <Package className="w-4 h-4 text-purple-600" />
+                                Produtos da Ocorrência (
+                                {ocorrencia.produtos.length})
+                              </h4>
+                              <div>
+                                {ocorrencia.produtos.map((produto, index) => (
+                                  <div
+                                    key={index}
+                                    className="bg-white border border-gray-200 rounded-lg p-3 hover:shadow-sm transition-shadow"
+                                    style={{ marginBottom: "10px" }}
+                                  >
+                                    <div
+                                      className="flex items-start justify-between"
+                                      style={{ padding: "20px" }}
+                                    >
+                                      <div className="flex-1">
+                                        <h5 className="font-medium text-gray-900 mb-1">
+                                          {produto.descricao}
+                                        </h5>
+                                        <p className="text-lg font-semibold text-green-600 mb-1">
+                                          {produto.valor}
+                                        </p>
+                                        <p className="font-medium text-gray-900 mb-1">
+                                          {produto.tipo}
+                                        </p>
+                                        {produto.link && (
+                                          <a
+                                            href={produto.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 text-sm transition-colors"
+                                          >
+                                            <ExternalLink className="w-3 h-3" />
+                                          </a>
+                                        )}
+                                      </div>
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          </td>
+                        </tr>
+                      )}
+                    </React.Fragment>
                   ))}
                 </tbody>
               </table>
@@ -258,7 +341,7 @@ const OcorrenciasModal = ({ isOpen, onClose, vendedorId }) => {
 const ModalCadastroOcorrencia = ({ isOpen = true, onClose, onSave }) => {
   const [formData, setFormData] = useState({
     data: "",
-    tipo: "",
+    status: "",
     observacao: "",
   });
 
@@ -272,9 +355,9 @@ const ModalCadastroOcorrencia = ({ isOpen = true, onClose, onSave }) => {
   // }, []);
 
   const tiposOcorrencia = [
-    { value: "propriedade-intelectual", label: "Propriedade Intelectual" },
-    { value: "produto-parasitário", label: "Produto Parasitário" },
-    { value: "outros", label: "Outros" },
+    { value: "Confirmação da denúncia", label: "Confirmação da denúncia" },
+    { value: "Caso perdido", label: "Caso perdido" },
+    { value: "Denúncia na plataforma", label: "Denúncia na plataforma" },
   ];
 
   const styles = {
@@ -299,7 +382,6 @@ const ModalCadastroOcorrencia = ({ isOpen = true, onClose, onSave }) => {
       borderRadius: "12px",
       width: "100%",
       maxWidth: "600px",
-      // maxHeight: "95vh",
       overflow: "hidden",
       boxShadow:
         "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
@@ -520,7 +602,8 @@ const ModalCadastroOcorrencia = ({ isOpen = true, onClose, onSave }) => {
       id: `product_${newProductCount}`,
       number: newProductCount,
       descricao: "",
-      preco: "",
+      valor: "",
+      tipo: "",
       link: "",
     };
 
@@ -537,7 +620,7 @@ const ModalCadastroOcorrencia = ({ isOpen = true, onClose, onSave }) => {
         product.id === productId
           ? {
               ...product,
-              [field]: field === "preco" ? formatPrice(value) : value,
+              [field]: field === "valor" ? formatPrice(value) : value,
             }
           : product
       )
@@ -545,7 +628,7 @@ const ModalCadastroOcorrencia = ({ isOpen = true, onClose, onSave }) => {
   };
 
   const validateForm = () => {
-    if (!formData.data || !formData.tipo) {
+    if (!formData.data || !formData.status) {
       alert("Por favor, preencha os campos obrigatórios: Data e Tipo.");
       return false;
     }
@@ -631,15 +714,15 @@ const ModalCadastroOcorrencia = ({ isOpen = true, onClose, onSave }) => {
           </div>
 
           <div style={styles.formGroup}>
-            <label style={styles.formLabel}>Tipo</label>
+            <label style={styles.formLabel}>Status</label>
             <select
-              name="tipo"
-              value={formData.tipo}
+              name="status"
+              value={formData.status}
               onChange={handleInputChange}
               required
               style={styles.formSelect}
             >
-              <option value="">Selecione o tipo</option>
+              <option value="">Selecione o status</option>
               {tiposOcorrencia.map((tipo) => (
                 <option key={tipo.value} value={tipo.value}>
                   {tipo.label}
@@ -732,15 +815,14 @@ const ModalCadastroOcorrencia = ({ isOpen = true, onClose, onSave }) => {
                           <label style={styles.formLabel}>Preço</label>
                           <input
                             type="text"
-                            value={produto.preco}
+                            value={produto.valor}
                             onChange={(e) =>
-                              updateProduct(produto.id, "preco", e.target.value)
+                              updateProduct(produto.id, "valor", e.target.value)
                             }
                             placeholder="R$ 0,00"
                             style={styles.formInput}
                           />
                         </div>
-
                         <div style={styles.formGroup}>
                           <label style={styles.formLabel}>Link</label>
                           <input
@@ -753,6 +835,36 @@ const ModalCadastroOcorrencia = ({ isOpen = true, onClose, onSave }) => {
                             style={styles.formInput}
                           />
                         </div>
+                      </div>
+                      <div style={styles.formGroup}>
+                        <label style={styles.formLabel}>Tipo</label>
+
+                        <select
+                          name="tipo"
+                          value={produto.tipo}
+                          onChange={(e) =>
+                            updateProduct(produto.id, "tipo", e.target.value)
+                          }
+                          required
+                          style={styles.formInput}
+                        >
+                          <option value="">Selecione o tipo</option>
+                          <option
+                            key="Propriedade Intelectual"
+                            value="Propriedade Intelectual"
+                          >
+                            Propriedade Intelectual
+                          </option>
+                          <option
+                            key="Produto Parasitario"
+                            value="Produto Parasitario"
+                          >
+                            Produto Parasitario
+                          </option>
+                          <option key="Outros" value="Outros">
+                            Outros
+                          </option>
+                        </select>
                       </div>
                     </div>
                   </div>
