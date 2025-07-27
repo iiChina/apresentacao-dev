@@ -61,17 +61,6 @@ const OcorrenciasModal = ({ isOpen, onClose, vendedorId }) => {
     }
   };
 
-  const getPlatformColor = (platform) => {
-    switch (platform) {
-      case "Mercado Livre":
-        return "bg-yellow-100 text-yellow-800 border-yellow-200";
-      case "Shopee":
-        return "bg-orange-100 text-orange-800 border-orange-200";
-      default:
-        return "bg-gray-100 text-gray-800 border-gray-200";
-    }
-  };
-
   const [isAddOccurrenceModalOpen, setIsAddOccurrenceModalOpen] =
     useState(false);
 
@@ -81,29 +70,24 @@ const OcorrenciasModal = ({ isOpen, onClose, vendedorId }) => {
       data: "18/07/2025",
       tipo: "Confirmação da denúncia",
       produtos: 1,
-      links: "-",
       observacao: "-",
-      anexos: "-",
+      produtos: [],
     },
     {
       id: 2,
       data: "18/07/2025",
       tipo: "Caso perdido",
-      plataforma: "Mercado Livre",
       produtos: 1,
-      links: "-",
       observacao: "-",
-      anexos: 1,
+      produtos: [],
     },
     {
       id: 3,
       data: "11/07/2025",
       tipo: "Denúncia na plataforma",
-      plataforma: "",
       produtos: 2,
-      links: 2,
       observacao: "-",
-      anexos: "-",
+      produtos: [],
     },
   ]);
 
@@ -188,13 +172,7 @@ const OcorrenciasModal = ({ isOpen, onClose, vendedorId }) => {
                       Produtos
                     </th>
                     <th className="text-left py-3 px-4 font-medium text-gray-700">
-                      Links
-                    </th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-700">
                       Observação
-                    </th>
-                    <th className="text-left py-3 px-4 font-medium text-gray-700">
-                      Anexos
                     </th>
                     <th className="w-12 py-3 px-4"></th>
                   </tr>
@@ -229,35 +207,11 @@ const OcorrenciasModal = ({ isOpen, onClose, vendedorId }) => {
                         </div>
                       </td>
                       <td className="py-3 px-4">
-                        {ocorrencia.links !== "-" ? (
-                          <div className="flex items-center gap-2">
-                            <ExternalLink className="w-4 h-4 text-blue-600" />
-                            <span className="text-blue-600 cursor-pointer hover:underline">
-                              {ocorrencia.links}
-                            </span>
-                          </div>
-                        ) : (
-                          <span className="text-gray-400 text-sm">-</span>
-                        )}
-                      </td>
-                      <td className="py-3 px-4">
                         {ocorrencia.observacao !== "-" ? (
                           <div className="flex items-center gap-2">
                             <MessageSquare className="w-4 h-4 text-green-600" />
                             <span className="text-gray-900">
                               {ocorrencia.observacao}
-                            </span>
-                          </div>
-                        ) : (
-                          <span className="text-gray-400 text-sm">-</span>
-                        )}
-                      </td>
-                      <td className="py-3 px-4">
-                        {ocorrencia.anexos !== "-" ? (
-                          <div className="flex items-center gap-2">
-                            <FileText className="w-4 h-4 text-green-600" />
-                            <span className="bg-green-100 text-green-800 text-sm font-medium px-2 py-1 rounded-full">
-                              {ocorrencia.anexos}
                             </span>
                           </div>
                         ) : (
@@ -460,30 +414,6 @@ const AddOccurrenceModal = ({
                 Retificação comunicado anterior
               </option>
               <option value="Retorno">Retorno</option>
-            </select>
-          </div>
-
-          {/* Plataforma */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Plataformas
-            </label>
-            <select
-              name="platform"
-              value={formData.platform}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            >
-              <option value="">Selecione uma plataforma</option>
-              <option value="Americanas">Americanas</option>
-              <option value="Magalu">Magalu</option>
-              <option value="Mercado Livre">Mercado Livre</option>
-              <option value="Shopee">Shopee</option>
-              <option value="Amazon">Amazon</option>
-              <option value="Site Próprio">Site Próprio</option>
-              <option value="Outras (descrever em observações)">
-                Outras (descrever em observações)
-              </option>
             </select>
           </div>
 
