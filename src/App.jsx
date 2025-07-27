@@ -68,35 +68,38 @@ const OcorrenciasModal = ({ isOpen, onClose, vendedorId }) => {
     {
       id: 1,
       data: "18/07/2025",
-      tipo: "Confirmação da denúncia",
-      produtos: 1,
+      status: "Confirmação da denúncia",
       observacao: "-",
       produtos: [],
     },
     {
       id: 2,
       data: "18/07/2025",
-      tipo: "Caso perdido",
-      produtos: 1,
+      status: "Caso perdido",
       observacao: "-",
       produtos: [],
     },
     {
       id: 3,
       data: "11/07/2025",
-      tipo: "Denúncia na plataforma",
-      produtos: 2,
+      status: "Denúncia na plataforma",
       observacao: "-",
-      produtos: [],
+      produtos: [
+        // {
+        //   descricao: "",
+        //   valor: "",
+        //   link: "",
+        // },
+      ],
     },
   ]);
 
   const handleAddOccurrence = (newOccurrence) => {
     const occurrence = {
       id: ocorrencias.length + 1,
-      date: newOccurrence.date,
-      seller: newOccurrence.product || "Novo Vendedor",
-      amount: "R$ 0,00",
+      tipo: newOccurrence.tipo,
+      data: newOccurrence.data,
+      observacao: newOccurrence.observacao,
     };
 
     setOccurrences([occurrence, ...ocorrencias]);
@@ -108,7 +111,7 @@ const OcorrenciasModal = ({ isOpen, onClose, vendedorId }) => {
       style={{
         padding: "80px 200px",
         position: "fixed",
-        top: 0,
+        top: -20,
         left: 0,
         right: 0,
         bottom: 0,
@@ -166,7 +169,7 @@ const OcorrenciasModal = ({ isOpen, onClose, vendedorId }) => {
                       Data
                     </th>
                     <th className="text-left py-3 px-4 font-medium text-gray-700">
-                      Tipo
+                      Status
                     </th>
                     <th className="text-left py-3 px-4 font-medium text-gray-700">
                       Produtos
@@ -192,17 +195,17 @@ const OcorrenciasModal = ({ isOpen, onClose, vendedorId }) => {
                       <td className="py-3 px-4">
                         <span
                           className={`px-2 py-1 rounded-md text-xs font-medium border ${getTipoColor(
-                            ocorrencia.tipo
+                            ocorrencia.status
                           )}`}
                         >
-                          {ocorrencia.tipo}
+                          {ocorrencia.status}
                         </span>
                       </td>
                       <td className="py-3 px-4">
                         <div className="flex items-center gap-2">
                           <Package className="w-4 h-4 text-purple-600" />
                           <span className="text-gray-900">
-                            {ocorrencia.produtos}
+                            {ocorrencia.produtos.length}
                           </span>
                         </div>
                       </td>
@@ -243,7 +246,7 @@ const OcorrenciasModal = ({ isOpen, onClose, vendedorId }) => {
       </div>
 
       {/* Modal de Adicionar Ocorrência */}
-      <AddOccurrenceModal
+      <ModalCadastroOcorrencia
         isOpen={isAddOccurrenceModalOpen}
         onClose={() => setIsAddOccurrenceModalOpen(false)}
         onSave={handleAddOccurrence}
@@ -252,251 +255,532 @@ const OcorrenciasModal = ({ isOpen, onClose, vendedorId }) => {
   );
 };
 
-const AddOccurrenceModal = ({
-  isOpen,
-  onClose,
-  onSave,
-  sellerName = "PROCAPET SHOP",
-}) => {
+const ModalCadastroOcorrencia = ({ isOpen = true, onClose, onSave }) => {
   const [formData, setFormData] = useState({
-    date: "",
-    type: "",
-    platform: "",
-    link: "",
-    product: "",
-    observation: "",
+    data: "",
+    tipo: "",
+    observacao: "",
   });
 
-  if (!isOpen) return null;
+  const [produtos, setProdutos] = useState([]);
+  const [productCount, setProductCount] = useState(0);
+
+  // Define data atual como padrão
+  // useEffect(() => {
+  //   const today = new Date().toISOString().split("T")[0];
+  //   setFormData((prev) => ({ ...prev, data: today }));
+  // }, []);
+
+  const tiposOcorrencia = [
+    { value: "propriedade-intelectual", label: "Propriedade Intelectual" },
+    { value: "produto-parasitário", label: "Produto Parasitário" },
+    { value: "outros", label: "Outros" },
+  ];
+
+  const styles = {
+    overlay: {
+      fontFamily:
+        '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+      background: "rgba(0, 0, 0, 0.5)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      minHeight: "100vh",
+      padding: "20px",
+      position: "fixed",
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      zIndex: 1000,
+    },
+    modal: {
+      background: "white",
+      borderRadius: "12px",
+      width: "100%",
+      maxWidth: "600px",
+      // maxHeight: "95vh",
+      overflow: "hidden",
+      boxShadow:
+        "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+    },
+    modalHeader: {
+      padding: "24px",
+      borderBottom: "1px solid #e5e7eb",
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+    },
+    modalTitle: {
+      fontSize: "18px",
+      fontWeight: "600",
+      color: "#111827",
+      margin: 0,
+    },
+    modalSubtitle: {
+      fontSize: "14px",
+      color: "#6b7280",
+      marginTop: "4px",
+      margin: "4px 0 0 0",
+    },
+    closeBtn: {
+      background: "none",
+      border: "none",
+      fontSize: "24px",
+      color: "#6b7280",
+      cursor: "pointer",
+      padding: "4px",
+      borderRadius: "4px",
+      transition: "background-color 0.2s",
+    },
+    modalBody: {
+      padding: "24px",
+      maxHeight: "calc(90vh - 140px)",
+      overflowY: "auto",
+    },
+    formGroup: {
+      marginBottom: "20px",
+    },
+    formLabel: {
+      display: "block",
+      fontSize: "14px",
+      fontWeight: "500",
+      color: "#374151",
+      marginBottom: "6px",
+    },
+    formInput: {
+      width: "100%",
+      padding: "10px 12px",
+      border: "1px solid #d1d5db",
+      borderRadius: "8px",
+      fontSize: "14px",
+      transition: "border-color 0.2s, box-shadow 0.2s",
+      boxSizing: "border-box",
+    },
+    formSelect: {
+      width: "100%",
+      padding: "10px 12px",
+      border: "1px solid #d1d5db",
+      borderRadius: "8px",
+      fontSize: "14px",
+      backgroundColor: "white",
+      cursor: "pointer",
+      boxSizing: "border-box",
+    },
+    formTextarea: {
+      width: "100%",
+      padding: "10px 12px",
+      border: "1px solid #d1d5db",
+      borderRadius: "8px",
+      fontSize: "14px",
+      minHeight: "80px",
+      resize: "vertical",
+      fontFamily: "inherit",
+      boxSizing: "border-box",
+    },
+    productsSection: {
+      borderTop: "1px solid #e5e7eb",
+      paddingTop: "20px",
+      marginTop: "20px",
+    },
+    sectionTitle: {
+      fontSize: "16px",
+      fontWeight: "600",
+      color: "#111827",
+      marginBottom: "16px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+    },
+    addProductBtn: {
+      background: "#3b82f6",
+      color: "white",
+      border: "none",
+      padding: "8px 16px",
+      borderRadius: "6px",
+      fontSize: "14px",
+      fontWeight: "500",
+      cursor: "pointer",
+      display: "flex",
+      alignItems: "center",
+      gap: "6px",
+      transition: "background-color 0.2s",
+    },
+    productItem: {
+      background: "#f9fafb",
+      border: "1px solid #e5e7eb",
+      borderRadius: "8px",
+      padding: "16px",
+      marginBottom: "12px",
+      position: "relative",
+    },
+    productHeader: {
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center",
+      marginBottom: "12px",
+    },
+    productNumber: {
+      fontSize: "14px",
+      fontWeight: "600",
+      color: "#6b7280",
+    },
+    removeProductBtn: {
+      background: "#ef4444",
+      color: "white",
+      border: "none",
+      padding: "4px 8px",
+      borderRadius: "4px",
+      fontSize: "12px",
+      cursor: "pointer",
+      position: "absolute",
+      top: "12px",
+      right: "12px",
+    },
+    productForm: {
+      display: "grid",
+      gridTemplateColumns: "1fr",
+      gap: "12px",
+    },
+    productFormRow: {
+      display: "grid",
+      gridTemplateColumns: "2fr 1fr",
+      gap: "12px",
+    },
+    emptyProducts: {
+      textAlign: "center",
+      color: "#6b7280",
+      fontSize: "14px",
+      padding: "20px",
+      border: "2px dashed #d1d5db",
+      borderRadius: "8px",
+    },
+    modalFooter: {
+      padding: "20px 24px",
+      borderTop: "1px solid #e5e7eb",
+      display: "flex",
+      justifyContent: "flex-end",
+      gap: "12px",
+    },
+    btnSecondary: {
+      background: "white",
+      color: "#374151",
+      border: "1px solid #d1d5db",
+      padding: "10px 20px",
+      borderRadius: "6px",
+      fontSize: "14px",
+      fontWeight: "500",
+      cursor: "pointer",
+      transition: "background-color 0.2s",
+    },
+    btnPrimary: {
+      background: "#3b82f6",
+      color: "white",
+      border: "none",
+      padding: "10px 20px",
+      borderRadius: "6px",
+      fontSize: "14px",
+      fontWeight: "500",
+      cursor: "pointer",
+      transition: "background-color 0.2s",
+    },
+    // Media queries simuladas com JavaScript
+    mobileProductFormRow: {
+      display: "grid",
+      gridTemplateColumns: "1fr",
+      gap: "12px",
+    },
+    mobileModalFooter: {
+      padding: "20px 24px",
+      borderTop: "1px solid #e5e7eb",
+      display: "flex",
+      justifyContent: "flex-end",
+      gap: "12px",
+      flexDirection: "column",
+    },
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const formatPrice = (value) => {
+    let numericValue = value.replace(/\D/g, "");
+    numericValue = numericValue.replace(/(\d)(\d{2})$/, "$1,$2");
+    numericValue = numericValue.replace(/(?=(\d{3})+(\D))\B/g, ".");
+    return numericValue ? "R$ " + numericValue : "";
+  };
+
+  const addProduct = () => {
+    const newProductCount = productCount + 1;
+    setProductCount(newProductCount);
+
+    const newProduct = {
+      id: `product_${newProductCount}`,
+      number: newProductCount,
+      descricao: "",
+      preco: "",
+      link: "",
+    };
+
+    setProdutos((prev) => [...prev, newProduct]);
+  };
+
+  const removeProduct = (productId) => {
+    setProdutos((prev) => prev.filter((product) => product.id !== productId));
+  };
+
+  const updateProduct = (productId, field, value) => {
+    setProdutos((prev) =>
+      prev.map((product) =>
+        product.id === productId
+          ? {
+              ...product,
+              [field]: field === "preco" ? formatPrice(value) : value,
+            }
+          : product
+      )
+    );
+  };
+
+  const validateForm = () => {
+    if (!formData.data || !formData.tipo) {
+      alert("Por favor, preencha os campos obrigatórios: Data e Tipo.");
+      return false;
+    }
+    return true;
+  };
 
   const handleSave = () => {
-    onSave(formData);
-    // Opcional: Limpar o formulário após salvar, se desejar
-    setFormData({
-      date: "",
-      type: "",
-      platform: "",
-      link: "",
-      product: "",
-      observation: "",
-    });
-    onClose(); // Fechar o modal após o salvamento
-  };
+    if (!validateForm()) return;
 
-  // Função para lidar com a mudança nos campos do formulário
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
+    const ocorrenciaData = {
+      ...formData,
+      produtos: produtos.filter((produto) => produto.descricao.trim() !== ""),
+    };
 
-  // Nova função para lidar com o evento de colar no campo 'Data'
-  const handlePasteDate = (e) => {
-    e.preventDefault(); // Impede a ação padrão de colar para que possamos processar o texto
-    const pastedText = e.clipboardData.getData("text");
-    const parts = pastedText.split(";").map((part) => part.trim()); // Divide por ponto e vírgula e remove espaços em branco
-
-    // Verifica se há partes suficientes para preencher os campos
-    if (parts.length >= 5) {
-      // data;tipo;plataforma;link;produto;observacao (mínimo 5 para os primeiros campos)
-      setFormData((prevData) => ({
-        ...prevData,
-        date: parts[0] || "",
-        type: parts[1] || "",
-        platform: parts[2] || "",
-        link: parts[3] || "",
-        product: parts[4] || "",
-        observation: parts[5] || "", // Observação é opcional e pode não estar presente
-      }));
+    if (onSave) {
+      onSave(ocorrenciaData);
     } else {
-      // Se não houver partes suficientes, apenas cola no campo de data (comportamento padrão)
-      setFormData((prevData) => ({
-        ...prevData,
-        date: pastedText,
-      }));
+      alert(
+        `Ocorrência salva com sucesso!\n\nResumo:\n- Data: ${ocorrenciaData.data}\n- Tipo: ${ocorrenciaData.tipo}\n- Produtos: ${ocorrenciaData.produtos.length}`
+      );
+    }
+
+    handleClose();
+  };
+
+  const handleClose = () => {
+    if (onClose) {
+      onClose();
     }
   };
 
+  const handleInputFocus = (e) => {
+    e.target.style.borderColor = "#3b82f6";
+    e.target.style.boxShadow = "0 0 0 3px rgba(59, 130, 246, 0.1)";
+  };
+
+  const handleInputBlur = (e) => {
+    e.target.style.borderColor = "#d1d5db";
+    e.target.style.boxShadow = "none";
+  };
+
+  if (!isOpen) return null;
+
   return (
-    <div
-      className="fixed inset-0 flex items-center justify-center p-4"
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        backgroundColor: "rgba(0, 0, 0, 0.3)",
-        zIndex: 10000,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <div
-        className="bg-white rounded-lg shadow-2xl"
-        style={{
-          width: "400px",
-          maxHeight: "90vh",
-          overflowY: "auto", // Adicionado para permitir scroll se o conteúdo for maior
-        }}
-      >
+    <div style={styles.overlay}>
+      <div style={styles.modal}>
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-900">
-            Adicionar Ocorrência
-          </h2>
+        <div style={styles.modalHeader}>
+          <div>
+            <h2 style={styles.modalTitle}>Nova Ocorrência</h2>
+            <p style={styles.modalSubtitle}>
+              Preencha os dados da ocorrência e adicione os produtos
+              relacionados
+            </p>
+          </div>
           <button
-            onClick={onClose}
-            className="p-1 hover:bg-gray-100 rounded-md transition-colors"
+            style={styles.closeBtn}
+            onClick={handleClose}
+            onMouseEnter={(e) => (e.target.style.backgroundColor = "#f3f4f6")}
+            onMouseLeave={(e) =>
+              (e.target.style.backgroundColor = "transparent")
+            }
           >
-            <X className="w-5 h-5 text-gray-500" />
+            ×
           </button>
         </div>
 
-        {/* Content */}
-        <div className="p-4 space-y-4">
-          <p className="text-sm text-gray-600">
-            Preencha os detalhes da ocorrência para o vendedor {sellerName}
-          </p>
-
-          {/* Data */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              <Calendar className="w-4 h-4 inline mr-1" />
-              Data
-            </label>
+        {/* Body */}
+        <div style={styles.modalBody}>
+          {/* Dados da Ocorrência */}
+          <div style={styles.formGroup}>
+            <label style={styles.formLabel}>Data</label>
             <input
-              type="text" // Alterado para text para permitir colar qualquer formato de data
-              name="date"
-              value={formData.date}
-              onChange={handleChange}
-              onPaste={handlePasteDate} // Adiciona o evento onPaste aqui
-              className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              placeholder="DD/MM/AAAA" // Exemplo de placeholder
+              type="date"
+              name="data"
+              value={formData.data}
+              onChange={handleInputChange}
+              required
+              style={styles.formInput}
+              onFocus={handleInputFocus}
+              onBlur={handleInputBlur}
             />
           </div>
 
-          {/* Tipo */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              <AlertTriangle className="w-4 h-4 inline mr-1" />
-              Tipo
-            </label>
+          <div style={styles.formGroup}>
+            <label style={styles.formLabel}>Tipo</label>
             <select
-              name="type"
-              value={formData.type}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              name="tipo"
+              value={formData.tipo}
+              onChange={handleInputChange}
+              required
+              style={styles.formSelect}
             >
-              <option value="">Selecione...</option>
-              <option value="Advertência">Advertência</option>
-              <option value="Alerta">Alerta</option>
-              <option value="Alerta 1">Alerta 1</option>
-              <option value="Alerta 2">Alerta 2</option>
-              <option value="Atenção">Atenção</option>
-              <option value="Caso pontual">Caso pontual</option>
-              <option value="Confirmação da denúncia">
-                Confirmação da denúncia
-              </option>
-              <option value="Cumprido">Cumprido</option>
-              <option value="Denúncia na plataforma">
-                Denúncia na plataforma
-              </option>
-              <option value="Monitoramento">Monitoramento</option>
-              <option value="Reativação de anúncio">
-                Reativação de anúncio
-              </option>
-              <option value="Reforço">Reforço</option>
-              <option value="Retificação comunicado anterior">
-                Retificação comunicado anterior
-              </option>
-              <option value="Retorno">Retorno</option>
+              <option value="">Selecione o tipo</option>
+              {tiposOcorrencia.map((tipo) => (
+                <option key={tipo.value} value={tipo.value}>
+                  {tipo.label}
+                </option>
+              ))}
             </select>
           </div>
 
-          {/* Links */}
-          <div>
-            <div className="flex items-center justify-between mb-1">
-              <label className="block text-sm font-medium text-gray-700">
-                <Link className="w-4 h-4 inline mr-1" />
-                Links
-              </label>
-              {/* O botão Plus deve ter uma funcionalidade para adicionar múltiplos links, se necessário */}
-              <button
-                type="button"
-                className="bg-blue-600 text-white p-1 rounded-md hover:bg-blue-700 transition-colors"
-              >
-                <Plus className="w-4 h-4" />
-              </button>
-            </div>
-            <input
-              type="text"
-              name="link"
-              value={formData.link}
-              onChange={handleChange}
-              placeholder="Adicionar link"
-              className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
-          </div>
-
-          {/* Produtos */}
-          <div>
-            <div className="flex items-center justify-between mb-1">
-              <label className="block text-sm font-medium text-gray-700">
-                <Package className="w-4 h-4 inline mr-1" />
-                Produtos
-              </label>
-              {/* O botão Plus deve ter uma funcionalidade para adicionar múltiplos produtos, se necessário */}
-              <button
-                type="button"
-                className="bg-blue-600 text-white p-1 rounded-md hover:bg-blue-700 transition-colors"
-              >
-                <Plus className="w-4 h-4" />
-              </button>
-            </div>
-            <input
-              type="text"
-              name="product"
-              value={formData.product}
-              onChange={handleChange}
-              placeholder="Adicionar produto"
-              className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
-          </div>
-
-          {/* Observação */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              <FileText className="w-4 h-4 inline mr-1" />
-              Observação
-            </label>
+          <div style={styles.formGroup}>
+            <label style={styles.formLabel}>Observação</label>
             <textarea
-              name="observation"
-              value={formData.observation}
-              onChange={handleChange}
-              placeholder="Detalhes adicionais da ocorrência"
-              rows="3"
-              className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+              name="observacao"
+              value={formData.observacao}
+              onChange={handleInputChange}
+              placeholder="Descreva detalhes relevantes sobre a ocorrência..."
+              style={styles.formTextarea}
+              onFocus={handleInputFocus}
+              onBlur={handleInputBlur}
             />
+          </div>
+
+          {/* Seção de Produtos */}
+          <div style={styles.productsSection}>
+            <div style={styles.sectionTitle}>
+              <span>Produtos Relacionados</span>
+              <button
+                type="button"
+                onClick={addProduct}
+                style={styles.addProductBtn}
+                onMouseEnter={(e) =>
+                  (e.target.style.backgroundColor = "#2563eb")
+                }
+                onMouseLeave={(e) =>
+                  (e.target.style.backgroundColor = "#3b82f6")
+                }
+              >
+                <span>+</span> Adicionar Produto
+              </button>
+            </div>
+
+            <div>
+              {produtos.length === 0 ? (
+                <div style={styles.emptyProducts}>
+                  Nenhum produto adicionado. Clique em "Adicionar Produto" para
+                  começar.
+                </div>
+              ) : (
+                produtos.map((produto) => (
+                  <div key={produto.id} style={styles.productItem}>
+                    <div style={styles.productHeader}>
+                      <span style={styles.productNumber}>
+                        Produto {produto.number}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => removeProduct(produto.id)}
+                        style={styles.removeProductBtn}
+                        onMouseEnter={(e) =>
+                          (e.target.style.backgroundColor = "#dc2626")
+                        }
+                        onMouseLeave={(e) =>
+                          (e.target.style.backgroundColor = "#ef4444")
+                        }
+                      >
+                        Remover
+                      </button>
+                    </div>
+
+                    <div style={styles.productForm}>
+                      <div style={styles.formGroup}>
+                        <label style={styles.formLabel}>Descrição</label>
+                        <input
+                          type="text"
+                          value={produto.descricao}
+                          onChange={(e) =>
+                            updateProduct(
+                              produto.id,
+                              "descricao",
+                              e.target.value
+                            )
+                          }
+                          placeholder="Descrição do produto"
+                          required
+                          style={styles.formInput}
+                        />
+                      </div>
+
+                      <div style={styles.productFormRow}>
+                        <div style={styles.formGroup}>
+                          <label style={styles.formLabel}>Preço</label>
+                          <input
+                            type="text"
+                            value={produto.preco}
+                            onChange={(e) =>
+                              updateProduct(produto.id, "preco", e.target.value)
+                            }
+                            placeholder="R$ 0,00"
+                            style={styles.formInput}
+                          />
+                        </div>
+
+                        <div style={styles.formGroup}>
+                          <label style={styles.formLabel}>Link</label>
+                          <input
+                            type="url"
+                            value={produto.link}
+                            onChange={(e) =>
+                              updateProduct(produto.id, "link", e.target.value)
+                            }
+                            placeholder="https://..."
+                            style={styles.formInput}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
           </div>
         </div>
 
         {/* Footer */}
-        <div className="flex gap-2 p-4 border-t border-gray-200">
+        <div style={styles.modalFooter}>
           <button
-            onClick={onClose}
-            className="flex-1 px-4 py-2 text-gray-700 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
+            type="button"
+            onClick={handleClose}
+            style={styles.btnSecondary}
+            onMouseEnter={(e) => (e.target.style.backgroundColor = "#f9fafb")}
+            onMouseLeave={(e) => (e.target.style.backgroundColor = "white")}
           >
             Cancelar
           </button>
           <button
+            type="button"
             onClick={handleSave}
-            className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+            style={styles.btnPrimary}
+            onMouseEnter={(e) => (e.target.style.backgroundColor = "#2563eb")}
+            onMouseLeave={(e) => (e.target.style.backgroundColor = "#3b82f6")}
           >
-            Salvar
+            Salvar Ocorrência
           </button>
         </div>
       </div>
@@ -516,7 +800,7 @@ const VendedoresNaoMapeados = () => {
       cnpj: "19.802.033/0001-83",
       plataformas: [],
       observacao: "",
-      ocorrencias: 1,
+      ocorrencias: 3,
       sellers: [
         {
           id: "PROC001",
@@ -545,7 +829,7 @@ const VendedoresNaoMapeados = () => {
       cnpj: "-",
       plataformas: ["Mercado Livre"],
       observacao: "",
-      ocorrencias: 1,
+      ocorrencias: 3,
       sellers: [
         {
           id: "VIRA001",
@@ -564,7 +848,7 @@ const VendedoresNaoMapeados = () => {
       cnpj: "-",
       plataformas: ["Mercado Livre"],
       observacao: "",
-      ocorrencias: 1,
+      ocorrencias: 3,
       sellers: [
         {
           id: "WEST001",
@@ -583,7 +867,7 @@ const VendedoresNaoMapeados = () => {
       cnpj: "-",
       plataformas: ["Mercado Livre"],
       observacao: "",
-      ocorrencias: 1,
+      ocorrencias: 3,
       sellers: [
         {
           id: "SS001",
@@ -602,7 +886,7 @@ const VendedoresNaoMapeados = () => {
       cnpj: "-",
       plataformas: ["Mercado Livre"],
       observacao: "",
-      ocorrencias: 2,
+      ocorrencias: 3,
       sellers: [
         {
           id: "ZAM001",
@@ -631,7 +915,7 @@ const VendedoresNaoMapeados = () => {
       cnpj: "-",
       plataformas: ["Mercado Livre"],
       observacao: "",
-      ocorrencias: 1,
+      ocorrencias: 3,
       sellers: [
         {
           id: "REC001",
@@ -650,7 +934,7 @@ const VendedoresNaoMapeados = () => {
       cnpj: "-",
       plataformas: ["Shopee", "Mercado Livre"],
       observacao: "",
-      ocorrencias: 1,
+      ocorrencias: 3,
       sellers: [
         {
           id: "PROM001",
@@ -683,7 +967,7 @@ const VendedoresNaoMapeados = () => {
       cnpj: "-",
       plataformas: ["Mercado Livre"],
       observacao: "",
-      ocorrencias: 1,
+      ocorrencias: 3,
       sellers: [
         {
           id: "MUN001",
@@ -732,6 +1016,7 @@ const VendedoresNaoMapeados = () => {
   };
 
   const closeModal = () => {
+    document.body.style.overflow = "unset";
     setIsModalOpen(false);
     setSelectedVendedor("");
   };
