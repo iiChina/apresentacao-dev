@@ -71,6 +71,7 @@ const OcorrenciasModal = ({ isOpen, onClose, vendedorId }) => {
       data: "25/07/2025",
       status: "Confirmação da denúncia",
       observacao: "-",
+      plataforma: "Shopee",
       produtos: [
         {
           descricao: "Fluatac Duo 1L",
@@ -90,6 +91,7 @@ const OcorrenciasModal = ({ isOpen, onClose, vendedorId }) => {
       id: 2,
       data: "18/07/2025",
       status: "Caso perdido",
+      plataforma: "Mercado Livre",
       observacao: "-",
       produtos: [
         {
@@ -104,6 +106,7 @@ const OcorrenciasModal = ({ isOpen, onClose, vendedorId }) => {
       id: 3,
       data: "11/07/2025",
       status: "Denúncia na plataforma",
+      plataforma: "Mercado Livre",
       observacao: "-",
       produtos: [
         {
@@ -133,12 +136,24 @@ const OcorrenciasModal = ({ isOpen, onClose, vendedorId }) => {
       id: ocorrencias.length + 1,
       status: newOccurrence.status,
       data: newOccurrence.data,
+      plataforma: newOccurrence.plataforma,
       observacao: newOccurrence.observacao,
       produtos: newOccurrence.produtos || [],
     };
 
     setOccurrences([occurrence, ...ocorrencias]);
     setIsAddOccurrenceModalOpen(false);
+  };
+
+  const getPlatformBadgeColor = (platform) => {
+    switch (platform) {
+      case "Mercado Livre":
+        return "bg-yellow-100 text-yellow-800 border-yellow-200";
+      case "Shopee":
+        return "bg-orange-100 text-orange-800 border-orange-200";
+      default:
+        return "bg-gray-100 text-gray-800 border-gray-200";
+    }
   };
 
   return (
@@ -210,6 +225,9 @@ const OcorrenciasModal = ({ isOpen, onClose, vendedorId }) => {
                       Produtos
                     </th>
                     <th className="text-left py-3 px-4 font-medium text-gray-700">
+                      Plataforma
+                    </th>
+                    <th className="text-left py-3 px-4 font-medium text-gray-700">
                       Observação
                     </th>
                     <th className="w-12 py-3 px-4"></th>
@@ -240,6 +258,17 @@ const OcorrenciasModal = ({ isOpen, onClose, vendedorId }) => {
                             <Package className="w-4 h-4 text-purple-600" />
                             <span className="text-gray-900">
                               {ocorrencia.produtos.length}
+                            </span>
+                          </div>
+                        </td>
+                        <td className="py-3 px-4">
+                          <div className="flex items-center gap-2">
+                            <span
+                              className={`px-2 py-1 rounded-md text-xs font-medium border ${getPlatformBadgeColor(
+                                ocorrencia.plataforma
+                              )}`}
+                            >
+                              {ocorrencia.plataforma}
                             </span>
                           </div>
                         </td>
@@ -342,6 +371,7 @@ const ModalCadastroOcorrencia = ({ isOpen = true, onClose, onSave }) => {
   const [formData, setFormData] = useState({
     data: "",
     status: "",
+    plataforma: "",
     observacao: "",
   });
 
@@ -358,6 +388,11 @@ const ModalCadastroOcorrencia = ({ isOpen = true, onClose, onSave }) => {
     { value: "Confirmação da denúncia", label: "Confirmação da denúncia" },
     { value: "Caso perdido", label: "Caso perdido" },
     { value: "Denúncia na plataforma", label: "Denúncia na plataforma" },
+  ];
+
+  const plataformas = [
+    { value: "Mercado Livre", label: "Mercado Livre" },
+    { value: "Shopee", label: "Shopee" },
   ];
 
   const styles = {
@@ -726,6 +761,24 @@ const ModalCadastroOcorrencia = ({ isOpen = true, onClose, onSave }) => {
               {tiposOcorrencia.map((tipo) => (
                 <option key={tipo.value} value={tipo.value}>
                   {tipo.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div style={styles.formGroup}>
+            <label style={styles.formLabel}>Plataforma</label>
+            <select
+              name="plataforma"
+              value={formData.plataforma}
+              onChange={handleInputChange}
+              required
+              style={styles.formSelect}
+            >
+              <option value="">Selecione uma plataforma</option>
+              {plataformas.map((plataforma) => (
+                <option key={plataforma.value} value={plataforma.value}>
+                  {plataforma.label}
                 </option>
               ))}
             </select>
