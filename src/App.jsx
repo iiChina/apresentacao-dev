@@ -1146,7 +1146,7 @@ const VendedoresNaoMapeados = () => {
                               Detalhes dos Sellers - {vendedor.id}
                             </h4>
 
-                            <div className="grid gap-4">
+                            <div className="grid gap-2">
                               {vendedor.sellers.map((seller, sellerIndex) => (
                                 <div
                                   key={sellerIndex}
@@ -1163,7 +1163,12 @@ const VendedoresNaoMapeados = () => {
                                     </span>
                                   </div>
 
-                                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                                  <div
+                                    className="grid gap-4"
+                                    style={{
+                                      gridTemplateColumns: "repeat(5, 1fr)",
+                                    }}
+                                  >
                                     <div className="flex items-center gap-2">
                                       <a
                                         href={seller.link}
@@ -1219,6 +1224,18 @@ const VendedoresNaoMapeados = () => {
                                           )}`}
                                         >
                                           {seller.status}
+                                        </p>
+                                      </div>
+                                    </div>
+
+                                    <div className="flex items-center gap-2">
+                                      <ExternalLink className="w-4 h-4 text-blue-600" />
+                                      <div className="grid">
+                                        <p className="text-xs text-gray-500">
+                                          Ocorrências
+                                        </p>
+                                        <p className="text-sm font-medium text-gray-900">
+                                          3
                                         </p>
                                       </div>
                                     </div>
