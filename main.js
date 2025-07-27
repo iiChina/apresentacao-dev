@@ -19509,37 +19509,24 @@
     }
   });
 
-  // node_modules/lucide-react/dist/esm/icons/link.js
-  var __iconNode8, Link;
-  var init_link = __esm({
-    "node_modules/lucide-react/dist/esm/icons/link.js"() {
-      init_createLucideIcon();
-      __iconNode8 = [
-        ["path", { d: "M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71", key: "1cjeqo" }],
-        ["path", { d: "M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71", key: "19qd67" }]
-      ];
-      Link = createLucideIcon("link", __iconNode8);
-    }
-  });
-
   // node_modules/lucide-react/dist/esm/icons/message-square.js
-  var __iconNode9, MessageSquare;
+  var __iconNode8, MessageSquare;
   var init_message_square = __esm({
     "node_modules/lucide-react/dist/esm/icons/message-square.js"() {
       init_createLucideIcon();
-      __iconNode9 = [
+      __iconNode8 = [
         ["path", { d: "M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z", key: "1lielz" }]
       ];
-      MessageSquare = createLucideIcon("message-square", __iconNode9);
+      MessageSquare = createLucideIcon("message-square", __iconNode8);
     }
   });
 
   // node_modules/lucide-react/dist/esm/icons/package.js
-  var __iconNode10, Package;
+  var __iconNode9, Package;
   var init_package = __esm({
     "node_modules/lucide-react/dist/esm/icons/package.js"() {
       init_createLucideIcon();
-      __iconNode10 = [
+      __iconNode9 = [
         [
           "path",
           {
@@ -19551,66 +19538,46 @@
         ["polyline", { points: "3.29 7 12 12 20.71 7", key: "ousv84" }],
         ["path", { d: "m7.5 4.27 9 5.15", key: "1c824w" }]
       ];
-      Package = createLucideIcon("package", __iconNode10);
+      Package = createLucideIcon("package", __iconNode9);
     }
   });
 
   // node_modules/lucide-react/dist/esm/icons/plus.js
-  var __iconNode11, Plus;
+  var __iconNode10, Plus;
   var init_plus = __esm({
     "node_modules/lucide-react/dist/esm/icons/plus.js"() {
       init_createLucideIcon();
-      __iconNode11 = [
+      __iconNode10 = [
         ["path", { d: "M5 12h14", key: "1ays0h" }],
         ["path", { d: "M12 5v14", key: "s699le" }]
       ];
-      Plus = createLucideIcon("plus", __iconNode11);
+      Plus = createLucideIcon("plus", __iconNode10);
     }
   });
 
   // node_modules/lucide-react/dist/esm/icons/search.js
-  var __iconNode12, Search;
+  var __iconNode11, Search;
   var init_search = __esm({
     "node_modules/lucide-react/dist/esm/icons/search.js"() {
       init_createLucideIcon();
-      __iconNode12 = [
+      __iconNode11 = [
         ["path", { d: "m21 21-4.34-4.34", key: "14j7rj" }],
         ["circle", { cx: "11", cy: "11", r: "8", key: "4ej97u" }]
       ];
-      Search = createLucideIcon("search", __iconNode12);
-    }
-  });
-
-  // node_modules/lucide-react/dist/esm/icons/triangle-alert.js
-  var __iconNode13, TriangleAlert;
-  var init_triangle_alert = __esm({
-    "node_modules/lucide-react/dist/esm/icons/triangle-alert.js"() {
-      init_createLucideIcon();
-      __iconNode13 = [
-        [
-          "path",
-          {
-            d: "m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3",
-            key: "wmoenq"
-          }
-        ],
-        ["path", { d: "M12 9v4", key: "juzpu7" }],
-        ["path", { d: "M12 17h.01", key: "p32p05" }]
-      ];
-      TriangleAlert = createLucideIcon("triangle-alert", __iconNode13);
+      Search = createLucideIcon("search", __iconNode11);
     }
   });
 
   // node_modules/lucide-react/dist/esm/icons/x.js
-  var __iconNode14, X;
+  var __iconNode12, X;
   var init_x = __esm({
     "node_modules/lucide-react/dist/esm/icons/x.js"() {
       init_createLucideIcon();
-      __iconNode14 = [
+      __iconNode12 = [
         ["path", { d: "M18 6 6 18", key: "1bl5f8" }],
         ["path", { d: "m6 6 12 12", key: "d8bk6v" }]
       ];
-      X = createLucideIcon("x", __iconNode14);
+      X = createLucideIcon("x", __iconNode12);
     }
   });
 
@@ -19618,14 +19585,12 @@
   var init_lucide_react = __esm({
     "node_modules/lucide-react/dist/esm/lucide-react.js"() {
       init_ellipsis();
-      init_triangle_alert();
       init_activity();
       init_calendar();
       init_chevron_down();
       init_chevron_right();
       init_external_link();
       init_file_text();
-      init_link();
       init_message_square();
       init_package();
       init_plus();
@@ -19635,7 +19600,7 @@
   });
 
   // src/App.jsx
-  var import_react3, getStatusColor, OcorrenciasModal, AddOccurrenceModal, VendedoresNaoMapeados, App_default;
+  var import_react3, getStatusColor, OcorrenciasModal, ModalCadastroOcorrencia, VendedoresNaoMapeados, App_default;
   var init_App = __esm({
     "src/App.jsx"() {
       import_react3 = __toESM(require_react());
@@ -19676,7 +19641,85 @@
               return "bg-gray-100 text-gray-800 border-gray-200";
           }
         };
-        const getPlatformColor = (platform) => {
+        const [isAddOccurrenceModalOpen, setIsAddOccurrenceModalOpen] = (0, import_react3.useState)(false);
+        const [ocorrencias, setOccurrences] = (0, import_react3.useState)([
+          {
+            id: 1,
+            data: "25/07/2025",
+            status: "Confirma\xE7\xE3o da den\xFAncia",
+            observacao: "-",
+            plataforma: "Shopee",
+            produtos: [
+              {
+                descricao: "Fluatac Duo 1L",
+                valor: "R$ 189,90",
+                link: "https://exemplo.com/fluatac-duo",
+                tipo: "Produto Parasitario"
+              },
+              {
+                descricao: "Maxicam Plus 2mg com 10 comprimidos",
+                valor: "R$ 45,00",
+                link: "https://exemplo.com/maxicam-plus",
+                tipo: "Outros"
+              }
+            ]
+          },
+          {
+            id: 2,
+            data: "18/07/2025",
+            status: "Caso perdido",
+            plataforma: "Mercado Livre",
+            observacao: "-",
+            produtos: [
+              {
+                descricao: "Marca registrada Ourofino Sa\xFAde Animal",
+                valor: "R$ 0,00",
+                link: "https://exemplo.com/marca-registrada",
+                tipo: "Propriedade Intelectual"
+              }
+            ]
+          },
+          {
+            id: 3,
+            data: "11/07/2025",
+            status: "Den\xFAncia na plataforma",
+            plataforma: "Mercado Livre",
+            observacao: "-",
+            produtos: [
+              {
+                descricao: "Ourovac Poli BT",
+                valor: "R$ 259,00",
+                link: "https://exemplo.com/ourovac-poli-bt",
+                tipo: "Produto Parasitario"
+              },
+              {
+                descricao: "Protegene Oral 50ml",
+                valor: "R$ 98,00",
+                link: "https://exemplo.com/protegen-oral",
+                tipo: "Outros"
+              },
+              {
+                descricao: "Nome comercial 'Ourovet'",
+                valor: "R$ 0,00",
+                link: "https://exemplo.com/ourovet-marca",
+                tipo: "Propriedade Intelectual"
+              }
+            ]
+          }
+        ]);
+        const handleAddOccurrence = (newOccurrence) => {
+          const occurrence = {
+            id: ocorrencias.length + 1,
+            status: newOccurrence.status,
+            data: newOccurrence.data,
+            plataforma: newOccurrence.plataforma,
+            observacao: newOccurrence.observacao,
+            produtos: newOccurrence.produtos || []
+          };
+          setOccurrences([occurrence, ...ocorrencias]);
+          setIsAddOccurrenceModalOpen(false);
+        };
+        const getPlatformBadgeColor = (platform) => {
           switch (platform) {
             case "Mercado Livre":
               return "bg-yellow-100 text-yellow-800 border-yellow-200";
@@ -19686,57 +19729,13 @@
               return "bg-gray-100 text-gray-800 border-gray-200";
           }
         };
-        const [isAddOccurrenceModalOpen, setIsAddOccurrenceModalOpen] = (0, import_react3.useState)(false);
-        const [ocorrencias, setOccurrences] = (0, import_react3.useState)([
-          {
-            id: 1,
-            data: "18/07/2025",
-            tipo: "Confirma\xE7\xE3o da den\xFAncia",
-            plataforma: "Mercado Livre",
-            produtos: 1,
-            links: "-",
-            observacao: "-",
-            anexos: "-"
-          },
-          {
-            id: 2,
-            data: "18/07/2025",
-            tipo: "Caso perdido",
-            plataforma: "Mercado Livre",
-            produtos: 1,
-            links: "-",
-            observacao: "-",
-            anexos: 1
-          },
-          {
-            id: 3,
-            data: "11/07/2025",
-            tipo: "Den\xFAncia na plataforma",
-            plataforma: "",
-            produtos: 2,
-            links: 2,
-            observacao: "-",
-            anexos: "-"
-          }
-        ]);
-        const handleAddOccurrence = (newOccurrence) => {
-          const occurrence = {
-            id: ocorrencias.length + 1,
-            date: newOccurrence.date,
-            seller: newOccurrence.product || "Novo Vendedor",
-            amount: "R$ 0,00"
-          };
-          setOccurrences([occurrence, ...ocorrencias]);
-          setIsModalOpen(false);
-        };
         return /* @__PURE__ */ import_react3.default.createElement(
           "div",
           {
-            className: "flex items-center justify-center",
             style: {
               padding: "80px 200px",
               position: "fixed",
-              top: 0,
+              top: -40,
               left: 0,
               right: 0,
               bottom: 0,
@@ -19755,9 +19754,9 @@
             "div",
             {
               className: "p-6",
-              style: { maxHeight: "calc(90vh - 140px)", overflowY: "auto" }
+              style: { maxHeight: "calc(80vh - 140px)", overflowY: "auto" }
             },
-            /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center justify-between mb-6" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react3.default.createElement("span", { className: "bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full" }, ocorrencias.length, " ocorr\xEAncia(s)")), /* @__PURE__ */ import_react3.default.createElement(
+            /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center justify-between mb-6" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react3.default.createElement("span", { className: "bg-blue-100 p-6 text-blue-800 text-sm font-medium px-3 py-1 rounded-full" }, ocorrencias.length, " ocorr\xEAncia(s)")), /* @__PURE__ */ import_react3.default.createElement(
               "button",
               {
                 onClick: () => setIsAddOccurrenceModalOpen(true),
@@ -19766,37 +19765,47 @@
               /* @__PURE__ */ import_react3.default.createElement(Plus, { className: "w-4 h-4" }),
               "Adicionar Ocorr\xEAncia"
             )),
-            /* @__PURE__ */ import_react3.default.createElement("div", { className: "bg-white border border-gray-200 rounded-lg overflow-hidden" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "overflow-x-auto" }, /* @__PURE__ */ import_react3.default.createElement("table", { className: "w-full" }, /* @__PURE__ */ import_react3.default.createElement("thead", { className: "bg-gray-50 border-b border-gray-200" }, /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("th", { className: "text-left py-3 px-4 font-medium text-gray-700" }, "Data"), /* @__PURE__ */ import_react3.default.createElement("th", { className: "text-left py-3 px-4 font-medium text-gray-700" }, "Tipo"), /* @__PURE__ */ import_react3.default.createElement("th", { className: "text-left py-3 px-4 font-medium text-gray-700" }, "Plataformas"), /* @__PURE__ */ import_react3.default.createElement("th", { className: "text-left py-3 px-4 font-medium text-gray-700" }, "Produtos"), /* @__PURE__ */ import_react3.default.createElement("th", { className: "text-left py-3 px-4 font-medium text-gray-700" }, "Links"), /* @__PURE__ */ import_react3.default.createElement("th", { className: "text-left py-3 px-4 font-medium text-gray-700" }, "Observa\xE7\xE3o"), /* @__PURE__ */ import_react3.default.createElement("th", { className: "text-left py-3 px-4 font-medium text-gray-700" }, "Anexos"), /* @__PURE__ */ import_react3.default.createElement("th", { className: "w-12 py-3 px-4" }))), /* @__PURE__ */ import_react3.default.createElement("tbody", { className: "divide-y divide-gray-200" }, ocorrencias.map((ocorrencia) => /* @__PURE__ */ import_react3.default.createElement(
-              "tr",
+            /* @__PURE__ */ import_react3.default.createElement("div", { className: "bg-white border border-gray-200 rounded-lg overflow-hidden" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "overflow-x-auto" }, /* @__PURE__ */ import_react3.default.createElement("table", { className: "w-full" }, /* @__PURE__ */ import_react3.default.createElement("thead", { className: "bg-gray-50 border-b border-gray-200" }, /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("th", { className: "text-left py-3 px-4 font-medium text-gray-700" }, "Data"), /* @__PURE__ */ import_react3.default.createElement("th", { className: "text-left py-3 px-4 font-medium text-gray-700" }, "Status"), /* @__PURE__ */ import_react3.default.createElement("th", { className: "text-left py-3 px-4 font-medium text-gray-700" }, "Produtos"), /* @__PURE__ */ import_react3.default.createElement("th", { className: "text-left py-3 px-4 font-medium text-gray-700" }, "Plataforma"), /* @__PURE__ */ import_react3.default.createElement("th", { className: "text-left py-3 px-4 font-medium text-gray-700" }, "Observa\xE7\xE3o"), /* @__PURE__ */ import_react3.default.createElement("th", { className: "w-12 py-3 px-4" }))), /* @__PURE__ */ import_react3.default.createElement("tbody", { className: "divide-y divide-gray-200" }, ocorrencias.map((ocorrencia) => /* @__PURE__ */ import_react3.default.createElement(import_react3.default.Fragment, { key: ocorrencia.id }, /* @__PURE__ */ import_react3.default.createElement("tr", { className: "hover:bg-gray-50 transition-colors" }, /* @__PURE__ */ import_react3.default.createElement("td", { className: "py-3 px-4 text-gray-900" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react3.default.createElement(Calendar, { className: "w-4 h-4 text-gray-400" }), ocorrencia.data)), /* @__PURE__ */ import_react3.default.createElement("td", { className: "py-3 px-4" }, /* @__PURE__ */ import_react3.default.createElement(
+              "span",
               {
-                key: ocorrencia.id,
-                className: "hover:bg-gray-50 transition-colors"
+                className: `px-2 py-1 rounded-md text-xs font-medium border ${getTipoColor(
+                  ocorrencia.status
+                )}`
               },
-              /* @__PURE__ */ import_react3.default.createElement("td", { className: "py-3 px-4 text-gray-900" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react3.default.createElement(Calendar, { className: "w-4 h-4 text-gray-400" }), ocorrencia.data)),
-              /* @__PURE__ */ import_react3.default.createElement("td", { className: "py-3 px-4" }, /* @__PURE__ */ import_react3.default.createElement(
-                "span",
+              ocorrencia.status
+            )), /* @__PURE__ */ import_react3.default.createElement("td", { className: "py-3 px-4" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react3.default.createElement(Package, { className: "w-4 h-4 text-purple-600" }), /* @__PURE__ */ import_react3.default.createElement("span", { className: "text-gray-900" }, ocorrencia.produtos.length))), /* @__PURE__ */ import_react3.default.createElement("td", { className: "py-3 px-4" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react3.default.createElement(
+              "span",
+              {
+                className: `px-2 py-1 rounded-md text-xs font-medium border ${getPlatformBadgeColor(
+                  ocorrencia.plataforma
+                )}`
+              },
+              ocorrencia.plataforma
+            ))), /* @__PURE__ */ import_react3.default.createElement("td", { className: "py-3 px-4" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react3.default.createElement(MessageSquare, { className: "w-4 h-4 text-green-600" }), /* @__PURE__ */ import_react3.default.createElement("span", { className: "text-gray-900" }, ocorrencia.observacao))), /* @__PURE__ */ import_react3.default.createElement("td", { className: "py-3 px-4" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "text-gray-400 hover:text-gray-600 transition-colors" }, /* @__PURE__ */ import_react3.default.createElement(Ellipsis, { className: "w-4 h-4" })))), ocorrencia.produtos.length > 0 && /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("td", { colSpan: "5", className: "px-4 py-0" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "bg-gray-50 rounded-lg p-4 mx-2 mb-2" }, /* @__PURE__ */ import_react3.default.createElement("h4", { className: "text-sm font-medium text-gray-700 mb-3 flex items-center gap-2" }, /* @__PURE__ */ import_react3.default.createElement(Package, { className: "w-4 h-4 text-purple-600" }), "Produtos da Ocorr\xEAncia (", ocorrencia.produtos.length, ")"), /* @__PURE__ */ import_react3.default.createElement("div", null, ocorrencia.produtos.map((produto, index) => /* @__PURE__ */ import_react3.default.createElement(
+              "div",
+              {
+                key: index,
+                className: "bg-white border border-gray-200 rounded-lg p-3 hover:shadow-sm transition-shadow",
+                style: { marginBottom: "10px" }
+              },
+              /* @__PURE__ */ import_react3.default.createElement(
+                "div",
                 {
-                  className: `px-2 py-1 rounded-md text-xs font-medium border ${getTipoColor(
-                    ocorrencia.tipo
-                  )}`
+                  className: "flex items-start justify-between",
+                  style: { padding: "20px" }
                 },
-                ocorrencia.tipo
-              )),
-              /* @__PURE__ */ import_react3.default.createElement("td", { className: "py-3 px-4" }, ocorrencia.plataforma ? /* @__PURE__ */ import_react3.default.createElement(
-                "span",
-                {
-                  className: `px-2 py-1 rounded-md text-xs font-medium border ${getPlatformColor(
-                    ocorrencia.plataforma
-                  )}`
-                },
-                ocorrencia.plataforma
-              ) : /* @__PURE__ */ import_react3.default.createElement("span", { className: "text-gray-400 text-sm" }, "-")),
-              /* @__PURE__ */ import_react3.default.createElement("td", { className: "py-3 px-4" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react3.default.createElement(Package, { className: "w-4 h-4 text-purple-600" }), /* @__PURE__ */ import_react3.default.createElement("span", { className: "text-gray-900" }, ocorrencia.produtos))),
-              /* @__PURE__ */ import_react3.default.createElement("td", { className: "py-3 px-4" }, ocorrencia.links !== "-" ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react3.default.createElement(ExternalLink, { className: "w-4 h-4 text-blue-600" }), /* @__PURE__ */ import_react3.default.createElement("span", { className: "text-blue-600 cursor-pointer hover:underline" }, ocorrencia.links)) : /* @__PURE__ */ import_react3.default.createElement("span", { className: "text-gray-400 text-sm" }, "-")),
-              /* @__PURE__ */ import_react3.default.createElement("td", { className: "py-3 px-4" }, ocorrencia.observacao !== "-" ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react3.default.createElement(MessageSquare, { className: "w-4 h-4 text-green-600" }), /* @__PURE__ */ import_react3.default.createElement("span", { className: "text-gray-900" }, ocorrencia.observacao)) : /* @__PURE__ */ import_react3.default.createElement("span", { className: "text-gray-400 text-sm" }, "-")),
-              /* @__PURE__ */ import_react3.default.createElement("td", { className: "py-3 px-4" }, ocorrencia.anexos !== "-" ? /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react3.default.createElement(FileText, { className: "w-4 h-4 text-green-600" }), /* @__PURE__ */ import_react3.default.createElement("span", { className: "bg-green-100 text-green-800 text-sm font-medium px-2 py-1 rounded-full" }, ocorrencia.anexos)) : /* @__PURE__ */ import_react3.default.createElement("span", { className: "text-gray-400 text-sm" }, "-")),
-              /* @__PURE__ */ import_react3.default.createElement("td", { className: "py-3 px-4" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "text-gray-400 hover:text-gray-600 transition-colors" }, /* @__PURE__ */ import_react3.default.createElement(Ellipsis, { className: "w-4 h-4" })))
-            ))))))
+                /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex-1" }, /* @__PURE__ */ import_react3.default.createElement("h5", { className: "font-medium text-gray-900 mb-1" }, produto.descricao), /* @__PURE__ */ import_react3.default.createElement("p", { className: "text-lg font-semibold text-green-600 mb-1" }, produto.valor), /* @__PURE__ */ import_react3.default.createElement("p", { className: "font-medium text-gray-900 mb-1" }, produto.tipo), produto.link && /* @__PURE__ */ import_react3.default.createElement(
+                  "a",
+                  {
+                    href: produto.link,
+                    target: "_blank",
+                    rel: "noopener noreferrer",
+                    className: "inline-flex items-center gap-1 text-blue-600 hover:text-blue-800 text-sm transition-colors"
+                  },
+                  /* @__PURE__ */ import_react3.default.createElement(ExternalLink, { className: "w-3 h-3" })
+                ))
+              )
+            ))))))))))))
           ), /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center justify-end gap-3 p-6 border-t border-gray-200 bg-gray-50" }, /* @__PURE__ */ import_react3.default.createElement(
             "button",
             {
@@ -19806,7 +19815,7 @@
             "Fechar"
           ))),
           /* @__PURE__ */ import_react3.default.createElement(
-            AddOccurrenceModal,
+            ModalCadastroOcorrencia,
             {
               isOpen: isAddOccurrenceModalOpen,
               onClose: () => setIsAddOccurrenceModalOpen(false),
@@ -19815,215 +19824,480 @@
           )
         );
       };
-      AddOccurrenceModal = ({
-        isOpen,
-        onClose,
-        onSave,
-        sellerName = "PROCAPET SHOP"
-      }) => {
+      ModalCadastroOcorrencia = ({ isOpen = true, onClose, onSave }) => {
         const [formData, setFormData] = (0, import_react3.useState)({
-          date: "",
-          type: "",
-          platform: "",
-          link: "",
-          product: "",
-          observation: ""
+          data: "",
+          status: "",
+          plataforma: "",
+          observacao: ""
         });
-        if (!isOpen) return null;
-        const handleSave = () => {
-          onSave(formData);
-          setFormData({
-            date: "",
-            type: "",
-            platform: "",
-            link: "",
-            product: "",
-            observation: ""
-          });
-          onClose();
-        };
-        const handleChange = (e) => {
-          const { name, value } = e.target;
-          setFormData((prevData) => ({
-            ...prevData,
-            [name]: value
-          }));
-        };
-        const handlePasteDate = (e) => {
-          e.preventDefault();
-          const pastedText = e.clipboardData.getData("text");
-          const parts = pastedText.split(";").map((part) => part.trim());
-          if (parts.length >= 5) {
-            setFormData((prevData) => ({
-              ...prevData,
-              date: parts[0] || "",
-              type: parts[1] || "",
-              platform: parts[2] || "",
-              link: parts[3] || "",
-              product: parts[4] || "",
-              observation: parts[5] || ""
-              // Observação é opcional e pode não estar presente
-            }));
-          } else {
-            setFormData((prevData) => ({
-              ...prevData,
-              date: pastedText
-            }));
+        const [produtos, setProdutos] = (0, import_react3.useState)([]);
+        const [productCount, setProductCount] = (0, import_react3.useState)(0);
+        const tiposOcorrencia = [
+          { value: "Confirma\xE7\xE3o da den\xFAncia", label: "Confirma\xE7\xE3o da den\xFAncia" },
+          { value: "Caso perdido", label: "Caso perdido" },
+          { value: "Den\xFAncia na plataforma", label: "Den\xFAncia na plataforma" }
+        ];
+        const plataformas = [
+          { value: "Mercado Livre", label: "Mercado Livre" },
+          { value: "Shopee", label: "Shopee" }
+        ];
+        const styles = {
+          overlay: {
+            fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+            background: "rgba(0, 0, 0, 0.5)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            minHeight: "100vh",
+            padding: "20px",
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            zIndex: 1e3
+          },
+          modal: {
+            background: "white",
+            borderRadius: "12px",
+            width: "100%",
+            maxWidth: "600px",
+            overflow: "hidden",
+            boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+          },
+          modalHeader: {
+            padding: "24px",
+            borderBottom: "1px solid #e5e7eb",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center"
+          },
+          modalTitle: {
+            fontSize: "18px",
+            fontWeight: "600",
+            color: "#111827",
+            margin: 0
+          },
+          modalSubtitle: {
+            fontSize: "14px",
+            color: "#6b7280",
+            marginTop: "4px",
+            margin: "4px 0 0 0"
+          },
+          closeBtn: {
+            background: "none",
+            border: "none",
+            fontSize: "24px",
+            color: "#6b7280",
+            cursor: "pointer",
+            padding: "4px",
+            borderRadius: "4px",
+            transition: "background-color 0.2s"
+          },
+          modalBody: {
+            padding: "24px",
+            maxHeight: "calc(90vh - 140px)",
+            overflowY: "auto"
+          },
+          formGroup: {
+            marginBottom: "20px"
+          },
+          formLabel: {
+            display: "block",
+            fontSize: "14px",
+            fontWeight: "500",
+            color: "#374151",
+            marginBottom: "6px"
+          },
+          formInput: {
+            width: "100%",
+            padding: "10px 12px",
+            border: "1px solid #d1d5db",
+            borderRadius: "8px",
+            fontSize: "14px",
+            transition: "border-color 0.2s, box-shadow 0.2s",
+            boxSizing: "border-box"
+          },
+          formSelect: {
+            width: "100%",
+            padding: "10px 12px",
+            border: "1px solid #d1d5db",
+            borderRadius: "8px",
+            fontSize: "14px",
+            backgroundColor: "white",
+            cursor: "pointer",
+            boxSizing: "border-box"
+          },
+          formTextarea: {
+            width: "100%",
+            padding: "10px 12px",
+            border: "1px solid #d1d5db",
+            borderRadius: "8px",
+            fontSize: "14px",
+            minHeight: "80px",
+            resize: "vertical",
+            fontFamily: "inherit",
+            boxSizing: "border-box"
+          },
+          productsSection: {
+            borderTop: "1px solid #e5e7eb",
+            paddingTop: "20px",
+            marginTop: "20px"
+          },
+          sectionTitle: {
+            fontSize: "16px",
+            fontWeight: "600",
+            color: "#111827",
+            marginBottom: "16px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between"
+          },
+          addProductBtn: {
+            background: "#3b82f6",
+            color: "white",
+            border: "none",
+            padding: "8px 16px",
+            borderRadius: "6px",
+            fontSize: "14px",
+            fontWeight: "500",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            gap: "6px",
+            transition: "background-color 0.2s"
+          },
+          productItem: {
+            background: "#f9fafb",
+            border: "1px solid #e5e7eb",
+            borderRadius: "8px",
+            padding: "16px",
+            marginBottom: "12px",
+            position: "relative"
+          },
+          productHeader: {
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginBottom: "12px"
+          },
+          productNumber: {
+            fontSize: "14px",
+            fontWeight: "600",
+            color: "#6b7280"
+          },
+          removeProductBtn: {
+            background: "#ef4444",
+            color: "white",
+            border: "none",
+            padding: "4px 8px",
+            borderRadius: "4px",
+            fontSize: "12px",
+            cursor: "pointer",
+            position: "absolute",
+            top: "12px",
+            right: "12px"
+          },
+          productForm: {
+            display: "grid",
+            gridTemplateColumns: "1fr",
+            gap: "12px"
+          },
+          productFormRow: {
+            display: "grid",
+            gridTemplateColumns: "2fr 1fr",
+            gap: "12px"
+          },
+          emptyProducts: {
+            textAlign: "center",
+            color: "#6b7280",
+            fontSize: "14px",
+            padding: "20px",
+            border: "2px dashed #d1d5db",
+            borderRadius: "8px"
+          },
+          modalFooter: {
+            padding: "20px 24px",
+            borderTop: "1px solid #e5e7eb",
+            display: "flex",
+            justifyContent: "flex-end",
+            gap: "12px"
+          },
+          btnSecondary: {
+            background: "white",
+            color: "#374151",
+            border: "1px solid #d1d5db",
+            padding: "10px 20px",
+            borderRadius: "6px",
+            fontSize: "14px",
+            fontWeight: "500",
+            cursor: "pointer",
+            transition: "background-color 0.2s"
+          },
+          btnPrimary: {
+            background: "#3b82f6",
+            color: "white",
+            border: "none",
+            padding: "10px 20px",
+            borderRadius: "6px",
+            fontSize: "14px",
+            fontWeight: "500",
+            cursor: "pointer",
+            transition: "background-color 0.2s"
+          },
+          // Media queries simuladas com JavaScript
+          mobileProductFormRow: {
+            display: "grid",
+            gridTemplateColumns: "1fr",
+            gap: "12px"
+          },
+          mobileModalFooter: {
+            padding: "20px 24px",
+            borderTop: "1px solid #e5e7eb",
+            display: "flex",
+            justifyContent: "flex-end",
+            gap: "12px",
+            flexDirection: "column"
           }
         };
-        return /* @__PURE__ */ import_react3.default.createElement(
-          "div",
+        const handleInputChange = (e) => {
+          const { name, value } = e.target;
+          setFormData((prev) => ({ ...prev, [name]: value }));
+        };
+        const formatPrice = (value) => {
+          let numericValue = value.replace(/\D/g, "");
+          numericValue = numericValue.replace(/(\d)(\d{2})$/, "$1,$2");
+          numericValue = numericValue.replace(/(?=(\d{3})+(\D))\B/g, ".");
+          return numericValue ? "R$ " + numericValue : "";
+        };
+        const addProduct = () => {
+          const newProductCount = productCount + 1;
+          setProductCount(newProductCount);
+          const newProduct = {
+            id: `product_${newProductCount}`,
+            number: newProductCount,
+            descricao: "",
+            valor: "",
+            tipo: "",
+            link: ""
+          };
+          setProdutos((prev) => [...prev, newProduct]);
+        };
+        const removeProduct = (productId) => {
+          setProdutos((prev) => prev.filter((product) => product.id !== productId));
+        };
+        const updateProduct = (productId, field, value) => {
+          setProdutos(
+            (prev) => prev.map(
+              (product) => product.id === productId ? {
+                ...product,
+                [field]: field === "valor" ? formatPrice(value) : value
+              } : product
+            )
+          );
+        };
+        const validateForm = () => {
+          if (!formData.data || !formData.status) {
+            alert("Por favor, preencha os campos obrigat\xF3rios: Data e Tipo.");
+            return false;
+          }
+          return true;
+        };
+        const handleSave = () => {
+          if (!validateForm()) return;
+          const ocorrenciaData = {
+            ...formData,
+            produtos: produtos.filter((produto) => produto.descricao.trim() !== "")
+          };
+          if (onSave) {
+            onSave(ocorrenciaData);
+          } else {
+            alert(
+              `Ocorr\xEAncia salva com sucesso!
+
+Resumo:
+- Data: ${ocorrenciaData.data}
+- Tipo: ${ocorrenciaData.tipo}
+- Produtos: ${ocorrenciaData.produtos.length}`
+            );
+          }
+          handleClose();
+        };
+        const handleClose = () => {
+          if (onClose) {
+            onClose();
+          }
+        };
+        const handleInputFocus = (e) => {
+          e.target.style.borderColor = "#3b82f6";
+          e.target.style.boxShadow = "0 0 0 3px rgba(59, 130, 246, 0.1)";
+        };
+        const handleInputBlur = (e) => {
+          e.target.style.borderColor = "#d1d5db";
+          e.target.style.boxShadow = "none";
+        };
+        if (!isOpen) return null;
+        return /* @__PURE__ */ import_react3.default.createElement("div", { style: styles.overlay }, /* @__PURE__ */ import_react3.default.createElement("div", { style: styles.modal }, /* @__PURE__ */ import_react3.default.createElement("div", { style: styles.modalHeader }, /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("h2", { style: styles.modalTitle }, "Nova Ocorr\xEAncia"), /* @__PURE__ */ import_react3.default.createElement("p", { style: styles.modalSubtitle }, "Preencha os dados da ocorr\xEAncia e adicione os produtos relacionados")), /* @__PURE__ */ import_react3.default.createElement(
+          "button",
           {
-            className: "fixed inset-0 flex items-center justify-center p-4",
-            style: {
-              position: "fixed",
-              top: 0,
-              left: 0,
-              right: 0,
-              bottom: 0,
-              backgroundColor: "rgba(0, 0, 0, 0.3)",
-              zIndex: 1e4,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center"
-            }
+            style: styles.closeBtn,
+            onClick: handleClose,
+            onMouseEnter: (e) => e.target.style.backgroundColor = "#f3f4f6",
+            onMouseLeave: (e) => e.target.style.backgroundColor = "transparent"
           },
+          "\xD7"
+        )), /* @__PURE__ */ import_react3.default.createElement("div", { style: styles.modalBody }, /* @__PURE__ */ import_react3.default.createElement("div", { style: styles.formGroup }, /* @__PURE__ */ import_react3.default.createElement("label", { style: styles.formLabel }, "Data"), /* @__PURE__ */ import_react3.default.createElement(
+          "input",
+          {
+            type: "date",
+            name: "data",
+            value: formData.data,
+            onChange: handleInputChange,
+            required: true,
+            style: styles.formInput,
+            onFocus: handleInputFocus,
+            onBlur: handleInputBlur
+          }
+        )), /* @__PURE__ */ import_react3.default.createElement("div", { style: styles.formGroup }, /* @__PURE__ */ import_react3.default.createElement("label", { style: styles.formLabel }, "Status"), /* @__PURE__ */ import_react3.default.createElement(
+          "select",
+          {
+            name: "status",
+            value: formData.status,
+            onChange: handleInputChange,
+            required: true,
+            style: styles.formSelect
+          },
+          /* @__PURE__ */ import_react3.default.createElement("option", { value: "" }, "Selecione o status"),
+          tiposOcorrencia.map((tipo) => /* @__PURE__ */ import_react3.default.createElement("option", { key: tipo.value, value: tipo.value }, tipo.label))
+        )), /* @__PURE__ */ import_react3.default.createElement("div", { style: styles.formGroup }, /* @__PURE__ */ import_react3.default.createElement("label", { style: styles.formLabel }, "Plataforma"), /* @__PURE__ */ import_react3.default.createElement(
+          "select",
+          {
+            name: "plataforma",
+            value: formData.plataforma,
+            onChange: handleInputChange,
+            required: true,
+            style: styles.formSelect
+          },
+          /* @__PURE__ */ import_react3.default.createElement("option", { value: "" }, "Selecione uma plataforma"),
+          plataformas.map((plataforma) => /* @__PURE__ */ import_react3.default.createElement("option", { key: plataforma.value, value: plataforma.value }, plataforma.label))
+        )), /* @__PURE__ */ import_react3.default.createElement("div", { style: styles.formGroup }, /* @__PURE__ */ import_react3.default.createElement("label", { style: styles.formLabel }, "Observa\xE7\xE3o"), /* @__PURE__ */ import_react3.default.createElement(
+          "textarea",
+          {
+            name: "observacao",
+            value: formData.observacao,
+            onChange: handleInputChange,
+            placeholder: "Descreva detalhes relevantes sobre a ocorr\xEAncia...",
+            style: styles.formTextarea,
+            onFocus: handleInputFocus,
+            onBlur: handleInputBlur
+          }
+        )), /* @__PURE__ */ import_react3.default.createElement("div", { style: styles.productsSection }, /* @__PURE__ */ import_react3.default.createElement("div", { style: styles.sectionTitle }, /* @__PURE__ */ import_react3.default.createElement("span", null, "Produtos Relacionados"), /* @__PURE__ */ import_react3.default.createElement(
+          "button",
+          {
+            type: "button",
+            onClick: addProduct,
+            style: styles.addProductBtn,
+            onMouseEnter: (e) => e.target.style.backgroundColor = "#2563eb",
+            onMouseLeave: (e) => e.target.style.backgroundColor = "#3b82f6"
+          },
+          /* @__PURE__ */ import_react3.default.createElement("span", null, "+"),
+          " Adicionar Produto"
+        )), /* @__PURE__ */ import_react3.default.createElement("div", null, produtos.length === 0 ? /* @__PURE__ */ import_react3.default.createElement("div", { style: styles.emptyProducts }, 'Nenhum produto adicionado. Clique em "Adicionar Produto" para come\xE7ar.') : produtos.map((produto) => /* @__PURE__ */ import_react3.default.createElement("div", { key: produto.id, style: styles.productItem }, /* @__PURE__ */ import_react3.default.createElement("div", { style: styles.productHeader }, /* @__PURE__ */ import_react3.default.createElement("span", { style: styles.productNumber }, "Produto ", produto.number), /* @__PURE__ */ import_react3.default.createElement(
+          "button",
+          {
+            type: "button",
+            onClick: () => removeProduct(produto.id),
+            style: styles.removeProductBtn,
+            onMouseEnter: (e) => e.target.style.backgroundColor = "#dc2626",
+            onMouseLeave: (e) => e.target.style.backgroundColor = "#ef4444"
+          },
+          "Remover"
+        )), /* @__PURE__ */ import_react3.default.createElement("div", { style: styles.productForm }, /* @__PURE__ */ import_react3.default.createElement("div", { style: styles.formGroup }, /* @__PURE__ */ import_react3.default.createElement("label", { style: styles.formLabel }, "Descri\xE7\xE3o"), /* @__PURE__ */ import_react3.default.createElement(
+          "input",
+          {
+            type: "text",
+            value: produto.descricao,
+            onChange: (e) => updateProduct(
+              produto.id,
+              "descricao",
+              e.target.value
+            ),
+            placeholder: "Descri\xE7\xE3o do produto",
+            required: true,
+            style: styles.formInput
+          }
+        )), /* @__PURE__ */ import_react3.default.createElement("div", { style: styles.productFormRow }, /* @__PURE__ */ import_react3.default.createElement("div", { style: styles.formGroup }, /* @__PURE__ */ import_react3.default.createElement("label", { style: styles.formLabel }, "Pre\xE7o"), /* @__PURE__ */ import_react3.default.createElement(
+          "input",
+          {
+            type: "text",
+            value: produto.valor,
+            onChange: (e) => updateProduct(produto.id, "valor", e.target.value),
+            placeholder: "R$ 0,00",
+            style: styles.formInput
+          }
+        )), /* @__PURE__ */ import_react3.default.createElement("div", { style: styles.formGroup }, /* @__PURE__ */ import_react3.default.createElement("label", { style: styles.formLabel }, "Link"), /* @__PURE__ */ import_react3.default.createElement(
+          "input",
+          {
+            type: "url",
+            value: produto.link,
+            onChange: (e) => updateProduct(produto.id, "link", e.target.value),
+            placeholder: "https://...",
+            style: styles.formInput
+          }
+        ))), /* @__PURE__ */ import_react3.default.createElement("div", { style: styles.formGroup }, /* @__PURE__ */ import_react3.default.createElement("label", { style: styles.formLabel }, "Tipo"), /* @__PURE__ */ import_react3.default.createElement(
+          "select",
+          {
+            name: "tipo",
+            value: produto.tipo,
+            onChange: (e) => updateProduct(produto.id, "tipo", e.target.value),
+            required: true,
+            style: styles.formInput
+          },
+          /* @__PURE__ */ import_react3.default.createElement("option", { value: "" }, "Selecione o tipo"),
           /* @__PURE__ */ import_react3.default.createElement(
-            "div",
+            "option",
             {
-              className: "bg-white rounded-lg shadow-2xl",
-              style: {
-                width: "400px",
-                maxHeight: "90vh",
-                overflowY: "auto"
-                // Adicionado para permitir scroll se o conteúdo for maior
-              }
+              key: "Propriedade Intelectual",
+              value: "Propriedade Intelectual"
             },
-            /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center justify-between p-4 border-b border-gray-200" }, /* @__PURE__ */ import_react3.default.createElement("h2", { className: "text-lg font-semibold text-gray-900" }, "Adicionar Ocorr\xEAncia"), /* @__PURE__ */ import_react3.default.createElement(
-              "button",
-              {
-                onClick: onClose,
-                className: "p-1 hover:bg-gray-100 rounded-md transition-colors"
-              },
-              /* @__PURE__ */ import_react3.default.createElement(X, { className: "w-5 h-5 text-gray-500" })
-            )),
-            /* @__PURE__ */ import_react3.default.createElement("div", { className: "p-4 space-y-4" }, /* @__PURE__ */ import_react3.default.createElement("p", { className: "text-sm text-gray-600" }, "Preencha os detalhes da ocorr\xEAncia para o vendedor ", sellerName), /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("label", { className: "block text-sm font-medium text-gray-700 mb-1" }, /* @__PURE__ */ import_react3.default.createElement(Calendar, { className: "w-4 h-4 inline mr-1" }), "Data"), /* @__PURE__ */ import_react3.default.createElement(
-              "input",
-              {
-                type: "text",
-                name: "date",
-                value: formData.date,
-                onChange: handleChange,
-                onPaste: handlePasteDate,
-                className: "w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent",
-                placeholder: "DD/MM/AAAA"
-              }
-            )), /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("label", { className: "block text-sm font-medium text-gray-700 mb-1" }, /* @__PURE__ */ import_react3.default.createElement(TriangleAlert, { className: "w-4 h-4 inline mr-1" }), "Tipo"), /* @__PURE__ */ import_react3.default.createElement(
-              "select",
-              {
-                name: "type",
-                value: formData.type,
-                onChange: handleChange,
-                className: "w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              },
-              /* @__PURE__ */ import_react3.default.createElement("option", { value: "" }, "Selecione..."),
-              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Advert\xEAncia" }, "Advert\xEAncia"),
-              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Alerta" }, "Alerta"),
-              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Alerta 1" }, "Alerta 1"),
-              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Alerta 2" }, "Alerta 2"),
-              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Aten\xE7\xE3o" }, "Aten\xE7\xE3o"),
-              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Caso pontual" }, "Caso pontual"),
-              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Confirma\xE7\xE3o da den\xFAncia" }, "Confirma\xE7\xE3o da den\xFAncia"),
-              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Cumprido" }, "Cumprido"),
-              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Den\xFAncia na plataforma" }, "Den\xFAncia na plataforma"),
-              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Monitoramento" }, "Monitoramento"),
-              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Reativa\xE7\xE3o de an\xFAncio" }, "Reativa\xE7\xE3o de an\xFAncio"),
-              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Refor\xE7o" }, "Refor\xE7o"),
-              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Retifica\xE7\xE3o comunicado anterior" }, "Retifica\xE7\xE3o comunicado anterior"),
-              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Retorno" }, "Retorno")
-            )), /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("label", { className: "block text-sm font-medium text-gray-700 mb-1" }, "Plataformas"), /* @__PURE__ */ import_react3.default.createElement(
-              "select",
-              {
-                name: "platform",
-                value: formData.platform,
-                onChange: handleChange,
-                className: "w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              },
-              /* @__PURE__ */ import_react3.default.createElement("option", { value: "" }, "Selecione uma plataforma"),
-              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Americanas" }, "Americanas"),
-              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Magalu" }, "Magalu"),
-              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Mercado Livre" }, "Mercado Livre"),
-              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Shopee" }, "Shopee"),
-              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Amazon" }, "Amazon"),
-              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Site Pr\xF3prio" }, "Site Pr\xF3prio"),
-              /* @__PURE__ */ import_react3.default.createElement("option", { value: "Outras (descrever em observa\xE7\xF5es)" }, "Outras (descrever em observa\xE7\xF5es)")
-            )), /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center justify-between mb-1" }, /* @__PURE__ */ import_react3.default.createElement("label", { className: "block text-sm font-medium text-gray-700" }, /* @__PURE__ */ import_react3.default.createElement(Link, { className: "w-4 h-4 inline mr-1" }), "Links"), /* @__PURE__ */ import_react3.default.createElement(
-              "button",
-              {
-                type: "button",
-                className: "bg-blue-600 text-white p-1 rounded-md hover:bg-blue-700 transition-colors"
-              },
-              /* @__PURE__ */ import_react3.default.createElement(Plus, { className: "w-4 h-4" })
-            )), /* @__PURE__ */ import_react3.default.createElement(
-              "input",
-              {
-                type: "text",
-                name: "link",
-                value: formData.link,
-                onChange: handleChange,
-                placeholder: "Adicionar link",
-                className: "w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              }
-            )), /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center justify-between mb-1" }, /* @__PURE__ */ import_react3.default.createElement("label", { className: "block text-sm font-medium text-gray-700" }, /* @__PURE__ */ import_react3.default.createElement(Package, { className: "w-4 h-4 inline mr-1" }), "Produtos"), /* @__PURE__ */ import_react3.default.createElement(
-              "button",
-              {
-                type: "button",
-                className: "bg-blue-600 text-white p-1 rounded-md hover:bg-blue-700 transition-colors"
-              },
-              /* @__PURE__ */ import_react3.default.createElement(Plus, { className: "w-4 h-4" })
-            )), /* @__PURE__ */ import_react3.default.createElement(
-              "input",
-              {
-                type: "text",
-                name: "product",
-                value: formData.product,
-                onChange: handleChange,
-                placeholder: "Adicionar produto",
-                className: "w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              }
-            )), /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("label", { className: "block text-sm font-medium text-gray-700 mb-1" }, /* @__PURE__ */ import_react3.default.createElement(FileText, { className: "w-4 h-4 inline mr-1" }), "Observa\xE7\xE3o"), /* @__PURE__ */ import_react3.default.createElement(
-              "textarea",
-              {
-                name: "observation",
-                value: formData.observation,
-                onChange: handleChange,
-                placeholder: "Detalhes adicionais da ocorr\xEAncia",
-                rows: "3",
-                className: "w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-              }
-            ))),
-            /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex gap-2 p-4 border-t border-gray-200" }, /* @__PURE__ */ import_react3.default.createElement(
-              "button",
-              {
-                onClick: onClose,
-                className: "flex-1 px-4 py-2 text-gray-700 border border-gray-300 rounded-md hover:bg-gray-50 transition-colors"
-              },
-              "Cancelar"
-            ), /* @__PURE__ */ import_react3.default.createElement(
-              "button",
-              {
-                onClick: handleSave,
-                className: "flex-1 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
-              },
-              "Salvar"
-            ))
-          )
-        );
+            "Propriedade Intelectual"
+          ),
+          /* @__PURE__ */ import_react3.default.createElement(
+            "option",
+            {
+              key: "Produto Parasitario",
+              value: "Produto Parasitario"
+            },
+            "Produto Parasitario"
+          ),
+          /* @__PURE__ */ import_react3.default.createElement("option", { key: "Outros", value: "Outros" }, "Outros")
+        )))))))), /* @__PURE__ */ import_react3.default.createElement("div", { style: styles.modalFooter }, /* @__PURE__ */ import_react3.default.createElement(
+          "button",
+          {
+            type: "button",
+            onClick: handleClose,
+            style: styles.btnSecondary,
+            onMouseEnter: (e) => e.target.style.backgroundColor = "#f9fafb",
+            onMouseLeave: (e) => e.target.style.backgroundColor = "white"
+          },
+          "Cancelar"
+        ), /* @__PURE__ */ import_react3.default.createElement(
+          "button",
+          {
+            type: "button",
+            onClick: handleSave,
+            style: styles.btnPrimary,
+            onMouseEnter: (e) => e.target.style.backgroundColor = "#2563eb",
+            onMouseLeave: (e) => e.target.style.backgroundColor = "#3b82f6"
+          },
+          "Salvar Ocorr\xEAncia"
+        ))));
       };
       VendedoresNaoMapeados = () => {
         const [searchTerm, setSearchTerm] = (0, import_react3.useState)("");
         const [expandedRows, setExpandedRows] = (0, import_react3.useState)(/* @__PURE__ */ new Set());
-        const [isModalOpen, setIsModalOpen2] = (0, import_react3.useState)(false);
+        const [isModalOpen, setIsModalOpen] = (0, import_react3.useState)(false);
         const [selectedVendedor, setSelectedVendedor] = (0, import_react3.useState)("");
         const vendedores = [
           {
@@ -20031,7 +20305,7 @@
             cnpj: "19.802.033/0001-83",
             plataformas: [],
             observacao: "",
-            ocorrencias: 1,
+            ocorrencias: 3,
             sellers: [
               {
                 id: "PROC001",
@@ -20060,7 +20334,7 @@
             cnpj: "-",
             plataformas: ["Mercado Livre"],
             observacao: "",
-            ocorrencias: 1,
+            ocorrencias: 3,
             sellers: [
               {
                 id: "VIRA001",
@@ -20079,7 +20353,7 @@
             cnpj: "-",
             plataformas: ["Mercado Livre"],
             observacao: "",
-            ocorrencias: 1,
+            ocorrencias: 3,
             sellers: [
               {
                 id: "WEST001",
@@ -20098,7 +20372,7 @@
             cnpj: "-",
             plataformas: ["Mercado Livre"],
             observacao: "",
-            ocorrencias: 1,
+            ocorrencias: 3,
             sellers: [
               {
                 id: "SS001",
@@ -20117,7 +20391,7 @@
             cnpj: "-",
             plataformas: ["Mercado Livre"],
             observacao: "",
-            ocorrencias: 2,
+            ocorrencias: 3,
             sellers: [
               {
                 id: "ZAM001",
@@ -20146,7 +20420,7 @@
             cnpj: "-",
             plataformas: ["Mercado Livre"],
             observacao: "",
-            ocorrencias: 1,
+            ocorrencias: 3,
             sellers: [
               {
                 id: "REC001",
@@ -20165,7 +20439,7 @@
             cnpj: "-",
             plataformas: ["Shopee", "Mercado Livre"],
             observacao: "",
-            ocorrencias: 1,
+            ocorrencias: 3,
             sellers: [
               {
                 id: "PROM001",
@@ -20198,7 +20472,7 @@
             cnpj: "-",
             plataformas: ["Mercado Livre"],
             observacao: "",
-            ocorrencias: 1,
+            ocorrencias: 3,
             sellers: [
               {
                 id: "MUN001",
@@ -20237,13 +20511,14 @@
         };
         const openModal = (vendedorId) => {
           setSelectedVendedor(vendedorId);
-          setIsModalOpen2(true);
+          setIsModalOpen(true);
         };
         const closeModal = () => {
-          setIsModalOpen2(false);
+          document.body.style.overflow = "unset";
+          setIsModalOpen(false);
           setSelectedVendedor("");
         };
-        return /* @__PURE__ */ import_react3.default.createElement("div", { className: "bg-white p-6 w-full h-screen" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "mb-6" }, /* @__PURE__ */ import_react3.default.createElement("h1", { className: "text-2xl font-semibold text-gray-900 mb-2" }, "Lista de Vendedores N\xE3o Mapeados"), /* @__PURE__ */ import_react3.default.createElement("p", { className: "text-gray-600 text-sm" }, "Vendedores que ainda n\xE3o foram mapeados no sistema principal.")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex gap-3 mb-6" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex-1 relative" }, /* @__PURE__ */ import_react3.default.createElement(Search, { className: "absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" }), /* @__PURE__ */ import_react3.default.createElement(
+        return /* @__PURE__ */ import_react3.default.createElement("div", { className: "bg-white p-6 w-full" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "mb-6" }, /* @__PURE__ */ import_react3.default.createElement("h1", { className: "text-2xl font-semibold text-gray-900 mb-2" }, "Lista de Vendedores N\xE3o Mapeados"), /* @__PURE__ */ import_react3.default.createElement("p", { className: "text-gray-600 text-sm" }, "Vendedores que ainda n\xE3o foram mapeados no sistema principal.")), /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex gap-3 mb-6" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex-1 relative" }, /* @__PURE__ */ import_react3.default.createElement(Search, { className: "absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" }), /* @__PURE__ */ import_react3.default.createElement(
           "input",
           {
             type: "text",
@@ -20275,31 +20550,44 @@
             )}`
           },
           plataforma
-        )), vendedor.plataformas.length === 0 && /* @__PURE__ */ import_react3.default.createElement("span", { className: "text-gray-400 text-sm" }, "-"))), /* @__PURE__ */ import_react3.default.createElement("td", { className: "py-3 px-4 text-gray-600" }, vendedor.observacao || "-"), /* @__PURE__ */ import_react3.default.createElement("td", { className: "py-3 px-4" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react3.default.createElement("button", { onClick: () => openModal(vendedor.id) }, /* @__PURE__ */ import_react3.default.createElement(ExternalLink, { className: "w-4 h-4 text-blue-600 hover:text-blue-700 transition-colors cursor-pointer" })), /* @__PURE__ */ import_react3.default.createElement("span", { className: "bg-blue-100 text-blue-800 text-sm font-medium px-2 py-1 rounded-full" }, vendedor.ocorrencias))), /* @__PURE__ */ import_react3.default.createElement("td", { className: "py-3 px-4" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "text-gray-400 hover:text-gray-600 transition-colors" }, /* @__PURE__ */ import_react3.default.createElement(Ellipsis, { className: "w-4 h-4" })))), expandedRows.has(index) && /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("td", { colSpan: "6", className: "px-0 py-0" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "bg-gray-50 border-t border-gray-200" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "p-6" }, /* @__PURE__ */ import_react3.default.createElement("h4", { className: "text-lg font-semibold text-gray-900 mb-4" }, "Detalhes dos Sellers - ", vendedor.id), /* @__PURE__ */ import_react3.default.createElement("div", { className: "grid gap-4" }, vendedor.sellers.map((seller, sellerIndex) => /* @__PURE__ */ import_react3.default.createElement(
+        )), vendedor.plataformas.length === 0 && /* @__PURE__ */ import_react3.default.createElement("span", { className: "text-gray-400 text-sm" }, "-"))), /* @__PURE__ */ import_react3.default.createElement("td", { className: "py-3 px-4 text-gray-600" }, vendedor.observacao || "-"), /* @__PURE__ */ import_react3.default.createElement("td", { className: "py-3 px-4" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react3.default.createElement("button", { onClick: () => openModal(vendedor.id) }, /* @__PURE__ */ import_react3.default.createElement(ExternalLink, { className: "w-4 h-4 text-blue-600 hover:text-blue-700 transition-colors cursor-pointer" })), /* @__PURE__ */ import_react3.default.createElement("span", { className: "bg-blue-100 text-blue-800 text-sm font-medium px-2 py-1 rounded-full" }, vendedor.ocorrencias))), /* @__PURE__ */ import_react3.default.createElement("td", { className: "py-3 px-4" }, /* @__PURE__ */ import_react3.default.createElement("button", { className: "text-gray-400 hover:text-gray-600 transition-colors" }, /* @__PURE__ */ import_react3.default.createElement(Ellipsis, { className: "w-4 h-4" })))), expandedRows.has(index) && /* @__PURE__ */ import_react3.default.createElement("tr", null, /* @__PURE__ */ import_react3.default.createElement("td", { colSpan: "6", className: "px-0 py-0" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "bg-gray-50 border-t border-gray-200" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "p-6" }, /* @__PURE__ */ import_react3.default.createElement("h4", { className: "text-lg font-semibold text-gray-900 mb-4" }, "Detalhes dos Sellers - ", vendedor.id), /* @__PURE__ */ import_react3.default.createElement("div", { className: "grid gap-2" }, vendedor.sellers.map((seller, sellerIndex) => /* @__PURE__ */ import_react3.default.createElement(
           "div",
           {
             key: sellerIndex,
             className: "bg-white rounded-lg border border-gray-200 p-4"
           },
           /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center justify-between mb-3" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-3" }, /* @__PURE__ */ import_react3.default.createElement("h5", { className: "font-semibold text-gray-900" }, seller.nome)), /* @__PURE__ */ import_react3.default.createElement("span", { className: "text-sm text-gray-500" }, "ID: ", seller.id)),
-          /* @__PURE__ */ import_react3.default.createElement("div", { className: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" }, /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react3.default.createElement(
-            "a",
+          /* @__PURE__ */ import_react3.default.createElement(
+            "div",
             {
-              href: seller.link,
-              className: "text-blue-600 flex items-center gap-1"
+              className: "grid gap-4",
+              style: {
+                gridTemplateColumns: "repeat(5, 1fr)"
+              }
             },
-            /* @__PURE__ */ import_react3.default.createElement(ExternalLink, { className: "w-4 h-4 text-blue-600" })
-          ), /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("p", { className: "text-xs text-gray-500" }, "Plataforma"), /* @__PURE__ */ import_react3.default.createElement("p", { className: "text-sm font-medium text-gray-900" }, seller.plataforma))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react3.default.createElement(FileText, { className: "w-4 h-4 text-green-600" }), /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("p", { className: "text-xs text-gray-500" }, "CNPJ"), /* @__PURE__ */ import_react3.default.createElement("p", { className: "text-sm font-medium text-gray-900" }, seller.cnpj))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react3.default.createElement(MessageSquare, { className: "w-4 h-4 text-purple-600" }), /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("p", { className: "text-xs text-gray-500" }, "Observa\xE7\xE3o"), /* @__PURE__ */ import_react3.default.createElement("p", { className: "text-sm font-medium text-gray-900" }, new Date(
-            seller.dataUltimaVenda
-          ).toLocaleDateString("pt-BR")))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react3.default.createElement(Activity, { className: "w-4 h-4 text-orange-600" }), /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("p", { className: "text-xs text-gray-500" }, "Status"), /* @__PURE__ */ import_react3.default.createElement(
-            "p",
-            {
-              className: `text-sm font-medium ${getStatusColor(
-                seller.status
-              )}`
-            },
-            seller.status
-          ))))
+            /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react3.default.createElement(
+              "a",
+              {
+                href: seller.link,
+                className: "text-blue-600 flex items-center gap-1"
+              },
+              /* @__PURE__ */ import_react3.default.createElement(ExternalLink, { className: "w-4 h-4 text-blue-600" })
+            ), /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("p", { className: "text-xs text-gray-500" }, "Plataforma"), /* @__PURE__ */ import_react3.default.createElement("p", { className: "text-sm font-medium text-gray-900" }, seller.plataforma))),
+            /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react3.default.createElement(FileText, { className: "w-4 h-4 text-green-600" }), /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("p", { className: "text-xs text-gray-500" }, "CNPJ"), /* @__PURE__ */ import_react3.default.createElement("p", { className: "text-sm font-medium text-gray-900" }, seller.cnpj))),
+            /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react3.default.createElement(MessageSquare, { className: "w-4 h-4 text-purple-600" }), /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("p", { className: "text-xs text-gray-500" }, "Observa\xE7\xE3o"), /* @__PURE__ */ import_react3.default.createElement("p", { className: "text-sm font-medium text-gray-900" }, new Date(
+              seller.dataUltimaVenda
+            ).toLocaleDateString("pt-BR")))),
+            /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react3.default.createElement(Activity, { className: "w-4 h-4 text-orange-600" }), /* @__PURE__ */ import_react3.default.createElement("div", null, /* @__PURE__ */ import_react3.default.createElement("p", { className: "text-xs text-gray-500" }, "Status"), /* @__PURE__ */ import_react3.default.createElement(
+              "p",
+              {
+                className: `text-sm font-medium ${getStatusColor(
+                  seller.status
+                )}`
+              },
+              seller.status
+            ))),
+            /* @__PURE__ */ import_react3.default.createElement("div", { className: "flex items-center gap-2" }, /* @__PURE__ */ import_react3.default.createElement(ExternalLink, { className: "w-4 h-4 text-blue-600" }), /* @__PURE__ */ import_react3.default.createElement("div", { className: "grid" }, /* @__PURE__ */ import_react3.default.createElement("p", { className: "text-xs text-gray-500" }, "Ocorr\xEAncias"), /* @__PURE__ */ import_react3.default.createElement("p", { className: "text-sm font-medium text-gray-900" }, "3")))
+          )
         ))))))))))))), /* @__PURE__ */ import_react3.default.createElement("div", { className: "mt-4 text-sm text-gray-600" }, "Mostrando ", filteredVendedores.length, " de ", vendedores.length, " vendedores"), /* @__PURE__ */ import_react3.default.createElement(
           OcorrenciasModal,
           {
@@ -20381,12 +20669,10 @@ lucide-react/dist/esm/icons/chevron-right.js:
 lucide-react/dist/esm/icons/ellipsis.js:
 lucide-react/dist/esm/icons/external-link.js:
 lucide-react/dist/esm/icons/file-text.js:
-lucide-react/dist/esm/icons/link.js:
 lucide-react/dist/esm/icons/message-square.js:
 lucide-react/dist/esm/icons/package.js:
 lucide-react/dist/esm/icons/plus.js:
 lucide-react/dist/esm/icons/search.js:
-lucide-react/dist/esm/icons/triangle-alert.js:
 lucide-react/dist/esm/icons/x.js:
 lucide-react/dist/esm/lucide-react.js:
   (**
