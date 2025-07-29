@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   Activity,
   MessageSquare,
@@ -375,14 +375,11 @@ const ModalCadastroOcorrencia = ({ isOpen = true, onClose, onSave }) => {
     observacao: "",
   });
 
-  const [produtos, setProdutos] = useState([]);
-  const [productCount, setProductCount] = useState(0);
-
-  // Define data atual como padrão
-  // useEffect(() => {
-  //   const today = new Date().toISOString().split("T")[0];
-  //   setFormData((prev) => ({ ...prev, data: today }));
-  // }, []);
+  const [produtos, setProdutos] = useState([
+    { id: "product_1", descricao: "", valor: "", tipo: "", link: "" },
+  ]);
+  const [activeCell, setActiveCell] = useState({ row: 0, col: 0 });
+  const cellRefs = useRef({});
 
   const tiposOcorrencia = [
     { value: "Confirmação da denúncia", label: "Confirmação da denúncia" },
@@ -393,6 +390,25 @@ const ModalCadastroOcorrencia = ({ isOpen = true, onClose, onSave }) => {
   const plataformas = [
     { value: "Mercado Livre", label: "Mercado Livre" },
     { value: "Shopee", label: "Shopee" },
+  ];
+
+  const tiposProduto = [
+    { value: "Propriedade Intelectual", label: "Propriedade Intelectual" },
+    { value: "Produto Parasitario", label: "Produto Parasitario" },
+    { value: "Outros", label: "Outros" },
+  ];
+
+  const columns = [
+    { key: "descricao", label: "Descrição", width: "35%" },
+    { key: "valor", label: "Preço", width: "10%" },
+    { key: "diferenca-preco", label: "Diferença de Preço", width: "10%" },
+    {
+      key: "diferenca-percentual",
+      label: "Diferença do Percentual",
+      width: "10%",
+    },
+    { key: "tipo", label: "Tipo", width: "15%" },
+    { key: "link", label: "Link", width: "20%" },
   ];
 
   const styles = {
@@ -416,7 +432,7 @@ const ModalCadastroOcorrencia = ({ isOpen = true, onClose, onSave }) => {
       background: "white",
       borderRadius: "12px",
       width: "100%",
-      maxWidth: "600px",
+      maxWidth: "1300px",
       overflow: "hidden",
       boxShadow:
         "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
@@ -509,68 +525,73 @@ const ModalCadastroOcorrencia = ({ isOpen = true, onClose, onSave }) => {
       alignItems: "center",
       justifyContent: "space-between",
     },
-    addProductBtn: {
-      background: "#3b82f6",
-      color: "white",
-      border: "none",
-      padding: "8px 16px",
-      borderRadius: "6px",
-      fontSize: "14px",
-      fontWeight: "500",
-      cursor: "pointer",
-      display: "flex",
-      alignItems: "center",
-      gap: "6px",
-      transition: "background-color 0.2s",
-    },
-    productItem: {
-      background: "#f9fafb",
-      border: "1px solid #e5e7eb",
+    tableContainer: {
+      border: "1px solid #d1d5db",
       borderRadius: "8px",
-      padding: "16px",
-      marginBottom: "12px",
+      overflow: "hidden",
+      backgroundColor: "white",
+    },
+    table: {
+      width: "100%",
+      borderCollapse: "collapse",
+      fontSize: "14px",
+    },
+    tableHeader: {
+      backgroundColor: "#f9fafb",
+    },
+    th: {
+      padding: "12px 8px",
+      textAlign: "left",
+      fontWeight: "600",
+      color: "#374151",
+      borderBottom: "1px solid #d1d5db",
+      borderRight: "1px solid #e5e7eb",
+    },
+    td: {
+      padding: "0",
+      borderBottom: "1px solid #e5e7eb",
+      borderRight: "1px solid #e5e7eb",
       position: "relative",
     },
-    productHeader: {
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "center",
-      marginBottom: "12px",
-    },
-    productNumber: {
-      fontSize: "14px",
-      fontWeight: "600",
-      color: "#6b7280",
-    },
-    removeProductBtn: {
-      background: "#ef4444",
-      color: "white",
+    cellInput: {
+      width: "100%",
+      height: "40px",
+      padding: "8px",
       border: "none",
-      padding: "4px 8px",
-      borderRadius: "4px",
-      fontSize: "12px",
+      outline: "none",
+      fontSize: "14px",
+      backgroundColor: "transparent",
+      boxSizing: "border-box",
+    },
+    cellSelect: {
+      width: "100%",
+      height: "40px",
+      padding: "8px",
+      border: "none",
+      outline: "none",
+      fontSize: "14px",
+      backgroundColor: "transparent",
       cursor: "pointer",
-      position: "absolute",
-      top: "12px",
-      right: "12px",
+      boxSizing: "border-box",
     },
-    productForm: {
-      display: "grid",
-      gridTemplateColumns: "1fr",
-      gap: "12px",
+    activeCell: {
+      backgroundColor: "#dbeafe",
+      border: "2px solid #3b82f6",
     },
-    productFormRow: {
-      display: "grid",
-      gridTemplateColumns: "2fr 1fr",
-      gap: "12px",
-    },
-    emptyProducts: {
-      textAlign: "center",
+    addRowBtn: {
+      width: "100%",
+      padding: "12px",
+      border: "1px solid #d1d5db",
+      borderTop: "none",
+      background: "#f9fafb",
       color: "#6b7280",
       fontSize: "14px",
-      padding: "20px",
-      border: "2px dashed #d1d5db",
-      borderRadius: "8px",
+      cursor: "pointer",
+      transition: "background-color 0.2s",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: "6px",
     },
     modalFooter: {
       padding: "20px 24px",
@@ -601,25 +622,12 @@ const ModalCadastroOcorrencia = ({ isOpen = true, onClose, onSave }) => {
       cursor: "pointer",
       transition: "background-color 0.2s",
     },
-    // Media queries simuladas com JavaScript
-    mobileProductFormRow: {
-      display: "grid",
-      gridTemplateColumns: "1fr",
-      gap: "12px",
+    instructionText: {
+      fontSize: "12px",
+      color: "#6b7280",
+      marginBottom: "12px",
+      fontStyle: "italic",
     },
-    mobileModalFooter: {
-      padding: "20px 24px",
-      borderTop: "1px solid #e5e7eb",
-      display: "flex",
-      justifyContent: "flex-end",
-      gap: "12px",
-      flexDirection: "column",
-    },
-  };
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const formatPrice = (value) => {
@@ -629,42 +637,190 @@ const ModalCadastroOcorrencia = ({ isOpen = true, onClose, onSave }) => {
     return numericValue ? "R$ " + numericValue : "";
   };
 
-  const addProduct = () => {
-    const newProductCount = productCount + 1;
-    setProductCount(newProductCount);
-
-    const newProduct = {
-      id: `product_${newProductCount}`,
-      number: newProductCount,
-      descricao: "",
-      valor: "",
-      tipo: "",
-      link: "",
-    };
-
-    setProdutos((prev) => [...prev, newProduct]);
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const removeProduct = (productId) => {
-    setProdutos((prev) => prev.filter((product) => product.id !== productId));
-  };
-
-  const updateProduct = (productId, field, value) => {
+  const updateProduct = (rowIndex, field, value) => {
     setProdutos((prev) =>
-      prev.map((product) =>
-        product.id === productId
+      prev.map((product, index) =>
+        index === rowIndex
           ? {
               ...product,
-              [field]: field === "valor" ? formatPrice(value) : value,
+              [field]:
+                field === "valor" ||
+                field === "diferenca-percentual" ||
+                field === "diferenca-preco"
+                  ? formatPrice(value)
+                  : value,
             }
           : product
       )
     );
   };
 
+  const addNewRow = () => {
+    const newId = `product_${produtos.length + 1}`;
+    setProdutos((prev) => [
+      ...prev,
+      { id: newId, descricao: "", valor: "", tipo: "", link: "" },
+    ]);
+  };
+
+  const handleKeyDown = (e, rowIndex, colIndex) => {
+    if (e.shiftKey && e.key === "Tab") {
+      e.preventDefault();
+
+      let previousColumn = colIndex - 1;
+      let previousRow = rowIndex;
+
+      if (previousColumn < 0) {
+        previousColumn = columns.length - 1;
+        previousRow = previousRow - 1;
+
+        if (previousRow === 0) {
+          previousColumn = 0;
+          previousRow = 0;
+        }
+      }
+
+      setActiveCell(previousRow, previousColumn);
+
+      setTimeout(() => {
+        const previousCellKey = `${previousRow}-${previousColumn}`;
+        if (cellRefs.current[previousCellKey]) {
+          cellRefs.current[previousCellKey].focus();
+        }
+      }, 0);
+    } else if (e.key === "Tab") {
+      e.preventDefault();
+
+      let nextCol = colIndex + 1;
+      let nextRow = rowIndex;
+
+      if (nextCol >= columns.length) {
+        nextCol = 0;
+        nextRow = rowIndex + 1;
+
+        // Se chegou ao final da tabela, adiciona nova linha
+        if (nextRow >= produtos.length) {
+          addNewRow();
+        }
+      }
+
+      setActiveCell({ row: nextRow, col: nextCol });
+
+      // Focar na próxima célula após o state ser atualizado
+      setTimeout(() => {
+        const nextCellKey = `${nextRow}-${nextCol}`;
+        if (cellRefs.current[nextCellKey]) {
+          cellRefs.current[nextCellKey].focus();
+        }
+      }, 0);
+    } else if (e.key === "Enter") {
+      e.preventDefault();
+
+      let nextRow = rowIndex + 1;
+
+      addNewRow();
+
+      setActiveCell({ row: nextRow, col: 0 });
+
+      setTimeout(() => {
+        const nextCellKey = `${nextRow}-${0}`;
+        if (cellRefs.current[nextCellKey]) {
+          cellRefs.current[nextCellKey].focus();
+        }
+      }, 0);
+    } else if (e.key === "ArrowUp" && rowIndex > 0) {
+      e.preventDefault();
+      const nextRow = rowIndex - 1;
+      setActiveCell({ row: nextRow, col: colIndex });
+
+      setTimeout(() => {
+        const nextCellKey = `${nextRow}-${colIndex}`;
+        if (cellRefs.current[nextCellKey]) {
+          cellRefs.current[nextCellKey].focus();
+        }
+      }, 0);
+    } else if (e.key === "ArrowDown") {
+      e.preventDefault();
+      let nextRow = rowIndex + 1;
+
+      if (nextRow >= produtos.length) {
+        addNewRow();
+      }
+
+      setActiveCell({ row: nextRow, col: colIndex });
+
+      setTimeout(() => {
+        const nextCellKey = `${nextRow}-${colIndex}`;
+        if (cellRefs.current[nextCellKey]) {
+          cellRefs.current[nextCellKey].focus();
+        }
+      }, 0);
+    }
+  };
+
+  const renderCell = (produto, rowIndex, column, colIndex) => {
+    const cellKey = `${rowIndex}-${colIndex}`;
+    const isActive = activeCell.row === rowIndex && activeCell.col === colIndex;
+
+    const cellStyle = {
+      ...styles.td,
+      ...(isActive ? styles.activeCell : {}),
+    };
+
+    if (column.key === "tipo") {
+      return (
+        <td key={colIndex} style={cellStyle}>
+          <select
+            ref={(el) => (cellRefs.current[cellKey] = el)}
+            value={produto[column.key]}
+            onChange={(e) =>
+              updateProduct(rowIndex, column.key, e.target.value)
+            }
+            onKeyDown={(e) => handleKeyDown(e, rowIndex, colIndex)}
+            onFocus={() => setActiveCell({ row: rowIndex, col: colIndex })}
+            style={styles.cellSelect}
+          >
+            <option value="">Selecione</option>
+            {tiposProduto.map((tipo) => (
+              <option key={tipo.value} value={tipo.value}>
+                {tipo.label}
+              </option>
+            ))}
+          </select>
+        </td>
+      );
+    }
+
+    return (
+      <td key={colIndex} style={cellStyle}>
+        <input
+          ref={(el) => (cellRefs.current[cellKey] = el)}
+          type={column.key === "link" ? "url" : "text"}
+          value={produto[column.key]}
+          onChange={(e) => updateProduct(rowIndex, column.key, e.target.value)}
+          onKeyDown={(e) => handleKeyDown(e, rowIndex, colIndex)}
+          onFocus={() => setActiveCell({ row: rowIndex, col: colIndex })}
+          placeholder={
+            column.key === "valor" ||
+            column.key === "diferenca-preco" ||
+            column.key === "diferenca-percentual"
+              ? "R$ 0,00"
+              : `${column.label}...`
+          }
+          style={styles.cellInput}
+        />
+      </td>
+    );
+  };
+
   const validateForm = () => {
     if (!formData.data || !formData.status) {
-      alert("Por favor, preencha os campos obrigatórios: Data e Tipo.");
+      alert("Por favor, preencha os campos obrigatórios: Data e Status.");
       return false;
     }
     return true;
@@ -682,7 +838,7 @@ const ModalCadastroOcorrencia = ({ isOpen = true, onClose, onSave }) => {
       onSave(ocorrenciaData);
     } else {
       alert(
-        `Ocorrência salva com sucesso!\n\nResumo:\n- Data: ${ocorrenciaData.data}\n- Tipo: ${ocorrenciaData.tipo}\n- Produtos: ${ocorrenciaData.produtos.length}`
+        `Ocorrência salva com sucesso!\n\nResumo:\n- Data: ${ocorrenciaData.data}\n- Status: ${ocorrenciaData.status}\n- Produtos: ${ocorrenciaData.produtos.length}`
       );
     }
 
@@ -801,128 +957,32 @@ const ModalCadastroOcorrencia = ({ isOpen = true, onClose, onSave }) => {
           <div style={styles.productsSection}>
             <div style={styles.sectionTitle}>
               <span>Produtos Relacionados</span>
-              <button
-                type="button"
-                onClick={addProduct}
-                style={styles.addProductBtn}
-                onMouseEnter={(e) =>
-                  (e.target.style.backgroundColor = "#2563eb")
-                }
-                onMouseLeave={(e) =>
-                  (e.target.style.backgroundColor = "#3b82f6")
-                }
-              >
-                <span>+</span> Adicionar Produto
-              </button>
             </div>
 
-            <div>
-              {produtos.length === 0 ? (
-                <div style={styles.emptyProducts}>
-                  Nenhum produto adicionado. Clique em "Adicionar Produto" para
-                  começar.
-                </div>
-              ) : (
-                produtos.map((produto) => (
-                  <div key={produto.id} style={styles.productItem}>
-                    <div style={styles.productHeader}>
-                      <span style={styles.productNumber}>
-                        Produto {produto.number}
-                      </span>
-                      <button
-                        type="button"
-                        onClick={() => removeProduct(produto.id)}
-                        style={styles.removeProductBtn}
-                        onMouseEnter={(e) =>
-                          (e.target.style.backgroundColor = "#dc2626")
-                        }
-                        onMouseLeave={(e) =>
-                          (e.target.style.backgroundColor = "#ef4444")
-                        }
+            <div style={styles.tableContainer}>
+              <table style={styles.table}>
+                <thead style={styles.tableHeader}>
+                  <tr>
+                    {columns.map((column, index) => (
+                      <th
+                        key={index}
+                        style={{ ...styles.th, width: column.width }}
                       >
-                        Remover
-                      </button>
-                    </div>
-
-                    <div style={styles.productForm}>
-                      <div style={styles.formGroup}>
-                        <label style={styles.formLabel}>Descrição</label>
-                        <input
-                          type="text"
-                          value={produto.descricao}
-                          onChange={(e) =>
-                            updateProduct(
-                              produto.id,
-                              "descricao",
-                              e.target.value
-                            )
-                          }
-                          placeholder="Descrição do produto"
-                          required
-                          style={styles.formInput}
-                        />
-                      </div>
-
-                      <div style={styles.productFormRow}>
-                        <div style={styles.formGroup}>
-                          <label style={styles.formLabel}>Preço</label>
-                          <input
-                            type="text"
-                            value={produto.valor}
-                            onChange={(e) =>
-                              updateProduct(produto.id, "valor", e.target.value)
-                            }
-                            placeholder="R$ 0,00"
-                            style={styles.formInput}
-                          />
-                        </div>
-                        <div style={styles.formGroup}>
-                          <label style={styles.formLabel}>Link</label>
-                          <input
-                            type="url"
-                            value={produto.link}
-                            onChange={(e) =>
-                              updateProduct(produto.id, "link", e.target.value)
-                            }
-                            placeholder="https://..."
-                            style={styles.formInput}
-                          />
-                        </div>
-                      </div>
-                      <div style={styles.formGroup}>
-                        <label style={styles.formLabel}>Tipo</label>
-
-                        <select
-                          name="tipo"
-                          value={produto.tipo}
-                          onChange={(e) =>
-                            updateProduct(produto.id, "tipo", e.target.value)
-                          }
-                          required
-                          style={styles.formInput}
-                        >
-                          <option value="">Selecione o tipo</option>
-                          <option
-                            key="Propriedade Intelectual"
-                            value="Propriedade Intelectual"
-                          >
-                            Propriedade Intelectual
-                          </option>
-                          <option
-                            key="Produto Parasitario"
-                            value="Produto Parasitario"
-                          >
-                            Produto Parasitario
-                          </option>
-                          <option key="Outros" value="Outros">
-                            Outros
-                          </option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                ))
-              )}
+                        {column.label}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {produtos.map((produto, rowIndex) => (
+                    <tr key={produto.id}>
+                      {columns.map((column, colIndex) =>
+                        renderCell(produto, rowIndex, column, colIndex)
+                      )}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
