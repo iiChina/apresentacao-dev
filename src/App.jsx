@@ -376,7 +376,15 @@ const ModalCadastroOcorrencia = ({ isOpen = true, onClose, onSave }) => {
   });
 
   const [produtos, setProdutos] = useState([
-    { id: "product_1", descricao: "", valor: "", tipo: "", link: "" },
+    {
+      id: "product_1",
+      descricao: "",
+      valor: "",
+      diferencaPreco: "",
+      diferencaPercentual: "",
+      tipo: "",
+      link: "",
+    },
   ]);
   const [activeCell, setActiveCell] = useState({ row: 0, col: 0 });
   const cellRefs = useRef({});
@@ -390,6 +398,8 @@ const ModalCadastroOcorrencia = ({ isOpen = true, onClose, onSave }) => {
   const plataformas = [
     { value: "Mercado Livre", label: "Mercado Livre" },
     { value: "Shopee", label: "Shopee" },
+    { value: "Magazine Luiza", label: "Magazine Luiza" },
+    { value: "Amazon", label: "Amazon" },
   ];
 
   const tiposProduto = [
@@ -401,15 +411,67 @@ const ModalCadastroOcorrencia = ({ isOpen = true, onClose, onSave }) => {
   const columns = [
     { key: "descricao", label: "Descrição", width: "35%" },
     { key: "valor", label: "Preço", width: "10%" },
-    { key: "diferenca-preco", label: "Diferença de Preço", width: "10%" },
+    { key: "diferencaPreco", label: "Diferença de Preço", width: "10%" },
     {
-      key: "diferenca-percentual",
+      key: "diferencaPercentual",
       label: "Diferença do Percentual",
       width: "10%",
     },
     { key: "tipo", label: "Tipo", width: "15%" },
     { key: "link", label: "Link", width: "20%" },
   ];
+
+  const processSheetsData = (pastedData) => {
+    console.log(pastedData);
+
+    const cleanData = pastedData.trim();
+    const columns = cleanData.split("\t");
+    const teste = {
+      descricao: columns[2],
+      valor: columns[6],
+      diferencaPreco: columns[7].replace("-", ""),
+      diferencaPercentual: "R$ " + columns[8].replace("-", "").replace("%", ""),
+      link: columns[12],
+    };
+
+    return teste;
+  };
+
+  // Função para adicionar produto processado do Sheets
+  const addProductFromSheets = (processedData) => {
+    console.log(processedData);
+
+    const newId = `product_${produtos.length + 1}`;
+    const newProduct = {
+      id: newId,
+      descricao: processedData.descricao || "",
+      valor: processedData.valor || "",
+      diferencaPreco: processedData.diferencaPreco || "",
+      diferencaPercentual: processedData.diferencaPercentual || "",
+      tipo: "",
+      link: processedData.link || "",
+    };
+
+    setProdutos((prev) => [...prev, newProduct]);
+
+    return newProduct;
+  };
+
+  // Handler para paste na tabela
+  const handleTablePaste = (e) => {
+    e.preventDefault();
+
+    const clipboardData = e.clipboardData || window.clipboardData;
+    const pastedData = clipboardData.getData("text");
+
+    if (!pastedData) return;
+
+    const processedColumns = processSheetsData(pastedData);
+
+    if (processedColumns && Object.keys(processedColumns).length > 0) {
+      addProductFromSheets(processedColumns);
+    }
+  };
 
   const styles = {
     overlay: {
@@ -525,6 +587,15 @@ const ModalCadastroOcorrencia = ({ isOpen = true, onClose, onSave }) => {
       alignItems: "center",
       justifyContent: "space-between",
     },
+    pasteInstructions: {
+      background: "#f0f9ff",
+      border: "1px solid #bae6fd",
+      borderRadius: "6px",
+      padding: "12px",
+      marginBottom: "16px",
+      fontSize: "13px",
+      color: "#0369a1",
+    },
     tableContainer: {
       border: "1px solid #d1d5db",
       borderRadius: "8px",
@@ -622,19 +693,23 @@ const ModalCadastroOcorrencia = ({ isOpen = true, onClose, onSave }) => {
       cursor: "pointer",
       transition: "background-color 0.2s",
     },
-    instructionText: {
-      fontSize: "12px",
-      color: "#6b7280",
-      marginBottom: "12px",
-      fontStyle: "italic",
-    },
   };
 
   const formatPrice = (value) => {
+    console.log(value);
+    const isNegative = value.includes("-");
+
+    // Remove todos os caracteres não numéricos
     let numericValue = value.replace(/\D/g, "");
+
+    // Adiciona vírgula para separar centavos
     numericValue = numericValue.replace(/(\d)(\d{2})$/, "$1,$2");
+
+    // Adiciona pontos como separadores de milhares
     numericValue = numericValue.replace(/(?=(\d{3})+(\D))\B/g, ".");
-    return numericValue ? "R$ " + numericValue : "";
+
+    // Adiciona prefixo "R$" e sinal negativo se necessário
+    return (isNegative ? "R$ -" : "R$ ") + numericValue;
   };
 
   const handleInputChange = (e) => {
@@ -650,8 +725,8 @@ const ModalCadastroOcorrencia = ({ isOpen = true, onClose, onSave }) => {
               ...product,
               [field]:
                 field === "valor" ||
-                field === "diferenca-percentual" ||
-                field === "diferenca-preco"
+                field === "diferencaPercentual" ||
+                field === "diferencaPreco"
                   ? formatPrice(value)
                   : value,
             }
@@ -664,28 +739,34 @@ const ModalCadastroOcorrencia = ({ isOpen = true, onClose, onSave }) => {
     const newId = `product_${produtos.length + 1}`;
     setProdutos((prev) => [
       ...prev,
-      { id: newId, descricao: "", valor: "", tipo: "", link: "" },
+      {
+        id: newId,
+        descricao: "",
+        valor: "",
+        diferencaPreco: "",
+        diferencaPercentual: "",
+        tipo: "",
+        link: "",
+      },
     ]);
   };
 
   const handleKeyDown = (e, rowIndex, colIndex) => {
     if (e.shiftKey && e.key === "Tab") {
       e.preventDefault();
-
       let previousColumn = colIndex - 1;
       let previousRow = rowIndex;
 
       if (previousColumn < 0) {
         previousColumn = columns.length - 1;
         previousRow = previousRow - 1;
-
-        if (previousRow === 0) {
+        if (previousRow < 0) {
           previousColumn = 0;
           previousRow = 0;
         }
       }
 
-      setActiveCell(previousRow, previousColumn);
+      setActiveCell({ row: previousRow, col: previousColumn });
 
       setTimeout(() => {
         const previousCellKey = `${previousRow}-${previousColumn}`;
@@ -695,15 +776,12 @@ const ModalCadastroOcorrencia = ({ isOpen = true, onClose, onSave }) => {
       }, 0);
     } else if (e.key === "Tab") {
       e.preventDefault();
-
       let nextCol = colIndex + 1;
       let nextRow = rowIndex;
 
       if (nextCol >= columns.length) {
         nextCol = 0;
         nextRow = rowIndex + 1;
-
-        // Se chegou ao final da tabela, adiciona nova linha
         if (nextRow >= produtos.length) {
           addNewRow();
         }
@@ -711,7 +789,6 @@ const ModalCadastroOcorrencia = ({ isOpen = true, onClose, onSave }) => {
 
       setActiveCell({ row: nextRow, col: nextCol });
 
-      // Focar na próxima célula após o state ser atualizado
       setTimeout(() => {
         const nextCellKey = `${nextRow}-${nextCol}`;
         if (cellRefs.current[nextCellKey]) {
@@ -720,15 +797,14 @@ const ModalCadastroOcorrencia = ({ isOpen = true, onClose, onSave }) => {
       }, 0);
     } else if (e.key === "Enter") {
       e.preventDefault();
-
       let nextRow = rowIndex + 1;
-
-      addNewRow();
-
+      if (nextRow >= produtos.length) {
+        addNewRow();
+      }
       setActiveCell({ row: nextRow, col: 0 });
 
       setTimeout(() => {
-        const nextCellKey = `${nextRow}-${0}`;
+        const nextCellKey = `${nextRow}-0`;
         if (cellRefs.current[nextCellKey]) {
           cellRefs.current[nextCellKey].focus();
         }
@@ -747,11 +823,9 @@ const ModalCadastroOcorrencia = ({ isOpen = true, onClose, onSave }) => {
     } else if (e.key === "ArrowDown") {
       e.preventDefault();
       let nextRow = rowIndex + 1;
-
       if (nextRow >= produtos.length) {
         addNewRow();
       }
-
       setActiveCell({ row: nextRow, col: colIndex });
 
       setTimeout(() => {
@@ -807,8 +881,8 @@ const ModalCadastroOcorrencia = ({ isOpen = true, onClose, onSave }) => {
           onFocus={() => setActiveCell({ row: rowIndex, col: colIndex })}
           placeholder={
             column.key === "valor" ||
-            column.key === "diferenca-preco" ||
-            column.key === "diferenca-percentual"
+            column.key === "diferencaPreco" ||
+            column.key === "diferencaPercentual"
               ? "R$ 0,00"
               : `${column.label}...`
           }
@@ -959,7 +1033,11 @@ const ModalCadastroOcorrencia = ({ isOpen = true, onClose, onSave }) => {
               <span>Produtos Relacionados</span>
             </div>
 
-            <div style={styles.tableContainer}>
+            <div
+              style={styles.tableContainer}
+              onPaste={handleTablePaste}
+              tabIndex={-1}
+            >
               <table style={styles.table}>
                 <thead style={styles.tableHeader}>
                   <tr>

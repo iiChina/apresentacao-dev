@@ -19831,8 +19831,19 @@
           plataforma: "",
           observacao: ""
         });
-        const [produtos, setProdutos] = (0, import_react3.useState)([]);
-        const [productCount, setProductCount] = (0, import_react3.useState)(0);
+        const [produtos, setProdutos] = (0, import_react3.useState)([
+          {
+            id: "product_1",
+            descricao: "",
+            valor: "",
+            diferencaPreco: "",
+            diferencaPercentual: "",
+            tipo: "",
+            link: ""
+          }
+        ]);
+        const [activeCell, setActiveCell] = (0, import_react3.useState)({ row: 0, col: 0 });
+        const cellRefs = (0, import_react3.useRef)({});
         const tiposOcorrencia = [
           { value: "Confirma\xE7\xE3o da den\xFAncia", label: "Confirma\xE7\xE3o da den\xFAncia" },
           { value: "Caso perdido", label: "Caso perdido" },
@@ -19840,8 +19851,65 @@
         ];
         const plataformas = [
           { value: "Mercado Livre", label: "Mercado Livre" },
-          { value: "Shopee", label: "Shopee" }
+          { value: "Shopee", label: "Shopee" },
+          { value: "Magazine Luiza", label: "Magazine Luiza" },
+          { value: "Amazon", label: "Amazon" }
         ];
+        const tiposProduto = [
+          { value: "Propriedade Intelectual", label: "Propriedade Intelectual" },
+          { value: "Produto Parasitario", label: "Produto Parasitario" },
+          { value: "Outros", label: "Outros" }
+        ];
+        const columns = [
+          { key: "descricao", label: "Descri\xE7\xE3o", width: "35%" },
+          { key: "valor", label: "Pre\xE7o", width: "10%" },
+          { key: "diferencaPreco", label: "Diferen\xE7a de Pre\xE7o", width: "10%" },
+          {
+            key: "diferencaPercentual",
+            label: "Diferen\xE7a do Percentual",
+            width: "10%"
+          },
+          { key: "tipo", label: "Tipo", width: "15%" },
+          { key: "link", label: "Link", width: "20%" }
+        ];
+        const processSheetsData = (pastedData) => {
+          console.log(pastedData);
+          const cleanData = pastedData.trim();
+          const columns2 = cleanData.split("	");
+          const teste = {
+            descricao: columns2[2],
+            valor: columns2[6],
+            diferencaPreco: columns2[7].replace("-", ""),
+            diferencaPercentual: "R$ " + columns2[8].replace("-", "").replace("%", ""),
+            link: columns2[12]
+          };
+          return teste;
+        };
+        const addProductFromSheets = (processedData) => {
+          console.log(processedData);
+          const newId = `product_${produtos.length + 1}`;
+          const newProduct = {
+            id: newId,
+            descricao: processedData.descricao || "",
+            valor: processedData.valor || "",
+            diferencaPreco: processedData.diferencaPreco || "",
+            diferencaPercentual: processedData.diferencaPercentual || "",
+            tipo: "",
+            link: processedData.link || ""
+          };
+          setProdutos((prev) => [...prev, newProduct]);
+          return newProduct;
+        };
+        const handleTablePaste = (e) => {
+          e.preventDefault();
+          const clipboardData = e.clipboardData || window.clipboardData;
+          const pastedData = clipboardData.getData("text");
+          if (!pastedData) return;
+          const processedColumns = processSheetsData(pastedData);
+          if (processedColumns && Object.keys(processedColumns).length > 0) {
+            addProductFromSheets(processedColumns);
+          }
+        };
         const styles = {
           overlay: {
             fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
@@ -19862,7 +19930,7 @@
             background: "white",
             borderRadius: "12px",
             width: "100%",
-            maxWidth: "600px",
+            maxWidth: "1300px",
             overflow: "hidden",
             boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
           },
@@ -19954,68 +20022,82 @@
             alignItems: "center",
             justifyContent: "space-between"
           },
-          addProductBtn: {
-            background: "#3b82f6",
-            color: "white",
-            border: "none",
-            padding: "8px 16px",
+          pasteInstructions: {
+            background: "#f0f9ff",
+            border: "1px solid #bae6fd",
             borderRadius: "6px",
-            fontSize: "14px",
-            fontWeight: "500",
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            gap: "6px",
-            transition: "background-color 0.2s"
+            padding: "12px",
+            marginBottom: "16px",
+            fontSize: "13px",
+            color: "#0369a1"
           },
-          productItem: {
-            background: "#f9fafb",
-            border: "1px solid #e5e7eb",
+          tableContainer: {
+            border: "1px solid #d1d5db",
             borderRadius: "8px",
-            padding: "16px",
-            marginBottom: "12px",
+            overflow: "hidden",
+            backgroundColor: "white"
+          },
+          table: {
+            width: "100%",
+            borderCollapse: "collapse",
+            fontSize: "14px"
+          },
+          tableHeader: {
+            backgroundColor: "#f9fafb"
+          },
+          th: {
+            padding: "12px 8px",
+            textAlign: "left",
+            fontWeight: "600",
+            color: "#374151",
+            borderBottom: "1px solid #d1d5db",
+            borderRight: "1px solid #e5e7eb"
+          },
+          td: {
+            padding: "0",
+            borderBottom: "1px solid #e5e7eb",
+            borderRight: "1px solid #e5e7eb",
             position: "relative"
           },
-          productHeader: {
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: "12px"
-          },
-          productNumber: {
-            fontSize: "14px",
-            fontWeight: "600",
-            color: "#6b7280"
-          },
-          removeProductBtn: {
-            background: "#ef4444",
-            color: "white",
+          cellInput: {
+            width: "100%",
+            height: "40px",
+            padding: "8px",
             border: "none",
-            padding: "4px 8px",
-            borderRadius: "4px",
-            fontSize: "12px",
+            outline: "none",
+            fontSize: "14px",
+            backgroundColor: "transparent",
+            boxSizing: "border-box"
+          },
+          cellSelect: {
+            width: "100%",
+            height: "40px",
+            padding: "8px",
+            border: "none",
+            outline: "none",
+            fontSize: "14px",
+            backgroundColor: "transparent",
             cursor: "pointer",
-            position: "absolute",
-            top: "12px",
-            right: "12px"
+            boxSizing: "border-box"
           },
-          productForm: {
-            display: "grid",
-            gridTemplateColumns: "1fr",
-            gap: "12px"
+          activeCell: {
+            backgroundColor: "#dbeafe",
+            border: "2px solid #3b82f6"
           },
-          productFormRow: {
-            display: "grid",
-            gridTemplateColumns: "2fr 1fr",
-            gap: "12px"
-          },
-          emptyProducts: {
-            textAlign: "center",
+          addRowBtn: {
+            width: "100%",
+            padding: "12px",
+            border: "1px solid #d1d5db",
+            borderTop: "none",
+            background: "#f9fafb",
             color: "#6b7280",
             fontSize: "14px",
-            padding: "20px",
-            border: "2px dashed #d1d5db",
-            borderRadius: "8px"
+            cursor: "pointer",
+            transition: "background-color 0.2s",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "6px"
           },
           modalFooter: {
             padding: "20px 24px",
@@ -20045,61 +20127,160 @@
             fontWeight: "500",
             cursor: "pointer",
             transition: "background-color 0.2s"
-          },
-          // Media queries simuladas com JavaScript
-          mobileProductFormRow: {
-            display: "grid",
-            gridTemplateColumns: "1fr",
-            gap: "12px"
-          },
-          mobileModalFooter: {
-            padding: "20px 24px",
-            borderTop: "1px solid #e5e7eb",
-            display: "flex",
-            justifyContent: "flex-end",
-            gap: "12px",
-            flexDirection: "column"
           }
+        };
+        const formatPrice = (value) => {
+          console.log(value);
+          const isNegative = value.includes("-");
+          let numericValue = value.replace(/\D/g, "");
+          numericValue = numericValue.replace(/(\d)(\d{2})$/, "$1,$2");
+          numericValue = numericValue.replace(/(?=(\d{3})+(\D))\B/g, ".");
+          return (isNegative ? "R$ -" : "R$ ") + numericValue;
         };
         const handleInputChange = (e) => {
           const { name, value } = e.target;
           setFormData((prev) => ({ ...prev, [name]: value }));
         };
-        const formatPrice = (value) => {
-          let numericValue = value.replace(/\D/g, "");
-          numericValue = numericValue.replace(/(\d)(\d{2})$/, "$1,$2");
-          numericValue = numericValue.replace(/(?=(\d{3})+(\D))\B/g, ".");
-          return numericValue ? "R$ " + numericValue : "";
-        };
-        const addProduct = () => {
-          const newProductCount = productCount + 1;
-          setProductCount(newProductCount);
-          const newProduct = {
-            id: `product_${newProductCount}`,
-            number: newProductCount,
-            descricao: "",
-            valor: "",
-            tipo: "",
-            link: ""
-          };
-          setProdutos((prev) => [...prev, newProduct]);
-        };
-        const removeProduct = (productId) => {
-          setProdutos((prev) => prev.filter((product) => product.id !== productId));
-        };
-        const updateProduct = (productId, field, value) => {
+        const updateProduct = (rowIndex, field, value) => {
           setProdutos(
             (prev) => prev.map(
-              (product) => product.id === productId ? {
+              (product, index) => index === rowIndex ? {
                 ...product,
-                [field]: field === "valor" ? formatPrice(value) : value
+                [field]: field === "valor" || field === "diferencaPercentual" || field === "diferencaPreco" ? formatPrice(value) : value
               } : product
             )
           );
         };
+        const addNewRow = () => {
+          const newId = `product_${produtos.length + 1}`;
+          setProdutos((prev) => [
+            ...prev,
+            {
+              id: newId,
+              descricao: "",
+              valor: "",
+              diferencaPreco: "",
+              diferencaPercentual: "",
+              tipo: "",
+              link: ""
+            }
+          ]);
+        };
+        const handleKeyDown = (e, rowIndex, colIndex) => {
+          if (e.shiftKey && e.key === "Tab") {
+            e.preventDefault();
+            let previousColumn = colIndex - 1;
+            let previousRow = rowIndex;
+            if (previousColumn < 0) {
+              previousColumn = columns.length - 1;
+              previousRow = previousRow - 1;
+              if (previousRow < 0) {
+                previousColumn = 0;
+                previousRow = 0;
+              }
+            }
+            setActiveCell({ row: previousRow, col: previousColumn });
+            setTimeout(() => {
+              const previousCellKey = `${previousRow}-${previousColumn}`;
+              if (cellRefs.current[previousCellKey]) {
+                cellRefs.current[previousCellKey].focus();
+              }
+            }, 0);
+          } else if (e.key === "Tab") {
+            e.preventDefault();
+            let nextCol = colIndex + 1;
+            let nextRow = rowIndex;
+            if (nextCol >= columns.length) {
+              nextCol = 0;
+              nextRow = rowIndex + 1;
+              if (nextRow >= produtos.length) {
+                addNewRow();
+              }
+            }
+            setActiveCell({ row: nextRow, col: nextCol });
+            setTimeout(() => {
+              const nextCellKey = `${nextRow}-${nextCol}`;
+              if (cellRefs.current[nextCellKey]) {
+                cellRefs.current[nextCellKey].focus();
+              }
+            }, 0);
+          } else if (e.key === "Enter") {
+            e.preventDefault();
+            let nextRow = rowIndex + 1;
+            if (nextRow >= produtos.length) {
+              addNewRow();
+            }
+            setActiveCell({ row: nextRow, col: 0 });
+            setTimeout(() => {
+              const nextCellKey = `${nextRow}-0`;
+              if (cellRefs.current[nextCellKey]) {
+                cellRefs.current[nextCellKey].focus();
+              }
+            }, 0);
+          } else if (e.key === "ArrowUp" && rowIndex > 0) {
+            e.preventDefault();
+            const nextRow = rowIndex - 1;
+            setActiveCell({ row: nextRow, col: colIndex });
+            setTimeout(() => {
+              const nextCellKey = `${nextRow}-${colIndex}`;
+              if (cellRefs.current[nextCellKey]) {
+                cellRefs.current[nextCellKey].focus();
+              }
+            }, 0);
+          } else if (e.key === "ArrowDown") {
+            e.preventDefault();
+            let nextRow = rowIndex + 1;
+            if (nextRow >= produtos.length) {
+              addNewRow();
+            }
+            setActiveCell({ row: nextRow, col: colIndex });
+            setTimeout(() => {
+              const nextCellKey = `${nextRow}-${colIndex}`;
+              if (cellRefs.current[nextCellKey]) {
+                cellRefs.current[nextCellKey].focus();
+              }
+            }, 0);
+          }
+        };
+        const renderCell = (produto, rowIndex, column, colIndex) => {
+          const cellKey = `${rowIndex}-${colIndex}`;
+          const isActive = activeCell.row === rowIndex && activeCell.col === colIndex;
+          const cellStyle = {
+            ...styles.td,
+            ...isActive ? styles.activeCell : {}
+          };
+          if (column.key === "tipo") {
+            return /* @__PURE__ */ import_react3.default.createElement("td", { key: colIndex, style: cellStyle }, /* @__PURE__ */ import_react3.default.createElement(
+              "select",
+              {
+                ref: (el) => cellRefs.current[cellKey] = el,
+                value: produto[column.key],
+                onChange: (e) => updateProduct(rowIndex, column.key, e.target.value),
+                onKeyDown: (e) => handleKeyDown(e, rowIndex, colIndex),
+                onFocus: () => setActiveCell({ row: rowIndex, col: colIndex }),
+                style: styles.cellSelect
+              },
+              /* @__PURE__ */ import_react3.default.createElement("option", { value: "" }, "Selecione"),
+              tiposProduto.map((tipo) => /* @__PURE__ */ import_react3.default.createElement("option", { key: tipo.value, value: tipo.value }, tipo.label))
+            ));
+          }
+          return /* @__PURE__ */ import_react3.default.createElement("td", { key: colIndex, style: cellStyle }, /* @__PURE__ */ import_react3.default.createElement(
+            "input",
+            {
+              ref: (el) => cellRefs.current[cellKey] = el,
+              type: column.key === "link" ? "url" : "text",
+              value: produto[column.key],
+              onChange: (e) => updateProduct(rowIndex, column.key, e.target.value),
+              onKeyDown: (e) => handleKeyDown(e, rowIndex, colIndex),
+              onFocus: () => setActiveCell({ row: rowIndex, col: colIndex }),
+              placeholder: column.key === "valor" || column.key === "diferencaPreco" || column.key === "diferencaPercentual" ? "R$ 0,00" : `${column.label}...`,
+              style: styles.cellInput
+            }
+          ));
+        };
         const validateForm = () => {
           if (!formData.data || !formData.status) {
-            alert("Por favor, preencha os campos obrigat\xF3rios: Data e Tipo.");
+            alert("Por favor, preencha os campos obrigat\xF3rios: Data e Status.");
             return false;
           }
           return true;
@@ -20118,7 +20299,7 @@
 
 Resumo:
 - Data: ${ocorrenciaData.data}
-- Tipo: ${ocorrenciaData.tipo}
+- Status: ${ocorrenciaData.status}
 - Produtos: ${ocorrenciaData.produtos.length}`
             );
           }
@@ -20192,87 +20373,24 @@ Resumo:
             onFocus: handleInputFocus,
             onBlur: handleInputBlur
           }
-        )), /* @__PURE__ */ import_react3.default.createElement("div", { style: styles.productsSection }, /* @__PURE__ */ import_react3.default.createElement("div", { style: styles.sectionTitle }, /* @__PURE__ */ import_react3.default.createElement("span", null, "Produtos Relacionados"), /* @__PURE__ */ import_react3.default.createElement(
-          "button",
+        )), /* @__PURE__ */ import_react3.default.createElement("div", { style: styles.productsSection }, /* @__PURE__ */ import_react3.default.createElement("div", { style: styles.sectionTitle }, /* @__PURE__ */ import_react3.default.createElement("span", null, "Produtos Relacionados")), /* @__PURE__ */ import_react3.default.createElement(
+          "div",
           {
-            type: "button",
-            onClick: addProduct,
-            style: styles.addProductBtn,
-            onMouseEnter: (e) => e.target.style.backgroundColor = "#2563eb",
-            onMouseLeave: (e) => e.target.style.backgroundColor = "#3b82f6"
+            style: styles.tableContainer,
+            onPaste: handleTablePaste,
+            tabIndex: -1
           },
-          /* @__PURE__ */ import_react3.default.createElement("span", null, "+"),
-          " Adicionar Produto"
-        )), /* @__PURE__ */ import_react3.default.createElement("div", null, produtos.length === 0 ? /* @__PURE__ */ import_react3.default.createElement("div", { style: styles.emptyProducts }, 'Nenhum produto adicionado. Clique em "Adicionar Produto" para come\xE7ar.') : produtos.map((produto) => /* @__PURE__ */ import_react3.default.createElement("div", { key: produto.id, style: styles.productItem }, /* @__PURE__ */ import_react3.default.createElement("div", { style: styles.productHeader }, /* @__PURE__ */ import_react3.default.createElement("span", { style: styles.productNumber }, "Produto ", produto.number), /* @__PURE__ */ import_react3.default.createElement(
-          "button",
-          {
-            type: "button",
-            onClick: () => removeProduct(produto.id),
-            style: styles.removeProductBtn,
-            onMouseEnter: (e) => e.target.style.backgroundColor = "#dc2626",
-            onMouseLeave: (e) => e.target.style.backgroundColor = "#ef4444"
-          },
-          "Remover"
-        )), /* @__PURE__ */ import_react3.default.createElement("div", { style: styles.productForm }, /* @__PURE__ */ import_react3.default.createElement("div", { style: styles.formGroup }, /* @__PURE__ */ import_react3.default.createElement("label", { style: styles.formLabel }, "Descri\xE7\xE3o"), /* @__PURE__ */ import_react3.default.createElement(
-          "input",
-          {
-            type: "text",
-            value: produto.descricao,
-            onChange: (e) => updateProduct(
-              produto.id,
-              "descricao",
-              e.target.value
-            ),
-            placeholder: "Descri\xE7\xE3o do produto",
-            required: true,
-            style: styles.formInput
-          }
-        )), /* @__PURE__ */ import_react3.default.createElement("div", { style: styles.productFormRow }, /* @__PURE__ */ import_react3.default.createElement("div", { style: styles.formGroup }, /* @__PURE__ */ import_react3.default.createElement("label", { style: styles.formLabel }, "Pre\xE7o"), /* @__PURE__ */ import_react3.default.createElement(
-          "input",
-          {
-            type: "text",
-            value: produto.valor,
-            onChange: (e) => updateProduct(produto.id, "valor", e.target.value),
-            placeholder: "R$ 0,00",
-            style: styles.formInput
-          }
-        )), /* @__PURE__ */ import_react3.default.createElement("div", { style: styles.formGroup }, /* @__PURE__ */ import_react3.default.createElement("label", { style: styles.formLabel }, "Link"), /* @__PURE__ */ import_react3.default.createElement(
-          "input",
-          {
-            type: "url",
-            value: produto.link,
-            onChange: (e) => updateProduct(produto.id, "link", e.target.value),
-            placeholder: "https://...",
-            style: styles.formInput
-          }
-        ))), /* @__PURE__ */ import_react3.default.createElement("div", { style: styles.formGroup }, /* @__PURE__ */ import_react3.default.createElement("label", { style: styles.formLabel }, "Tipo"), /* @__PURE__ */ import_react3.default.createElement(
-          "select",
-          {
-            name: "tipo",
-            value: produto.tipo,
-            onChange: (e) => updateProduct(produto.id, "tipo", e.target.value),
-            required: true,
-            style: styles.formInput
-          },
-          /* @__PURE__ */ import_react3.default.createElement("option", { value: "" }, "Selecione o tipo"),
-          /* @__PURE__ */ import_react3.default.createElement(
-            "option",
+          /* @__PURE__ */ import_react3.default.createElement("table", { style: styles.table }, /* @__PURE__ */ import_react3.default.createElement("thead", { style: styles.tableHeader }, /* @__PURE__ */ import_react3.default.createElement("tr", null, columns.map((column, index) => /* @__PURE__ */ import_react3.default.createElement(
+            "th",
             {
-              key: "Propriedade Intelectual",
-              value: "Propriedade Intelectual"
+              key: index,
+              style: { ...styles.th, width: column.width }
             },
-            "Propriedade Intelectual"
-          ),
-          /* @__PURE__ */ import_react3.default.createElement(
-            "option",
-            {
-              key: "Produto Parasitario",
-              value: "Produto Parasitario"
-            },
-            "Produto Parasitario"
-          ),
-          /* @__PURE__ */ import_react3.default.createElement("option", { key: "Outros", value: "Outros" }, "Outros")
-        )))))))), /* @__PURE__ */ import_react3.default.createElement("div", { style: styles.modalFooter }, /* @__PURE__ */ import_react3.default.createElement(
+            column.label
+          )))), /* @__PURE__ */ import_react3.default.createElement("tbody", null, produtos.map((produto, rowIndex) => /* @__PURE__ */ import_react3.default.createElement("tr", { key: produto.id }, columns.map(
+            (column, colIndex) => renderCell(produto, rowIndex, column, colIndex)
+          )))))
+        ))), /* @__PURE__ */ import_react3.default.createElement("div", { style: styles.modalFooter }, /* @__PURE__ */ import_react3.default.createElement(
           "button",
           {
             type: "button",
